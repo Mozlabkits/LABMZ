@@ -1,119 +1,361 @@
-﻿const CACHE_NAME = "labmz-v2";
+/* =========================================================
+   LABMZ — SERVICE WORKER
+   Laboratório de Aprendizagem de Biologia e Química
+   de Moçambique
 
-const FILES_TO_CACHE = [
+   Versão: 3.0
+========================================================= */
 
-```
-"./",
-"./index.html",
-"./style.css",
-"./app.js",
-"./manifest.json",
+"use strict";
 
-"./Biologia/index.html",
 
-"./Biologia/celula/index.html",
-"./Biologia/celula/animal/index.html",
-"./Biologia/celula/vegetal/index.html",
-"./Biologia/celula/procariotica/index.html",
-"./Biologia/celula/eucariotica/index.html",
-"./Biologia/celula/estrutura/index.html",
-"./Biologia/celula/funcoes/index.html",
-"./Biologia/celula/exercicios/index.html",
-"./Biologia/celula/quiz/index.html",
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
 
-"./Quimica/index.html",
-"./Quimica/materia/index.html",
-"./Quimica/atomo/index.html",
-"./Quimica/elementos/index.html",
-"./Quimica/tabela-periodica/index.html",
-"./Quimica/ligacoes/index.html",
-"./Quimica/reacoes/index.html",
-"./Quimica/exercicios/index.html",
-"./Quimica/quiz/index.html"
-```
+const CACHE_NAME = "labmz-v3";
+
+const BASE_PATH = "/LABMZ/";
+
+
+/* =========================================================
+   ARQUIVOS ESSENCIAIS
+========================================================= */
+
+const CORE_FILES = [
+
+    `${BASE_PATH}`,
+
+    `${BASE_PATH}index.html`,
+
+    `${BASE_PATH}style.css`,
+
+    `${BASE_PATH}app.js`,
+
+    `${BASE_PATH}manifest.json`,
+
+    `${BASE_PATH}icons/icon-192.png`,
+
+    `${BASE_PATH}icons/icon-512.png`
 
 ];
 
-self.addEventListener("install", event => {
 
-```
-event.waitUntil(
+/* =========================================================
+   INSTALAÇÃO DO SERVICE WORKER
+========================================================= */
 
-    caches.open(CACHE_NAME)
+self.addEventListener(
+    "install",
+    function (event) {
 
-        .then(cache => {
+        console.log(
+            "[LABMZ] Instalando Service Worker..."
+        );
 
-            return cache.addAll(FILES_TO_CACHE);
 
-        })
+        event.waitUntil(
 
+            caches
+                .open(CACHE_NAME)
+
+                .then(
+                    function (cache) {
+
+                        console.log(
+                            "[LABMZ] Guardando arquivos essenciais..."
+                        );
+
+
+                        return cache.addAll(
+                            CORE_FILES
+                        );
+
+                    }
+                )
+
+        );
+
+
+        /*
+         * Ativa imediatamente a nova versão
+         * do Service Worker.
+         */
+
+        self.skipWaiting();
+
+    }
 );
 
-self.skipWaiting();
-```
 
-});
+/* =========================================================
+   ATIVAÇÃO DO SERVICE WORKER
+========================================================= */
 
-self.addEventListener("activate", event => {
+self.addEventListener(
+    "activate",
+    function (event) {
 
-```
-event.waitUntil(
+        console.log(
+            "[LABMZ] Ativando Service Worker..."
+        );
 
-    caches.keys()
 
-        .then(cacheNames => {
+        event.waitUntil(
 
-            return Promise.all(
+            caches
+                .keys()
 
-                cacheNames
+                .then(
+                    function (cacheNames) {
 
-                    .filter(name => name !== CACHE_NAME)
+                        return Promise.all(
 
-                    .map(name => caches.delete(name))
+                            cacheNames.map(
+                                function (cacheName) {
 
+                                    /*
+                                     * Apagar caches antigos
+                                     * do LABMZ.
+                                     */
+
+                                    if (
+                                        cacheName !==
+                                        CACHE_NAME
+                                    ) {
+
+                                        console.log(
+                                            "[LABMZ] Removendo cache antigo:",
+                                            cacheName
+                                        );
+
+
+                                        return caches.delete(
+                                            cacheName
+                                        );
+
+                                    }
+
+                                }
+                            )
+
+                        );
+
+                    }
+                )
+
+        );
+
+
+        /*
+         * Assume imediatamente o controle
+         * das páginas abertas.
+         */
+
+        self.clients.claim();
+
+    }
+);
+
+
+/* =========================================================
+   INTERCEPTAÇÃO DAS REQUISIÇÕES
+========================================================= */
+
+self.addEventListener(
+    "fetch",
+    function (event) {
+
+
+        /*
+         * Trabalhar apenas com requisições GET.
+         */
+
+        if (
+            event.request.method !==
+            "GET"
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * Ignorar extensões de outros domínios.
+         */
+
+        const requestURL =
+            new URL(
+                event.request.url
             );
 
-        })
 
+        if (
+            requestURL.origin !==
+            self.location.origin
+        ) {
+
+            return;
+
+        }
+
+
+        event.respondWith(
+
+            caches
+                .match(
+                    event.request
+                )
+
+                .then(
+                    function (cachedResponse) {
+
+
+                        /*
+                         * Se já existe no cache,
+                         * utilizar imediatamente.
+                         */
+
+                        if (
+                            cachedResponse
+                        ) {
+
+                            return cachedResponse;
+
+                        }
+
+
+                        /*
+                         * Caso contrário,
+                         * procurar na Internet.
+                         */
+
+                        return fetch(
+                            event.request
+                        )
+
+                        .then(
+                            function (networkResponse) {
+
+
+                                /*
+                                 * Verificar se a resposta
+                                 * é válida.
+                                 */
+
+                                if (
+                                    !networkResponse ||
+                                    networkResponse.status !== 200 ||
+                                    networkResponse.type === "opaque"
+                                ) {
+
+                                    return networkResponse;
+
+                                }
+
+
+                                /*
+                                 * Fazer uma cópia da resposta
+                                 * para guardar no cache.
+                                 */
+
+                                const responseClone =
+                                    networkResponse.clone();
+
+
+                                caches
+                                    .open(
+                                        CACHE_NAME
+                                    )
+
+                                    .then(
+                                        function (cache) {
+
+                                            cache.put(
+                                                event.request,
+                                                responseClone
+                                            );
+
+                                        }
+                                    );
+
+
+                                return networkResponse;
+
+                            }
+                        )
+
+                        .catch(
+                            function () {
+
+
+                                /*
+                                 * Se o utilizador estiver offline
+                                 * e estiver tentando abrir uma página,
+                                 * mostrar o início do LABMZ.
+                                 */
+
+                                if (
+                                    event.request.mode ===
+                                    "navigate"
+                                ) {
+
+                                    return caches.match(
+                                        `${BASE_PATH}index.html`
+                                    );
+
+                                }
+
+
+                                /*
+                                 * Para outros recursos,
+                                 * retornar uma resposta simples.
+                                 */
+
+                                return new Response(
+                                    "",
+                                    {
+                                        status: 503,
+                                        statusText:
+                                            "LABMZ Offline"
+                                    }
+                                );
+
+                            }
+                        );
+
+                    }
+                )
+
+        );
+
+    }
 );
 
-self.clients.claim();
-```
 
-});
+/* =========================================================
+   MENSAGEM PARA FORÇAR ATUALIZAÇÃO
+========================================================= */
 
-self.addEventListener("fetch", event => {
+self.addEventListener(
+    "message",
+    function (event) {
 
-```
-event.respondWith(
+        if (
+            event.data &&
+            event.data.action ===
+            "SKIP_WAITING"
+        ) {
 
-    caches.match(event.request)
+            self.skipWaiting();
 
-        .then(cachedResponse => {
+        }
 
-            if (cachedResponse) {
-
-                return cachedResponse;
-
-            }
-
-            return fetch(event.request)
-
-                .then(networkResponse => {
-
-                    return networkResponse;
-
-                })
-
-                .catch(() => {
-
-                    return caches.match("./index.html");
-
-                });
-
-        })
-
+    }
 );
-```
 
-});
+
+/* =========================================================
+   FIM DO SERVICE WORKER
+========================================================= */
