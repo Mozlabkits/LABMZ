@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-MZ">
 
@@ -27,11 +26,19 @@
     <meta name="apple-mobile-web-app-title"
           content="LABMZ">
 
-    <!-- MANIFEST PWA -->
+
+    <!-- =====================================================
+         PWA — MANIFEST
+    ====================================================== -->
+
     <link rel="manifest"
           href="./manifest.json">
 
-    <!-- ÍCONE -->
+
+    <!-- =====================================================
+         ÍCONES
+    ====================================================== -->
+
     <link rel="icon"
           href="./icon-192.png"
           type="image/png">
@@ -39,9 +46,18 @@
     <link rel="apple-touch-icon"
           href="./icon-192.png">
 
-    <!-- CSS -->
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
     <link rel="stylesheet"
           href="./style.css">
+
+
+    <!-- =====================================================
+         TÍTULO
+    ====================================================== -->
 
     <title>
         LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique
@@ -153,9 +169,8 @@
             ecologia, evolução e outros temas da Biologia.
         </p>
 
-        <a
-            href="./Biologia/index.html"
-            class="botao">
+        <a href="./Biologia/index.html"
+           class="botao">
 
             🧬 Explorar Biologia
 
@@ -181,9 +196,8 @@
             tabela periódica, ligações e reações químicas.
         </p>
 
-        <a
-            href="./Quimica/index.html"
-            class="botao">
+        <a href="./Quimica/index.html"
+           class="botao">
 
             🧪 Explorar Química
 
@@ -250,9 +264,8 @@
                 os seus conhecimentos.
             </p>
 
-            <a
-                href="./Biologia/Celula/Exercicios/index.html"
-                class="botao">
+            <a href="./Biologia/Celula/Exercicios/index.html"
+               class="botao">
 
                 📝 Fazer exercícios
 
@@ -278,9 +291,8 @@
                 de quizzes educativos.
             </p>
 
-            <a
-                href="./Biologia/Celula/quiz/index.html"
-                class="botao">
+            <a href="./Biologia/Celula/quiz/index.html"
+               class="botao">
 
                 🎯 Fazer Quiz
 
@@ -321,31 +333,73 @@
 
 
 <!-- =====================================================
-     INSTALAÇÃO PWA
+     INSTALAÇÃO DO LABMZ
 ===================================================== -->
 
-<section class="hero">
+<section class="hero" id="instalacao">
+
 
     <h2>
         📱 Instalar o LABMZ
     </h2>
 
+
     <p>
-        Instale o LABMZ no seu dispositivo para
-        utilizá-lo como uma aplicação.
+        Instale o LABMZ no seu dispositivo Android
+        e utilize-o como uma aplicação.
     </p>
+
+
+    <!-- =================================================
+         BOTÃO DE INSTALAÇÃO
+    ================================================== -->
 
     <button
         id="botaoInstalar"
         class="botao"
         type="button"
-        style="display:none;">
+        aria-label="Instalar o aplicativo LABMZ">
 
         📲 Instalar LABMZ
 
     </button>
 
-    <p id="mensagemInstalacao"></p>
+
+    <!-- =================================================
+         MENSAGEM DE ESTADO
+    ================================================== -->
+
+    <p
+        id="mensagemInstalacao"
+        role="status"
+        aria-live="polite">
+
+        Preparando a instalação...
+
+    </p>
+
+
+    <!-- =================================================
+         INSTRUÇÕES MANUAIS
+    ================================================== -->
+
+    <div
+        id="instrucoesManuais"
+        style="display:none;">
+
+        <h3>
+            📌 Instalação pelo Chrome
+        </h3>
+
+        <p>
+            Se o botão automático não estiver disponível,
+            toque no menu <strong>⋮</strong> do Chrome e
+            procure a opção <strong>Instalar aplicativo</strong>
+            ou <strong>Adicionar à tela inicial</strong>.
+        </p>
+
+    </div>
+
 
 </section>
 
@@ -370,14 +424,14 @@
 
 
 <!-- =====================================================
-     JAVASCRIPT PRINCIPAL
+     JAVASCRIPT PRINCIPAL DO LABMZ
 ===================================================== -->
 
 <script src="./app.js"></script>
 
 
 <!-- =====================================================
-     PWA — SERVICE WORKER + INSTALAÇÃO
+     SISTEMA PWA DO LABMZ
 ===================================================== -->
 
 <script>
@@ -387,156 +441,414 @@
     "use strict";
 
 
-    /* =================================================
-       SERVICE WORKER
-    ================================================= */
+    /* =====================================================
+       ELEMENTOS
+    ====================================================== */
 
-    if ("serviceWorker" in navigator) {
+    const botaoInstalar =
+        document.getElementById("botaoInstalar");
 
-        window.addEventListener("load", function () {
+    const mensagemInstalacao =
+        document.getElementById("mensagemInstalacao");
 
-            navigator.serviceWorker
-                .register("./service-worker.js", {
-                    scope: "./"
-                })
+    const instrucoesManuais =
+        document.getElementById("instrucoesManuais");
 
-                .then(function (registration) {
 
-                    console.log(
-                        "LABMZ Service Worker registado:",
-                        registration.scope
-                    );
+    /* =====================================================
+       VARIÁVEL DO EVENTO DE INSTALAÇÃO
+    ====================================================== */
 
-                })
+    let eventoInstalacao = null;
 
-                .catch(function (error) {
 
-                    console.error(
-                        "Erro ao registar o Service Worker:",
-                        error
-                    );
+    /* =====================================================
+       DETETAR SE O LABMZ JÁ ESTÁ INSTALADO
+    ====================================================== */
 
-                });
+    function aplicativoInstalado() {
 
-        });
+        return (
+
+            window.matchMedia(
+                "(display-mode: standalone)"
+            ).matches
+
+            ||
+
+            window.navigator.standalone === true
+
+        );
 
     }
 
 
-    /* =================================================
-       INSTALAÇÃO PWA
-    ================================================= */
+    /* =====================================================
+       ATUALIZAR INTERFACE
+    ====================================================== */
 
-    let eventoInstalacao = null;
+    function atualizarInterface() {
 
+
+        /* ---------------------------------------------
+           LABMZ JÁ INSTALADO
+        ---------------------------------------------- */
+
+        if (aplicativoInstalado()) {
+
+            botaoInstalar.textContent =
+                "✅ LABMZ já está instalado";
+
+            botaoInstalar.disabled = true;
+
+            mensagemInstalacao.textContent =
+                "O LABMZ já está instalado como aplicação no seu dispositivo.";
+
+            instrucoesManuais.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           INSTALAÇÃO AUTOMÁTICA DISPONÍVEL
+        ---------------------------------------------- */
+
+        if (eventoInstalacao) {
+
+            botaoInstalar.style.display =
+                "inline-block";
+
+            botaoInstalar.disabled =
+                false;
+
+            botaoInstalar.textContent =
+                "📲 Instalar LABMZ";
+
+            mensagemInstalacao.textContent =
+                "Toque no botão para instalar o LABMZ no seu dispositivo.";
+
+            instrucoesManuais.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           INSTALAÇÃO AUTOMÁTICA NÃO DISPONÍVEL
+        ---------------------------------------------- */
+
+        botaoInstalar.style.display =
+            "inline-block";
+
+        botaoInstalar.disabled =
+            false;
+
+        botaoInstalar.textContent =
+            "📲 Como instalar o LABMZ";
+
+        mensagemInstalacao.textContent =
+            "A instalação automática ainda não está disponível neste momento.";
+
+        instrucoesManuais.style.display =
+            "block";
+
+    }
+
+
+    /* =====================================================
+       REGISTAR SERVICE WORKER
+    ====================================================== */
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                navigator.serviceWorker
+                    .register(
+                        "./service-worker.js",
+                        {
+                            scope: "./"
+                        }
+                    )
+
+                    .then(
+                        function (registration) {
+
+                            console.log(
+                                "LABMZ Service Worker registado:",
+                                registration.scope
+                            );
+
+                        }
+                    )
+
+                    .catch(
+                        function (error) {
+
+                            console.error(
+                                "Erro ao registar o Service Worker:",
+                                error
+                            );
+
+                            mensagemInstalacao.textContent =
+                                "O sistema de instalação precisa de ser configurado. Tente novamente dentro de alguns instantes.";
+
+                        }
+                    );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CAPTURAR EVENTO DE INSTALAÇÃO
+    ====================================================== */
 
     window.addEventListener(
         "beforeinstallprompt",
         function (event) {
 
+            console.log(
+                "Evento de instalação PWA disponível."
+            );
+
+
+            /* ---------------------------------------------
+               Impedir que o Chrome mostre automaticamente
+            ---------------------------------------------- */
+
             event.preventDefault();
 
-            eventoInstalacao = event;
 
-            const botao =
-                document.getElementById(
-                    "botaoInstalar"
-                );
+            /* ---------------------------------------------
+               Guardar evento
+            ---------------------------------------------- */
 
-            if (botao) {
+            eventoInstalacao =
+                event;
 
-                botao.style.display =
-                    "inline-block";
 
-            }
+            /* ---------------------------------------------
+               Atualizar botão
+            ---------------------------------------------- */
+
+            atualizarInterface();
 
         }
     );
 
 
-    /* =================================================
+    /* =====================================================
        BOTÃO INSTALAR
-    ================================================= */
+    ====================================================== */
 
-    const botaoInstalar =
-        document.getElementById(
-            "botaoInstalar"
-        );
+    botaoInstalar.addEventListener(
+        "click",
+        async function () {
 
 
-    if (botaoInstalar) {
+            /* ---------------------------------------------
+               VERIFICAR SE JÁ ESTÁ INSTALADO
+            ---------------------------------------------- */
 
-        botaoInstalar.addEventListener(
-            "click",
-            async function () {
+            if (aplicativoInstalado()) {
 
-                if (!eventoInstalacao) {
+                mensagemInstalacao.textContent =
+                    "✅ O LABMZ já está instalado neste dispositivo.";
 
-                    const mensagem =
-                        document.getElementById(
-                            "mensagemInstalacao"
-                        );
+                return;
 
-                    if (mensagem) {
+            }
 
-                        mensagem.textContent =
-                            "O navegador ainda não disponibilizou a instalação. Verifique se o LABMZ atende aos requisitos de instalação.";
 
-                    }
+            /* ---------------------------------------------
+               VERIFICAR SE EXISTE EVENTO
+            ---------------------------------------------- */
 
-                    return;
+            if (!eventoInstalacao) {
 
-                }
+                mensagemInstalacao.textContent =
+                    "Para instalar pelo Chrome, toque no menu ⋮ e escolha «Instalar aplicativo» ou «Adicionar à tela inicial».";
 
+                instrucoesManuais.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               DESATIVAR BOTÃO DURANTE INSTALAÇÃO
+            ---------------------------------------------- */
+
+            botaoInstalar.disabled =
+                true;
+
+            botaoInstalar.textContent =
+                "⏳ A preparar instalação...";
+
+
+            try {
+
+
+                /* -----------------------------------------
+                   ABRIR JANELA NATIVA DO ANDROID
+                ------------------------------------------ */
 
                 eventoInstalacao.prompt();
 
+
+                /* -----------------------------------------
+                   AGUARDAR ESCOLHA DO UTILIZADOR
+                ------------------------------------------ */
 
                 const resultado =
                     await eventoInstalacao.userChoice;
 
 
                 console.log(
-                    "Resultado da instalação:",
+                    "Resultado:",
                     resultado.outcome
                 );
 
 
-                eventoInstalacao = null;
+                /* -----------------------------------------
+                   UTILIZADOR ACEITOU
+                ------------------------------------------ */
+
+                if (
+                    resultado.outcome ===
+                    "accepted"
+                ) {
+
+                    mensagemInstalacao.textContent =
+                        "✅ Instalação iniciada. Aguarde alguns segundos.";
+
+                }
 
 
-                botaoInstalar.style.display =
-                    "none";
+                /* -----------------------------------------
+                   UTILIZADOR RECUSOU
+                ------------------------------------------ */
+
+                else {
+
+                    mensagemInstalacao.textContent =
+                        "A instalação foi cancelada. Pode tentar novamente quando quiser.";
+
+                }
+
 
             }
-        );
 
-    }
+            catch (erro) {
+
+                console.error(
+                    "Erro durante a instalação:",
+                    erro
+                );
+
+                mensagemInstalacao.textContent =
+                    "Não foi possível iniciar a instalação automática. Utilize o menu ⋮ do Chrome para instalar o LABMZ.";
+
+                instrucoesManuais.style.display =
+                    "block";
+
+            }
 
 
-    /* =================================================
+            /* ---------------------------------------------
+               LIMPAR EVENTO
+            ---------------------------------------------- */
+
+            eventoInstalacao =
+                null;
+
+
+            /* ---------------------------------------------
+               ATUALIZAR INTERFACE
+            ---------------------------------------------- */
+
+            setTimeout(
+                atualizarInterface,
+                500
+            );
+
+        }
+    );
+
+
+    /* =====================================================
        INSTALAÇÃO CONCLUÍDA
-    ================================================= */
+    ====================================================== */
 
     window.addEventListener(
         "appinstalled",
         function () {
 
-            const mensagem =
-                document.getElementById(
-                    "mensagemInstalacao"
-                );
+            console.log(
+                "LABMZ instalado com sucesso."
+            );
 
 
-            if (mensagem) {
+            mensagemInstalacao.textContent =
+                "🎉 LABMZ foi instalado com sucesso no seu dispositivo!";
 
-                mensagem.textContent =
-                    "✅ LABMZ foi instalado com sucesso!";
 
-            }
+            botaoInstalar.textContent =
+                "✅ LABMZ instalado";
+
+
+            botaoInstalar.disabled =
+                true;
+
+
+            instrucoesManuais.style.display =
+                "none";
+
+
+            eventoInstalacao =
+                null;
 
         }
     );
+
+
+    /* =====================================================
+       DETETAR ALTERAÇÃO DO MODO STANDALONE
+    ====================================================== */
+
+    const mediaQuery =
+        window.matchMedia(
+            "(display-mode: standalone)"
+        );
+
+
+    mediaQuery.addEventListener(
+        "change",
+        function () {
+
+            atualizarInterface();
+
+        }
+    );
+
+
+    /* =====================================================
+       ESTADO INICIAL
+    ====================================================== */
+
+    atualizarInterface();
 
 
 })();
@@ -547,4 +859,3 @@
 </body>
 
 </html>
-```
