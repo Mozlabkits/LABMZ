@@ -1,0 +1,1026 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LABMZ — Exercícios sobre a Célula</title>
+
+    <link rel="stylesheet" href="../../../style.css">
+
+    <style>
+
+        .progresso-container {
+            width: 90%;
+            max-width: 700px;
+            margin: 25px auto;
+            text-align: center;
+        }
+
+        .progresso-texto {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .progresso-barra {
+            width: 100%;
+            height: 22px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progresso-preenchimento {
+            height: 100%;
+            width: 0%;
+            background: #16a34a;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        #questoes button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #questoes button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #reiniciar {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🧬 LABMZ
+    </div>
+
+    <div class="subtitulo">
+        Laboratório de Aprendizagem de Biologia e Química de Moçambique
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="../../../index.html">
+        🏠 Início
+    </a>
+
+    <a href="../../index.html">
+        🧬 Biologia
+    </a>
+
+    <a href="../index.html">
+        🔬 Célula
+    </a>
+
+    <a href="../estrutura/index.html">
+        🧫 Estrutura
+    </a>
+
+    <a href="../funcoes/index.html">
+        ⚙️ Funções
+    </a>
+
+    <a href="index.html">
+        📝 Exercícios
+    </a>
+
+    <a href="#">
+        🎯 Quizzes
+    </a>
+
+</nav>
+
+
+<main>
+
+
+<section class="hero">
+
+    <h1>
+        📝 Exercícios sobre a Célula
+    </h1>
+
+    <p>
+        Teste os seus conhecimentos sobre Biologia celular.
+    </p>
+
+    <p>
+        🎲 O sistema selecionará 10 questões
+        de um banco de 20 questões.
+    </p>
+
+</section>
+
+
+<section class="progresso-container">
+
+    <div
+        class="progresso-texto"
+        id="progressoTexto">
+
+        📊 Progresso: 0 / 10
+
+    </div>
+
+
+    <div class="progresso-barra">
+
+        <div
+            class="progresso-preenchimento"
+            id="progressoPreenchimento">
+        </div>
+
+    </div>
+
+</section>
+
+
+<div id="questoes"></div>
+
+
+<section class="hero">
+
+    <h2>
+        🎯 Resultado
+    </h2>
+
+    <p id="pontuacao">
+        Responda às questões para ver a sua pontuação.
+    </p>
+
+    <button
+        id="reiniciar"
+        onclick="iniciarExercicio()"
+        style="display:none;">
+
+        🔄 Tentar novamente
+
+    </button>
+
+</section>
+
+
+<section class="hero">
+
+    <a
+        href="../index.html"
+        class="botao">
+
+        🔬 Voltar para Célula
+
+    </a>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 LABMZ
+
+    <br>
+
+    Laboratório de Aprendizagem de Biologia
+    e Química de Moçambique
+
+</footer>
+
+
+<script>
+
+
+const bancoQuestoes = [
+
+    {
+        pergunta: "Qual afirmação está de acordo com um dos princípios fundamentais da teoria celular?",
+
+        alternativas: [
+            "Todos os seres vivos são formados por tecidos.",
+            "Todos os seres vivos são constituídos por uma ou mais células.",
+            "Todas as células possuem parede celular.",
+            "Todas as células possuem cloroplastos."
+        ],
+
+        correta: 1,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "A teoria celular estabelece que todos os organismos são constituídos por uma ou mais células."
+    },
+
+
+    {
+        pergunta: "Qual é considerada a unidade estrutural e funcional básica dos seres vivos?",
+
+        alternativas: [
+            "Órgão",
+            "Tecido",
+            "Célula",
+            "Sistema"
+        ],
+
+        correta: 2,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "A célula é considerada a unidade estrutural e funcional básica dos seres vivos."
+    },
+
+
+    {
+        pergunta: "Qual é uma das principais funções da membrana plasmática?",
+
+        alternativas: [
+            "Controlar seletivamente a entrada e saída de substâncias.",
+            "Produzir clorofila.",
+            "Armazenar todos os cromossomas.",
+            "Produzir diretamente proteínas."
+        ],
+
+        correta: 0,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "A membrana plasmática controla seletivamente as trocas de substâncias entre a célula e o meio."
+    },
+
+
+    {
+        pergunta: "Nas células eucarióticas, qual estrutura contém a maior parte do material genético?",
+
+        alternativas: [
+            "Ribossoma",
+            "Núcleo",
+            "Lisossoma",
+            "Vacúolo"
+        ],
+
+        correta: 1,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "O núcleo contém a maior parte do DNA das células eucarióticas."
+    },
+
+
+    {
+        pergunta: "O citoplasma corresponde principalmente a:",
+
+        alternativas: [
+            "Apenas ao núcleo.",
+            "Apenas à membrana plasmática.",
+            "À região onde se encontram o citosol e várias estruturas celulares.",
+            "Apenas ao material genético."
+        ],
+
+        correta: 2,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "O citoplasma inclui o citosol e as estruturas celulares nele presentes."
+    },
+
+
+    {
+        pergunta: "Qual organelo está diretamente associado à produção de ATP durante a respiração celular?",
+
+        alternativas: [
+            "Mitocôndria",
+            "Ribossoma",
+            "Lisossoma",
+            "Complexo de Golgi"
+        ],
+
+        correta: 0,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "As mitocôndrias são importantes locais de produção de ATP durante a respiração celular."
+    },
+
+
+    {
+        pergunta: "Qual organelo está associado à realização da fotossíntese nas células vegetais?",
+
+        alternativas: [
+            "Lisossoma",
+            "Mitocôndria",
+            "Cloroplasto",
+            "Ribossoma"
+        ],
+
+        correta: 2,
+
+        nivel: "🟢 Básico",
+
+        explicacao:
+        "Os cloroplastos contêm clorofila e realizam a fotossíntese."
+    },
+
+
+    {
+        pergunta: "Qual é a principal função dos ribossomas?",
+
+        alternativas: [
+            "Digestão celular",
+            "Síntese de proteínas",
+            "Armazenamento de água",
+            "Fotossíntese"
+        ],
+
+        correta: 1,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "Os ribossomas participam da síntese de proteínas."
+    },
+
+
+    {
+        pergunta: "Qual é uma função importante do retículo endoplasmático rugoso?",
+
+        alternativas: [
+            "Participar na síntese e processamento inicial de proteínas.",
+            "Realizar a fotossíntese.",
+            "Produzir ATP.",
+            "Armazenar o DNA."
+        ],
+
+        correta: 0,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "O retículo endoplasmático rugoso possui ribossomas associados e participa da síntese de proteínas."
+    },
+
+
+    {
+        pergunta: "Qual é uma função característica do complexo de Golgi?",
+
+        alternativas: [
+            "Modificar, organizar e encaminhar determinadas proteínas e lipídios.",
+            "Replicar o DNA.",
+            "Produzir a maior parte do ATP.",
+            "Realizar a glicólise."
+        ],
+
+        correta: 0,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "O complexo de Golgi modifica, classifica e distribui proteínas e lipídios."
+    },
+
+
+    {
+        pergunta: "Os lisossomas estão principalmente associados a:",
+
+        alternativas: [
+            "Digestão intracelular e degradação de materiais.",
+            "Fotossíntese.",
+            "Síntese de DNA.",
+            "Produção de clorofila."
+        ],
+
+        correta: 0,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "Os lisossomas possuem enzimas que participam da degradação de materiais celulares."
+    },
+
+
+    {
+        pergunta: "Nas células vegetais, o grande vacúolo central desempenha importante papel em:",
+
+        alternativas: [
+            "Manutenção do equilíbrio hídrico e armazenamento de substâncias.",
+            "Síntese de proteínas.",
+            "Replicação do DNA.",
+            "Produção de RNA."
+        ],
+
+        correta: 0,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "O vacúolo central armazena água e várias substâncias e contribui para a pressão de turgor."
+    },
+
+
+    {
+        pergunta: "Qual estrutura está presente nas células vegetais e contribui para a sustentação e proteção celular?",
+
+        alternativas: [
+            "Centríolo",
+            "Parede celular",
+            "Lisossoma",
+            "Nucléolo"
+        ],
+
+        correta: 1,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "A parede celular vegetal, rica em celulose, fornece suporte e proteção."
+    },
+
+
+    {
+        pergunta: "Quando uma substância atravessa a membrana seguindo o seu gradiente de concentração, sem gasto direto de ATP, esse processo pode ser classificado como:",
+
+        alternativas: [
+            "Transporte passivo",
+            "Transporte ativo",
+            "Endocitose",
+            "Divisão celular"
+        ],
+
+        correta: 0,
+
+        nivel: "🟡 Intermédio",
+
+        explicacao:
+        "O transporte passivo ocorre a favor do gradiente e não requer gasto direto de ATP."
+    },
+
+
+    {
+        pergunta: "A osmose pode ser definida como:",
+
+        alternativas: [
+            "Movimento de água através de uma membrana seletivamente permeável.",
+            "Movimento de proteínas para dentro do núcleo.",
+            "Produção de ATP.",
+            "Síntese de DNA."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "A osmose corresponde ao movimento de água através de uma membrana seletivamente permeável."
+    },
+
+
+    {
+        pergunta: "Qual característica distingue o transporte ativo do transporte passivo?",
+
+        alternativas: [
+            "O transporte ativo pode utilizar energia metabólica para mover substâncias contra o gradiente.",
+            "O transporte ativo ocorre sempre sem proteínas.",
+            "O transporte ativo ocorre apenas em plantas.",
+            "O transporte ativo não depende de proteínas."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "O transporte ativo pode utilizar energia para mover substâncias contra gradientes eletroquímicos."
+    },
+
+
+    {
+        pergunta: "Qual é uma função central da respiração celular aeróbia?",
+
+        alternativas: [
+            "Converter energia química dos nutrientes em uma forma utilizável, principalmente ATP.",
+            "Produzir clorofila.",
+            "Duplicar cromossomas.",
+            "Formar a parede celular."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "A respiração celular permite extrair energia dos nutrientes e produzir ATP."
+    },
+
+
+    {
+        pergunta: "Na fotossíntese, a energia luminosa é utilizada principalmente para:",
+
+        alternativas: [
+            "Converter energia luminosa em energia química armazenada em moléculas orgânicas.",
+            "Degradar proteínas.",
+            "Produzir ATP exclusivamente para a mitocôndria.",
+            "Destruir o DNA."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "A fotossíntese converte energia luminosa em energia química armazenada em compostos orgânicos."
+    },
+
+
+    {
+        pergunta: "Qual é a principal importância da replicação do DNA antes da divisão celular?",
+
+        alternativas: [
+            "Garantir que o material genético seja duplicado antes da distribuição para as células-filhas.",
+            "Produzir ATP.",
+            "Destruir os cromossomas.",
+            "Impedir alterações celulares."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "A replicação do DNA permite que o material genético seja duplicado antes da divisão celular."
+    },
+
+
+    {
+        pergunta: "Por que a estrutura de uma organela está relacionada com a sua função?",
+
+        alternativas: [
+            "Porque características estruturais específicas permitem que a organela desempenhe determinadas funções celulares.",
+            "Porque todas as organelas possuem a mesma estrutura.",
+            "Porque a função independe da estrutura.",
+            "Porque apenas o núcleo possui estrutura especializada."
+        ],
+
+        correta: 0,
+
+        nivel: "🔴 Avançado",
+
+        explicacao:
+        "A organização estrutural das organelas está relacionada com as funções que desempenham na célula."
+    }
+
+];
+
+
+let questoesSelecionadas = [];
+
+let pontos = 0;
+
+let respondidas = 0;
+
+
+function embaralhar(array) {
+
+    return [...array].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+function iniciarExercicio() {
+
+    pontos = 0;
+
+    respondidas = 0;
+
+
+    questoesSelecionadas =
+        embaralhar(bancoQuestoes)
+        .slice(0, 10);
+
+
+    const container =
+        document.getElementById("questoes");
+
+
+    container.innerHTML = "";
+
+
+    document.getElementById("pontuacao").innerHTML =
+        "Responda às 10 questões para ver a sua pontuação.";
+
+
+    document.getElementById("reiniciar").style.display =
+        "none";
+
+
+    atualizarProgresso();
+
+
+    questoesSelecionadas.forEach(
+        (questao, indice) => {
+
+            criarQuestao(
+                questao,
+                indice
+            );
+
+        }
+    );
+
+}
+
+
+function criarQuestao(questao, indice) {
+
+    const container =
+        document.getElementById("questoes");
+
+
+    const secao =
+        document.createElement("section");
+
+
+    secao.className = "card";
+
+
+    secao.innerHTML = `
+
+        <h2>
+            Questão ${indice + 1}
+        </h2>
+
+        <p>
+            <strong>
+                ${questao.nivel}
+            </strong>
+        </p>
+
+        <p>
+            <strong>
+                ${questao.pergunta}
+            </strong>
+        </p>
+
+    `;
+
+
+    questao.alternativas.forEach(
+
+        (alternativa, alternativaIndex) => {
+
+            const botao =
+                document.createElement("button");
+
+
+            botao.textContent =
+
+                String.fromCharCode(
+                    65 + alternativaIndex
+                ) +
+
+                ") " +
+
+                alternativa;
+
+
+            botao.onclick = () => {
+
+                verificar(
+
+                    indice,
+
+                    alternativaIndex,
+
+                    questao,
+
+                    secao
+
+                );
+
+            };
+
+
+            secao.appendChild(botao);
+
+        }
+
+    );
+
+
+    const resultado =
+        document.createElement("p");
+
+
+    resultado.id =
+        "resultado-" + indice;
+
+
+    secao.appendChild(resultado);
+
+
+    const explicacao =
+        document.createElement("p");
+
+
+    explicacao.id =
+        "explicacao-" + indice;
+
+
+    secao.appendChild(explicacao);
+
+
+    container.appendChild(secao);
+
+}
+
+
+function verificar(
+
+    indice,
+
+    respostaEscolhida,
+
+    questao,
+
+    secao
+
+) {
+
+    if (
+        secao.dataset.respondida === "true"
+    ) {
+
+        return;
+
+    }
+
+
+    secao.dataset.respondida =
+        "true";
+
+
+    respondidas++;
+
+
+    const resultado =
+        document.getElementById(
+            "resultado-" + indice
+        );
+
+
+    const explicacao =
+        document.getElementById(
+            "explicacao-" + indice
+        );
+
+
+    const botoes =
+        secao.querySelectorAll("button");
+
+
+    botoes.forEach(
+        botao => {
+
+            botao.disabled = true;
+
+        }
+    );
+
+
+    if (
+        respostaEscolhida ===
+        questao.correta
+    ) {
+
+        pontos++;
+
+
+        resultado.innerHTML =
+            "✅ Resposta correta!";
+
+    }
+
+    else {
+
+        resultado.innerHTML =
+
+            "❌ Resposta incorreta." +
+
+            "<br>" +
+
+            "Resposta correta: <strong>" +
+
+            String.fromCharCode(
+                65 + questao.correta
+            ) +
+
+            ") " +
+
+            questao.alternativas[
+                questao.correta
+            ] +
+
+            "</strong>";
+
+    }
+
+
+    explicacao.innerHTML =
+
+        "💡 <strong>Explicação:</strong> " +
+
+        questao.explicacao;
+
+
+    atualizarPontuacao();
+
+    atualizarProgresso();
+
+
+    if (respondidas === 10) {
+
+        finalizarExercicio();
+
+    }
+
+}
+
+
+function atualizarPontuacao() {
+
+    const percentagem =
+        Math.round(
+            (pontos / 10) * 100
+        );
+
+
+    document.getElementById(
+        "pontuacao"
+    ).innerHTML =
+
+        "Questões respondidas: <strong>" +
+
+        respondidas +
+
+        " / 10</strong>" +
+
+        "<br>" +
+
+        "Pontuação: <strong>" +
+
+        pontos +
+
+        " / 10</strong>" +
+
+        "<br>" +
+
+        "Percentagem: <strong>" +
+
+        percentagem +
+
+        "%</strong>";
+
+}
+
+
+function atualizarProgresso() {
+
+    const percentagem =
+        (respondidas / 10) * 100;
+
+
+    document.getElementById(
+        "progressoTexto"
+    ).innerHTML =
+
+        "📊 Progresso: <strong>" +
+
+        respondidas +
+
+        " / 10</strong>";
+
+
+    document.getElementById(
+        "progressoPreenchimento"
+    ).style.width =
+        percentagem + "%";
+
+}
+
+
+function finalizarExercicio() {
+
+    let mensagem;
+
+
+    if (pontos === 10) {
+
+        mensagem =
+            "🏆 Excelente! Você acertou todas as questões.";
+
+    }
+
+    else if (pontos >= 8) {
+
+        mensagem =
+            "🌟 Muito bom! Você demonstrou um ótimo domínio.";
+
+    }
+
+    else if (pontos >= 6) {
+
+        mensagem =
+            "👍 Bom trabalho! Continue estudando.";
+
+    }
+
+    else if (pontos >= 5) {
+
+        mensagem =
+            "📚 Bom esforço! Recomendamos rever alguns conteúdos.";
+
+    }
+
+    else {
+
+        mensagem =
+            "🔄 É importante rever os conteúdos e tentar novamente.";
+
+    }
+
+
+    document.getElementById(
+        "pontuacao"
+    ).innerHTML +=
+
+        "<br><br>" +
+
+        "<strong>🎉 Exercício concluído!</strong>" +
+
+        "<br>" +
+
+        mensagem;
+
+
+    document.getElementById(
+        "reiniciar"
+    ).style.display =
+        "inline-block";
+
+
+    window.scrollTo({
+
+        top:
+            document.body.scrollHeight,
+
+        behavior:
+            "smooth"
+
+    });
+
+}
+
+
+iniciarExercicio();
+
+
+</script>
+
+
+</body>
+
+</html>

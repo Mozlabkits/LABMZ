@@ -1,0 +1,881 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LABMZ — Quiz da Célula</title>
+
+    <link rel="stylesheet" href="../../../style.css">
+
+    <style>
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .progresso-container {
+            margin: 20px auto;
+            max-width: 700px;
+        }
+
+        .progresso-texto {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .progresso-barra {
+            width: 100%;
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progresso {
+            width: 0%;
+            height: 100%;
+            background: #16a34a;
+            transition: width 0.4s ease;
+        }
+
+        .pergunta {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .pergunta h2 {
+            margin-top: 0;
+        }
+
+        .nivel {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #eef2ff;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .alternativa {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f8fafc;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .alternativa:hover {
+            background: #eef2ff;
+        }
+
+        .alternativa:disabled {
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+
+        .resultado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .explicacao {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .resultado-final {
+            text-align: center;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+
+        .resultado-final h2 {
+            font-size: 28px;
+        }
+
+        .botao-quiz {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 8px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        ?? LABMZ
+    </div>
+
+    <div class="subtitulo">
+        Laboratório de Aprendizagem de Biologia e Química de Moçambique
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="../../../index.html">
+        ?? Início
+    </a>
+
+    <a href="../../index.html">
+        ?? Biologia
+    </a>
+
+    <a href="../index.html">
+        ?? Célula
+    </a>
+
+    <a href="../estrutura/index.html">
+        ?? Estrutura
+    </a>
+
+    <a href="../funcoes/index.html">
+        ?? Funções
+    </a>
+
+    <a href="../exercicios/index.html">
+        ?? Exercícios
+    </a>
+
+    <a href="index.html">
+        ?? Quiz
+    </a>
+
+</nav>
+
+
+<main>
+
+
+<section class="hero">
+
+    <h1>
+        ?? Quiz da Célula
+    </h1>
+
+    <p>
+        Teste os seus conhecimentos de Biologia celular.
+    </p>
+
+    <p>
+        Responda às 10 questões e descubra o seu desempenho!
+    </p>
+
+</section>
+
+
+<div class="quiz-info">
+
+    <div class="progresso-container">
+
+        <div
+            class="progresso-texto"
+            id="progressoTexto">
+
+            Questão 0 de 10
+
+        </div>
+
+
+        <div class="progresso-barra">
+
+            <div
+                class="progresso"
+                id="progresso">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="quiz-container"
+    id="quiz">
+
+</div>
+
+
+<section
+    class="resultado-final hero"
+    id="resultadoFinal"
+    style="display:none;">
+
+    <h2>
+        ?? Resultado do Quiz
+    </h2>
+
+    <p id="pontuacaoFinal"></p>
+
+    <p id="mensagemFinal"></p>
+
+    <button
+        class="botao-quiz"
+        onclick="iniciarQuiz()">
+
+        ?? Jogar novamente
+
+    </button>
+
+</section>
+
+
+<section class="hero">
+
+    <a
+        href="../index.html"
+        class="botao">
+
+        ?? Voltar para Célula
+
+    </a>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 LABMZ
+
+    <br>
+
+    Laboratório de Aprendizagem de Biologia
+    e Química de Moçambique
+
+</footer>
+
+
+<script>
+
+
+const perguntas = [
+
+    {
+        pergunta:
+        "Qual é considerada a unidade estrutural e funcional básica dos seres vivos?",
+
+        alternativas: [
+            "Tecido",
+            "Órgão",
+            "Célula",
+            "Sistema"
+        ],
+
+        correta: 2,
+
+        nivel: "?? Básico",
+
+        explicacao:
+        "A célula é considerada a unidade estrutural e funcional básica dos seres vivos."
+    },
+
+
+    {
+        pergunta:
+        "Qual organelo realiza a fotossíntese nas células vegetais?",
+
+        alternativas: [
+            "Mitocôndria",
+            "Ribossoma",
+            "Cloroplasto",
+            "Lisossoma"
+        ],
+
+        correta: 2,
+
+        nivel: "?? Básico",
+
+        explicacao:
+        "Os cloroplastos possuem clorofila e são os principais locais da fotossíntese."
+    },
+
+
+    {
+        pergunta:
+        "Qual estrutura controla seletivamente a entrada e saída de substâncias da célula?",
+
+        alternativas: [
+            "Núcleo",
+            "Membrana plasmática",
+            "Ribossoma",
+            "Nucléolo"
+        ],
+
+        correta: 1,
+
+        nivel: "?? Básico",
+
+        explicacao:
+        "A membrana plasmática delimita a célula e regula muitas trocas entre a célula e o meio."
+    },
+
+
+    {
+        pergunta:
+        "Qual organelo está diretamente associado à síntese de proteínas?",
+
+        alternativas: [
+            "Ribossoma",
+            "Lisossoma",
+            "Vacúolo",
+            "Complexo de Golgi"
+        ],
+
+        correta: 0,
+
+        nivel: "?? Básico",
+
+        explicacao:
+        "Os ribossomas realizam a síntese de proteínas."
+    },
+
+
+    {
+        pergunta:
+        "Qual organelo é um importante local de produção de ATP durante a respiração celular?",
+
+        alternativas: [
+            "Complexo de Golgi",
+            "Mitocôndria",
+            "Ribossoma",
+            "Lisossoma"
+        ],
+
+        correta: 1,
+
+        nivel: "?? Intermédio",
+
+        explicacao:
+        "As mitocôndrias realizam etapas importantes da respiração celular e da produção de ATP."
+    },
+
+
+    {
+        pergunta:
+        "Qual estrutura vegetal é rica em celulose e contribui para a sustentação da célula?",
+
+        alternativas: [
+            "Membrana plasmática",
+            "Parede celular",
+            "Núcleo",
+            "Citoplasma"
+        ],
+
+        correta: 1,
+
+        nivel: "?? Intermédio",
+
+        explicacao:
+        "A parede celular vegetal contém celulose e proporciona suporte e proteção."
+    },
+
+
+    {
+        pergunta:
+        "O movimento de água através de uma membrana seletivamente permeável é denominado:",
+
+        alternativas: [
+            "Osmose",
+            "Transcrição",
+            "Tradução",
+            "Replicação"
+        ],
+
+        correta: 0,
+
+        nivel: "?? Intermédio",
+
+        explicacao:
+        "Osmose é o movimento de água através de uma membrana seletivamente permeável."
+    },
+
+
+    {
+        pergunta:
+        "Qual organelo modifica, classifica e encaminha determinadas proteínas e lipídios?",
+
+        alternativas: [
+            "Complexo de Golgi",
+            "Núcleo",
+            "Cloroplasto",
+            "Ribossoma"
+        ],
+
+        correta: 0,
+
+        nivel: "?? Intermédio",
+
+        explicacao:
+        "O complexo de Golgi modifica, classifica e distribui determinadas proteínas e lipídios."
+    },
+
+
+    {
+        pergunta:
+        "Qual característica diferencia principalmente as células eucarióticas das procarióticas?",
+
+        alternativas: [
+            "As células eucarióticas possuem núcleo delimitado por membrana.",
+            "As células eucarióticas não possuem DNA.",
+            "As células procarióticas possuem núcleo verdadeiro.",
+            "As células procarióticas possuem cloroplastos."
+        ],
+
+        correta: 0,
+
+        nivel: "?? Avançado",
+
+        explicacao:
+        "As células eucarióticas possuem um núcleo delimitado por membrana, enquanto as procarióticas não possuem núcleo membranoso."
+    },
+
+
+    {
+        pergunta:
+        "Qual é a principal finalidade da replicação do DNA antes da divisão celular?",
+
+        alternativas: [
+            "Produzir clorofila.",
+            "Duplicar o material genético.",
+            "Produzir ATP.",
+            "Destruir proteínas."
+        ],
+
+        correta: 1,
+
+        nivel: "?? Avançado",
+
+        explicacao:
+        "A replicação duplica o DNA antes da divisão celular, permitindo a distribuição do material genético às células-filhas."
+    }
+
+];
+
+
+let perguntaAtual = 0;
+
+let pontos = 0;
+
+let respondidas = false;
+
+
+function iniciarQuiz() {
+
+    perguntaAtual = 0;
+
+    pontos = 0;
+
+    respondidas = false;
+
+
+    document.getElementById(
+        "resultadoFinal"
+    ).style.display = "none";
+
+
+    mostrarPergunta();
+
+}
+
+
+function mostrarPergunta() {
+
+    const quiz =
+        document.getElementById("quiz");
+
+
+    const pergunta =
+        perguntas[perguntaAtual];
+
+
+    respondidas = false;
+
+
+    document.getElementById(
+        "progressoTexto"
+    ).innerHTML =
+
+        "Questão <strong>" +
+
+        (perguntaAtual + 1) +
+
+        "</strong> de <strong>" +
+
+        perguntas.length +
+
+        "</strong>";
+
+
+    document.getElementById(
+        "progresso"
+    ).style.width =
+
+        ((perguntaAtual) /
+        perguntas.length * 100) +
+
+        "%";
+
+
+    quiz.innerHTML = `
+
+        <div class="pergunta">
+
+            <div class="nivel">
+
+                ${pergunta.nivel}
+
+            </div>
+
+            <h2>
+
+                Questão ${perguntaAtual + 1}
+
+            </h2>
+
+            <p>
+
+                <strong>
+
+                    ${pergunta.pergunta}
+
+                </strong>
+
+            </p>
+
+            <div id="alternativas"></div>
+
+            <div
+                class="resultado"
+                id="resultado">
+            </div>
+
+            <div
+                class="explicacao"
+                id="explicacao"
+                style="display:none;">
+            </div>
+
+        </div>
+
+    `;
+
+
+    const alternativas =
+        document.getElementById(
+            "alternativas"
+        );
+
+
+    pergunta.alternativas.forEach(
+
+        (alternativa, indice) => {
+
+            const botao =
+                document.createElement("button");
+
+
+            botao.className =
+                "alternativa";
+
+
+            botao.innerHTML =
+
+                String.fromCharCode(
+                    65 + indice
+                ) +
+
+                ") " +
+
+                alternativa;
+
+
+            botao.onclick = function() {
+
+                responder(
+                    indice,
+                    pergunta
+                );
+
+            };
+
+
+            alternativas.appendChild(
+                botao
+            );
+
+        }
+
+    );
+
+}
+
+
+function responder(
+    escolha,
+    pergunta
+) {
+
+    if (respondidas) {
+
+        return;
+
+    }
+
+
+    respondidas = true;
+
+
+    const botoes =
+        document.querySelectorAll(
+            ".alternativa"
+        );
+
+
+    botoes.forEach(
+        botao => {
+
+            botao.disabled = true;
+
+        }
+    );
+
+
+    const resultado =
+        document.getElementById(
+            "resultado"
+        );
+
+
+    const explicacao =
+        document.getElementById(
+            "explicacao"
+        );
+
+
+    if (escolha === pergunta.correta) {
+
+        pontos++;
+
+
+        resultado.innerHTML =
+            "? Resposta correta!";
+
+    }
+
+    else {
+
+        resultado.innerHTML =
+
+            "? Resposta incorreta." +
+
+            "<br>" +
+
+            "Resposta correta: <strong>" +
+
+            String.fromCharCode(
+                65 + pergunta.correta
+            ) +
+
+            ") " +
+
+            pergunta.alternativas[
+                pergunta.correta
+            ] +
+
+            "</strong>";
+
+    }
+
+
+    explicacao.innerHTML =
+
+        "?? " +
+
+        pergunta.explicacao;
+
+
+    explicacao.style.display =
+        "block";
+
+
+    setTimeout(
+        () => {
+
+            perguntaAtual++;
+
+
+            if (
+                perguntaAtual <
+                perguntas.length
+            ) {
+
+                mostrarPergunta();
+
+            }
+
+            else {
+
+                finalizarQuiz();
+
+            }
+
+        },
+
+        1800
+    );
+
+}
+
+
+function finalizarQuiz() {
+
+    document.getElementById(
+        "quiz"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "progressoTexto"
+    ).innerHTML =
+
+        "?? Quiz concluído!";
+
+
+    document.getElementById(
+        "progresso"
+    ).style.width =
+        "100%";
+
+
+    document.getElementById(
+        "resultadoFinal"
+    ).style.display =
+        "block";
+
+
+    const percentagem =
+        Math.round(
+            (pontos /
+            perguntas.length) *
+            100
+        );
+
+
+    document.getElementById(
+        "pontuacaoFinal"
+    ).innerHTML =
+
+        "Você acertou <strong>" +
+
+        pontos +
+
+        " de " +
+
+        perguntas.length +
+
+        " questões</strong>." +
+
+        "<br>" +
+
+        "Percentagem: <strong>" +
+
+        percentagem +
+
+        "%</strong>";
+
+
+    let mensagem;
+
+
+    if (pontos === 10) {
+
+        mensagem =
+            "?? Perfeito! Excelente domínio da Biologia celular!";
+
+    }
+
+    else if (pontos >= 8) {
+
+        mensagem =
+            "?? Excelente desempenho!";
+
+    }
+
+    else if (pontos >= 6) {
+
+        mensagem =
+            "?? Muito bom! Continue a estudar.";
+
+    }
+
+    else if (pontos >= 5) {
+
+        mensagem =
+            "?? Bom esforço! Reveja alguns conteúdos.";
+
+    }
+
+    else {
+
+        mensagem =
+            "?? Continue estudando e tente novamente.";
+
+    }
+
+
+    document.getElementById(
+        "mensagemFinal"
+    ).innerHTML =
+        mensagem;
+
+}
+
+
+iniciarQuiz();
+
+
+</script>
+
+
+</body>
+
+</html>

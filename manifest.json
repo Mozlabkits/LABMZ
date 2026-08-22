@@ -1,0 +1,12 @@
+﻿{
+    "name": "LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique",
+    "short_name": "LABMZ",
+    "description": "Aplicativo educativo para aprendizagem de Biologia e Química em Moçambique.",
+    "lang": "pt",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#0b5d3b",
+    "background_color": "#ffffff"
+}
