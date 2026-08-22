@@ -36,15 +36,15 @@
 
 
     <!-- =====================================================
-         ÍCONES
+         ÍCONES DO LABMZ
     ====================================================== -->
 
     <link rel="icon"
-          href="./icon-192.png"
+          href="./icons/icon-192.png"
           type="image/png">
 
     <link rel="apple-touch-icon"
-          href="./icon-192.png">
+          href="./icons/icon-192.png">
 
 
     <!-- =====================================================
@@ -71,7 +71,7 @@
 
 <!-- =====================================================
      CABEÇALHO
-===================================================== -->
+====================================================== -->
 
 <header>
 
@@ -88,7 +88,7 @@
 
 <!-- =====================================================
      MENU PRINCIPAL
-===================================================== -->
+====================================================== -->
 
 <nav class="menu">
 
@@ -117,14 +117,14 @@
 
 <!-- =====================================================
      CONTEÚDO PRINCIPAL
-===================================================== -->
+====================================================== -->
 
 <main>
 
 
 <!-- =====================================================
      HERO
-===================================================== -->
+====================================================== -->
 
 <section class="hero">
 
@@ -147,7 +147,7 @@
 
 <!-- =====================================================
      ÁREAS PRINCIPAIS
-===================================================== -->
+====================================================== -->
 
 <section class="areas">
 
@@ -210,8 +210,8 @@
 
 
 <!-- =====================================================
-     RECURSOS
-===================================================== -->
+     RECURSOS DE APRENDIZAGEM
+====================================================== -->
 
 <section class="recursos">
 
@@ -308,7 +308,7 @@
 
 <!-- =====================================================
      SOBRE O LABMZ
-===================================================== -->
+====================================================== -->
 
 <section class="card">
 
@@ -334,15 +334,13 @@
 
 <!-- =====================================================
      INSTALAÇÃO DO LABMZ
-===================================================== -->
+====================================================== -->
 
 <section class="hero" id="instalacao">
-
 
     <h2>
         📱 Instalar o LABMZ
     </h2>
-
 
     <p>
         Instale o LABMZ no seu dispositivo Android
@@ -409,7 +407,7 @@
 
 <!-- =====================================================
      RODAPÉ
-===================================================== -->
+====================================================== -->
 
 <footer>
 
@@ -424,15 +422,15 @@
 
 
 <!-- =====================================================
-     JAVASCRIPT PRINCIPAL DO LABMZ
-===================================================== -->
+     JAVASCRIPT PRINCIPAL
+====================================================== -->
 
 <script src="./app.js"></script>
 
 
 <!-- =====================================================
      SISTEMA PWA DO LABMZ
-===================================================== -->
+====================================================== -->
 
 <script>
 
@@ -456,14 +454,14 @@
 
 
     /* =====================================================
-       VARIÁVEL DO EVENTO DE INSTALAÇÃO
+       EVENTO DE INSTALAÇÃO
     ====================================================== */
 
     let eventoInstalacao = null;
 
 
     /* =====================================================
-       DETETAR SE O LABMZ JÁ ESTÁ INSTALADO
+       VERIFICAR SE O LABMZ JÁ ESTÁ INSTALADO
     ====================================================== */
 
     function aplicativoInstalado() {
@@ -489,17 +487,17 @@
 
     function atualizarInterface() {
 
-
-        /* ---------------------------------------------
+        /* -------------------------------------------------
            LABMZ JÁ INSTALADO
-        ---------------------------------------------- */
+        -------------------------------------------------- */
 
         if (aplicativoInstalado()) {
 
             botaoInstalar.textContent =
                 "✅ LABMZ já está instalado";
 
-            botaoInstalar.disabled = true;
+            botaoInstalar.disabled =
+                true;
 
             mensagemInstalacao.textContent =
                 "O LABMZ já está instalado como aplicação no seu dispositivo.";
@@ -512,9 +510,9 @@
         }
 
 
-        /* ---------------------------------------------
+        /* -------------------------------------------------
            INSTALAÇÃO AUTOMÁTICA DISPONÍVEL
-        ---------------------------------------------- */
+        -------------------------------------------------- */
 
         if (eventoInstalacao) {
 
@@ -538,9 +536,9 @@
         }
 
 
-        /* ---------------------------------------------
+        /* -------------------------------------------------
            INSTALAÇÃO AUTOMÁTICA NÃO DISPONÍVEL
-        ---------------------------------------------- */
+        -------------------------------------------------- */
 
         botaoInstalar.style.display =
             "inline-block";
@@ -582,7 +580,7 @@
                         function (registration) {
 
                             console.log(
-                                "LABMZ Service Worker registado:",
+                                "[LABMZ] Service Worker registado:",
                                 registration.scope
                             );
 
@@ -593,12 +591,12 @@
                         function (error) {
 
                             console.error(
-                                "Erro ao registar o Service Worker:",
+                                "[LABMZ] Erro ao registar o Service Worker:",
                                 error
                             );
 
                             mensagemInstalacao.textContent =
-                                "O sistema de instalação precisa de ser configurado. Tente novamente dentro de alguns instantes.";
+                                "O sistema PWA não conseguiu iniciar. Verifique a ligação à Internet e tente novamente.";
 
                         }
                     );
@@ -618,28 +616,16 @@
         function (event) {
 
             console.log(
-                "Evento de instalação PWA disponível."
+                "[LABMZ] Evento de instalação disponível."
             );
 
-
-            /* ---------------------------------------------
-               Impedir que o Chrome mostre automaticamente
-            ---------------------------------------------- */
 
             event.preventDefault();
 
 
-            /* ---------------------------------------------
-               Guardar evento
-            ---------------------------------------------- */
-
             eventoInstalacao =
                 event;
 
-
-            /* ---------------------------------------------
-               Atualizar botão
-            ---------------------------------------------- */
 
             atualizarInterface();
 
@@ -648,17 +634,16 @@
 
 
     /* =====================================================
-       BOTÃO INSTALAR
+       BOTÃO DE INSTALAÇÃO
     ====================================================== */
 
     botaoInstalar.addEventListener(
         "click",
         async function () {
 
-
-            /* ---------------------------------------------
-               VERIFICAR SE JÁ ESTÁ INSTALADO
-            ---------------------------------------------- */
+            /* ------------------------------------------------
+               JÁ INSTALADO
+            ------------------------------------------------- */
 
             if (aplicativoInstalado()) {
 
@@ -670,9 +655,9 @@
             }
 
 
-            /* ---------------------------------------------
-               VERIFICAR SE EXISTE EVENTO
-            ---------------------------------------------- */
+            /* ------------------------------------------------
+               EVENTO NÃO DISPONÍVEL
+            ------------------------------------------------- */
 
             if (!eventoInstalacao) {
 
@@ -687,9 +672,9 @@
             }
 
 
-            /* ---------------------------------------------
-               DESATIVAR BOTÃO DURANTE INSTALAÇÃO
-            ---------------------------------------------- */
+            /* ------------------------------------------------
+               PREPARAR INSTALAÇÃO
+            ------------------------------------------------- */
 
             botaoInstalar.disabled =
                 true;
@@ -700,31 +685,18 @@
 
             try {
 
-
-                /* -----------------------------------------
-                   ABRIR JANELA NATIVA DO ANDROID
-                ------------------------------------------ */
-
                 eventoInstalacao.prompt();
 
-
-                /* -----------------------------------------
-                   AGUARDAR ESCOLHA DO UTILIZADOR
-                ------------------------------------------ */
 
                 const resultado =
                     await eventoInstalacao.userChoice;
 
 
                 console.log(
-                    "Resultado:",
+                    "[LABMZ] Resultado da instalação:",
                     resultado.outcome
                 );
 
-
-                /* -----------------------------------------
-                   UTILIZADOR ACEITOU
-                ------------------------------------------ */
 
                 if (
                     resultado.outcome ===
@@ -736,11 +708,6 @@
 
                 }
 
-
-                /* -----------------------------------------
-                   UTILIZADOR RECUSOU
-                ------------------------------------------ */
-
                 else {
 
                     mensagemInstalacao.textContent =
@@ -748,13 +715,12 @@
 
                 }
 
-
             }
 
             catch (erro) {
 
                 console.error(
-                    "Erro durante a instalação:",
+                    "[LABMZ] Erro durante a instalação:",
                     erro
                 );
 
@@ -767,17 +733,9 @@
             }
 
 
-            /* ---------------------------------------------
-               LIMPAR EVENTO
-            ---------------------------------------------- */
-
             eventoInstalacao =
                 null;
 
-
-            /* ---------------------------------------------
-               ATUALIZAR INTERFACE
-            ---------------------------------------------- */
 
             setTimeout(
                 atualizarInterface,
@@ -797,7 +755,7 @@
         function () {
 
             console.log(
-                "LABMZ instalado com sucesso."
+                "[LABMZ] Aplicativo instalado com sucesso."
             );
 
 
@@ -825,7 +783,7 @@
 
 
     /* =====================================================
-       DETETAR ALTERAÇÃO DO MODO STANDALONE
+       ALTERAÇÃO DO MODO STANDALONE
     ====================================================== */
 
     const mediaQuery =
@@ -834,14 +792,18 @@
         );
 
 
-    mediaQuery.addEventListener(
-        "change",
-        function () {
+    if (mediaQuery.addEventListener) {
 
-            atualizarInterface();
+        mediaQuery.addEventListener(
+            "change",
+            function () {
 
-        }
-    );
+                atualizarInterface();
+
+            }
+        );
+
+    }
 
 
     /* =====================================================
