@@ -3,7 +3,7 @@
    Laboratório de Aprendizagem de Biologia e Química
    de Moçambique
 
-   Versão: 4.0
+   Versão: 5.0
 ========================================================= */
 
 "use strict";
@@ -13,13 +13,13 @@
    CONFIGURAÇÃO
 ========================================================= */
 
-const CACHE_NAME = "labmz-v4";
+const CACHE_NAME = "labmz-v5";
 
 const BASE_PATH = "/LABMZ/";
 
 
 /* =========================================================
-   ARQUIVOS ESSENCIAIS DO LABMZ
+   ARQUIVOS PRINCIPAIS
 ========================================================= */
 
 const CORE_FILES = [
@@ -27,10 +27,7 @@ const CORE_FILES = [
     `${BASE_PATH}index.html`,
     `${BASE_PATH}style.css`,
     `${BASE_PATH}app.js`,
-    `${BASE_PATH}manifest.json`,
-    `${BASE_PATH}service-worker.js`,
-    `${BASE_PATH}icons/icon-192.png`,
-    `${BASE_PATH}icons/icon-512.png`
+    `${BASE_PATH}manifest.json`
 ];
 
 
@@ -40,7 +37,9 @@ const CORE_FILES = [
 
 self.addEventListener("install", function (event) {
 
-    console.log("[LABMZ] Instalando Service Worker v4...");
+    console.log(
+        "[LABMZ] Instalando Service Worker v5..."
+    );
 
     event.waitUntil(
 
@@ -49,14 +48,50 @@ self.addEventListener("install", function (event) {
             .then(function (cache) {
 
                 console.log(
-                    "[LABMZ] Guardando arquivos essenciais..."
+                    "[LABMZ] Guardando arquivos principais..."
                 );
 
-                return cache.addAll(CORE_FILES);
+                /*
+                 * Adiciona os arquivos um por um.
+                 *
+                 * Se algum arquivo não existir,
+                 * isso não impede a instalação
+                 * completa do Service Worker.
+                 */
+
+                return Promise.all(
+
+                    CORE_FILES.map(function (file) {
+
+                        return cache.add(file)
+
+                            .then(function () {
+
+                                console.log(
+                                    "[LABMZ] Arquivo armazenado:",
+                                    file
+                                );
+
+                            })
+
+                            .catch(function (error) {
+
+                                console.warn(
+                                    "[LABMZ] Não foi possível armazenar:",
+                                    file,
+                                    error
+                                );
+
+                            });
+
+                    })
+
+                );
 
             })
 
     );
+
 
     /*
      * Ativa imediatamente a nova versão.
@@ -73,7 +108,9 @@ self.addEventListener("install", function (event) {
 
 self.addEventListener("activate", function (event) {
 
-    console.log("[LABMZ] Ativando Service Worker v4...");
+    console.log(
+        "[LABMZ] Ativando Service Worker v5..."
+    );
 
     event.waitUntil(
 
@@ -85,10 +122,6 @@ self.addEventListener("activate", function (event) {
 
                     cacheNames.map(function (cacheName) {
 
-                        /*
-                         * Remove caches antigos do LABMZ.
-                         */
-
                         if (
                             cacheName.startsWith("labmz-") &&
                             cacheName !== CACHE_NAME
@@ -99,7 +132,10 @@ self.addEventListener("activate", function (event) {
                                 cacheName
                             );
 
-                            return caches.delete(cacheName);
+                            return caches.delete(
+                                cacheName
+                            );
+
                         }
 
                         return Promise.resolve();
@@ -110,7 +146,16 @@ self.addEventListener("activate", function (event) {
 
             })
 
+            .then(function () {
+
+                console.log(
+                    "[LABMZ] Service Worker v5 ativo."
+                );
+
+            })
+
     );
+
 
     /*
      * Assume imediatamente o controle
@@ -129,128 +174,149 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("fetch", function (event) {
 
     /*
-     * Trabalhar apenas com requisições GET.
+     * Trabalhar apenas com GET.
      */
 
-    if (event.request.method !== "GET") {
+    if (
+        event.request.method !== "GET"
+    ) {
+
         return;
+
     }
 
 
     /*
-     * Identificar a URL solicitada.
+     * Identificar a URL.
      */
 
-    const requestURL = new URL(event.request.url);
+    const requestURL =
+        new URL(
+            event.request.url
+        );
 
 
     /*
-     * Ignorar recursos de outros domínios.
+     * Ignorar outros domínios.
      */
 
-    if (requestURL.origin !== self.location.origin) {
+    if (
+        requestURL.origin !==
+        self.location.origin
+    ) {
+
         return;
+
     }
 
 
     event.respondWith(
 
-        caches.match(event.request)
+        caches.match(
+            event.request
+        )
 
-            .then(function (cachedResponse) {
+        .then(function (cachedResponse) {
+
+            /*
+             * Se estiver no cache,
+             * utilizar imediatamente.
+             */
+
+            if (cachedResponse) {
+
+                return cachedResponse;
+
+            }
+
+
+            /*
+             * Caso contrário,
+             * procurar na Internet.
+             */
+
+            return fetch(
+                event.request
+            )
+
+            .then(function (networkResponse) {
 
                 /*
-                 * Se estiver no cache,
-                 * entregar imediatamente.
+                 * Verificar resposta.
                  */
 
-                if (cachedResponse) {
+                if (
+                    !networkResponse ||
+                    networkResponse.status !== 200 ||
+                    networkResponse.type === "opaque"
+                ) {
 
-                    return cachedResponse;
+                    return networkResponse;
+
                 }
 
 
                 /*
-                 * Se não estiver no cache,
-                 * procurar na Internet.
+                 * Guardar cópia no cache.
                  */
 
-                return fetch(event.request)
-
-                    .then(function (networkResponse) {
-
-                        /*
-                         * Verificar se a resposta é válida.
-                         */
-
-                        if (
-                            !networkResponse ||
-                            networkResponse.status !== 200 ||
-                            networkResponse.type === "opaque"
-                        ) {
-
-                            return networkResponse;
-                        }
+                const responseClone =
+                    networkResponse.clone();
 
 
-                        /*
-                         * Fazer uma cópia para o cache.
-                         */
+                caches.open(
+                    CACHE_NAME
+                )
 
-                        const responseClone =
-                            networkResponse.clone();
+                .then(function (cache) {
 
+                    cache.put(
+                        event.request,
+                        responseClone
+                    );
 
-                        caches.open(CACHE_NAME)
-
-                            .then(function (cache) {
-
-                                cache.put(
-                                    event.request,
-                                    responseClone
-                                );
-
-                            });
+                });
 
 
-                        return networkResponse;
-
-                    })
-
-                    .catch(function () {
-
-                        /*
-                         * Se estiver offline e for uma
-                         * navegação, mostrar o index.html.
-                         */
-
-                        if (
-                            event.request.mode === "navigate"
-                        ) {
-
-                            return caches.match(
-                                `${BASE_PATH}index.html`
-                            );
-
-                        }
-
-
-                        /*
-                         * Para outros recursos,
-                         * retornar erro 503.
-                         */
-
-                        return new Response(
-                            "",
-                            {
-                                status: 503,
-                                statusText: "LABMZ Offline"
-                            }
-                        );
-
-                    });
+                return networkResponse;
 
             })
+
+            .catch(function () {
+
+                /*
+                 * Se estiver offline e for
+                 * uma navegação, abrir o index.
+                 */
+
+                if (
+                    event.request.mode ===
+                    "navigate"
+                ) {
+
+                    return caches.match(
+                        `${BASE_PATH}index.html`
+                    );
+
+                }
+
+
+                /*
+                 * Para outros recursos.
+                 */
+
+                return new Response(
+                    "",
+                    {
+                        status: 503,
+                        statusText:
+                            "LABMZ Offline"
+                    }
+                );
+
+            });
+
+        })
 
     );
 
@@ -258,14 +324,15 @@ self.addEventListener("fetch", function (event) {
 
 
 /* =========================================================
-   MENSAGEM PARA FORÇAR ATUALIZAÇÃO
+   MENSAGEM PARA ATUALIZAÇÃO
 ========================================================= */
 
 self.addEventListener("message", function (event) {
 
     if (
         event.data &&
-        event.data.action === "SKIP_WAITING"
+        event.data.action ===
+        "SKIP_WAITING"
     ) {
 
         self.skipWaiting();
@@ -276,5 +343,5 @@ self.addEventListener("message", function (event) {
 
 
 /* =========================================================
-   FIM DO SERVICE WORKER
+   FIM DO SERVICE WORKER v5
 ========================================================= */
