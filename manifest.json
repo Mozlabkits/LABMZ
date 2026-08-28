@@ -4,7 +4,6 @@
   "short_name": "LABMZ",
   "description": "Plataforma educativa de Biologia e Química de Moçambique.",
   "lang": "pt-MZ",
-  "dir": "ltr",
   "start_url": "/LABMZ/index.html",
   "scope": "/LABMZ/",
   "display": "standalone",
