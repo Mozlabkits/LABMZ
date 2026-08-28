@@ -1,21 +1,24 @@
-const CACHE_NAME = "LABMZ-v3";
+const CACHE_NAME = "LABMZ-v4";
 
-const APP_SHELL = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./app.js",
-    "./manifest.json"
-];
+/* =====================================================
+   INSTALAÇÃO
+===================================================== */
 
-/* INSTALAÇÃO */
 self.addEventListener("install", function (event) {
 
     event.waitUntil(
 
         caches.open(CACHE_NAME).then(function (cache) {
 
-            return cache.addAll(APP_SHELL);
+            return cache.addAll([
+
+                "/LABMZ/",
+                "/LABMZ/index.html",
+                "/LABMZ/style.css",
+                "/LABMZ/app.js",
+                "/LABMZ/manifest.json"
+
+            ]);
 
         })
 
@@ -26,7 +29,10 @@ self.addEventListener("install", function (event) {
 });
 
 
-/* ATIVAÇÃO */
+/* =====================================================
+   ATIVAÇÃO
+===================================================== */
+
 self.addEventListener("activate", function (event) {
 
     event.waitUntil(
@@ -56,7 +62,10 @@ self.addEventListener("activate", function (event) {
 });
 
 
-/* FUNCIONAMENTO OFFLINE */
+/* =====================================================
+   REQUISIÇÕES
+===================================================== */
+
 self.addEventListener("fetch", function (event) {
 
     if (event.request.method !== "GET") {
@@ -64,6 +73,7 @@ self.addEventListener("fetch", function (event) {
         return;
 
     }
+
 
     event.respondWith(
 
@@ -75,15 +85,56 @@ self.addEventListener("fetch", function (event) {
 
             }
 
-            return fetch(event.request).then(function (networkResponse) {
 
-                return networkResponse;
+            return fetch(event.request)
 
-            }).catch(function () {
+                .then(function (networkResponse) {
 
-                return caches.match("./index.html");
+                    /* -------------------------------------
+                       GUARDAR RECURSOS DO LABMZ NO CACHE
+                    ------------------------------------- */
 
-            });
+                    if (
+
+                        networkResponse &&
+
+                        networkResponse.status === 200 &&
+
+                        new URL(event.request.url).origin ===
+                        self.location.origin
+
+                    ) {
+
+                        const responseClone =
+                            networkResponse.clone();
+
+                        caches.open(CACHE_NAME).then(function (cache) {
+
+                            cache.put(
+                                event.request,
+                                responseClone
+                            );
+
+                        });
+
+                    }
+
+
+                    return networkResponse;
+
+                })
+
+                .catch(function () {
+
+                    /* -------------------------------------
+                       SE ESTIVER OFFLINE
+                    ------------------------------------- */
+
+                    return caches.match(
+                        "/LABMZ/index.html"
+                    );
+
+                });
 
         })
 
