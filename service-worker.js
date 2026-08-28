@@ -1,14 +1,14 @@
-const CACHE_NAME = "labmz-v1.0";
+const CACHE_NAME = "labmz-v2";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
-  "./manifest.json"
+  "./manifest.json",
+  "./icons/icon.svg"
 ];
 
-// Instala o Service Worker
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -19,7 +19,6 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Ativa o Service Worker
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -34,7 +33,6 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Intercepta os pedidos
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
