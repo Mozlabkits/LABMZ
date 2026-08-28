@@ -1,20 +1,22 @@
 {
+  "id": "/LABMZ/",
   "name": "LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique",
   "short_name": "LABMZ",
   "description": "Plataforma educativa de Biologia e Química de Moçambique.",
   "lang": "pt-MZ",
-  "start_url": "./index.html",
-  "scope": "./",
+  "dir": "ltr",
+  "start_url": "/LABMZ/",
+  "scope": "/LABMZ/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#0b5d3b",
   "icons": [
     {
-      "src": "./icons/icon.svg",
-      "sizes": "any",
+      "src": "/LABMZ/icons/icon.svg",
+      "sizes": "512x512",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
