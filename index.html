@@ -1,535 +1,376 @@
 <!DOCTYPE html>
-
 <html lang="pt-MZ">
 
 <head>
 
-```
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color"
-      content="#0b5d3b">
+    <meta name="theme-color" content="#0b5d3b">
 
-<meta name="description"
-      content="LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique">
+    <meta name="description"
+          content="LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique">
 
-<meta name="mobile-web-app-capable"
-      content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<meta name="apple-mobile-web-app-title"
-      content="LABMZ">
+    <meta name="apple-mobile-web-app-title" content="LABMZ">
 
+    <!-- MANIFEST PWA -->
+    <link rel="manifest" href="./manifest.json">
 
-<!-- =====================================================
-     PWA — MANIFEST
-====================================================== -->
+    <!-- ÍCONE -->
+    <link rel="icon"
+          href="./icons/icon.svg"
+          type="image/svg+xml">
 
-<link rel="manifest"
-      href="./manifest.json">
+    <link rel="apple-touch-icon"
+          href="./icons/icon.svg">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
 
-<!-- =====================================================
-     ÍCONES DO LABMZ
-====================================================== -->
-
-<link rel="icon"
-      href="./icons/icon-192.png"
-      type="image/png">
-
-<link rel="apple-touch-icon"
-      href="./icons/icon-192.png">
-
-
-<!-- =====================================================
-     CSS
-====================================================== -->
-
-<link rel="stylesheet"
-      href="./style.css">
-
-
-<!-- =====================================================
-     TÍTULO
-====================================================== -->
-
-<title>
-    LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique
-</title>
-```
+    <title>
+        LABMZ — Laboratório de Aprendizagem de Biologia e Química de Moçambique
+    </title>
 
 </head>
 
 <body>
 
-<!-- =====================================================
-     CABEÇALHO
-====================================================== -->
-
 <header>
 
-```
-<div class="logo">
-    🧬 LABMZ
-</div>
+    <div class="logo">
+        🧬 LABMZ
+    </div>
 
-<div class="subtitulo">
-    Laboratório de Aprendizagem de Biologia e Química de Moçambique
-</div>
-```
+    <div class="subtitulo">
+        Laboratório de Aprendizagem de Biologia e Química de Moçambique
+    </div>
 
 </header>
 
-<!-- =====================================================
-     MENU PRINCIPAL
-====================================================== -->
 
 <nav class="menu">
 
-```
-<a href="./">
-    🏠 Início
-</a>
+    <a href="./">
+        🏠 Início
+    </a>
 
-<a href="./Biologia/index.html">
-    🧬 Biologia
-</a>
+    <a href="./Biologia/index.html">
+        🧬 Biologia
+    </a>
 
-<a href="./Quimica/index.html">
-    🧪 Química
-</a>
+    <a href="./Quimica/index.html">
+        🧪 Química
+    </a>
 
-<a href="./Biologia/Celula/Exercicios/index.html">
-    📝 Questões
-</a>
+    <a href="./Biologia/Celula/Exercicios/index.html">
+        📝 Questões
+    </a>
 
-<a href="./Biologia/Celula/quiz/index.html">
-    🎯 Quizzes
-</a>
-```
+    <a href="./Biologia/Celula/quiz/index.html">
+        🎯 Quizzes
+    </a>
 
 </nav>
 
-<!-- =====================================================
-     CONTEÚDO PRINCIPAL
-====================================================== -->
 
 <main>
 
-<!-- =====================================================
-     HERO
-====================================================== -->
-
 <section class="hero">
 
-```
-<h1>
-    🧬 Bem-vindo ao LABMZ
-</h1>
+    <h1>
+        🧬 Bem-vindo ao LABMZ
+    </h1>
 
-<p>
-    Laboratório de Aprendizagem de Biologia
-    e Química de Moçambique.
-</p>
+    <p>
+        Laboratório de Aprendizagem de Biologia
+        e Química de Moçambique.
+    </p>
 
-<p>
-    Uma plataforma educativa para aprender,
-    praticar e testar conhecimentos científicos.
-</p>
-```
+    <p>
+        Uma plataforma educativa para aprender,
+        praticar e testar conhecimentos científicos.
+    </p>
 
 </section>
 
-<!-- =====================================================
-     ÁREAS PRINCIPAIS
-====================================================== -->
 
 <section class="areas">
 
-```
-<!-- BIOLOGIA -->
+    <div class="card">
 
-<div class="card">
+        <div class="icone">
+            🧬
+        </div>
 
-    <div class="icone">
-        🧬
+        <h2>
+            Biologia
+        </h2>
+
+        <p>
+            Explore conteúdos sobre célula, genética,
+            ecologia, evolução e outros temas da Biologia.
+        </p>
+
+        <a href="./Biologia/index.html" class="botao">
+            🧬 Explorar Biologia
+        </a>
+
     </div>
 
-    <h2>
-        Biologia
-    </h2>
 
-    <p>
-        Explore conteúdos sobre célula, genética,
-        ecologia, evolução e outros temas da Biologia.
-    </p>
+    <div class="card">
 
-    <a href="./Biologia/index.html"
-       class="botao">
+        <div class="icone">
+            🧪
+        </div>
 
-        🧬 Explorar Biologia
+        <h2>
+            Química
+        </h2>
 
-    </a>
+        <p>
+            Explore matéria, átomo, elementos químicos,
+            tabela periódica, ligações e reações químicas.
+        </p>
 
-</div>
+        <a href="./Quimica/index.html" class="botao">
+            🧪 Explorar Química
+        </a>
 
-
-<!-- QUÍMICA -->
-
-<div class="card">
-
-    <div class="icone">
-        🧪
     </div>
-
-    <h2>
-        Química
-    </h2>
-
-    <p>
-        Explore matéria, átomo, elementos químicos,
-        tabela periódica, ligações e reações químicas.
-    </p>
-
-    <a href="./Quimica/index.html"
-       class="botao">
-
-        🧪 Explorar Química
-
-    </a>
-
-</div>
-```
 
 </section>
 
-<!-- =====================================================
-     RECURSOS DE APRENDIZAGEM
-====================================================== -->
 
 <section class="recursos">
 
-```
-<h2>
-    📚 Recursos de aprendizagem
-</h2>
+    <h2>
+        📚 Recursos de aprendizagem
+    </h2>
 
-<p>
-    Estude, pratique e avalie os seus conhecimentos.
-</p>
-
-
-<div class="recursos-grid">
+    <p>
+        Estude, pratique e avalie os seus conhecimentos.
+    </p>
 
 
-    <!-- CONTEÚDOS -->
+    <div class="recursos-grid">
 
-    <div class="recurso">
+        <div class="recurso">
 
-        <div>
-            📖
+            <div>
+                📖
+            </div>
+
+            <h3>
+                Conteúdos
+            </h3>
+
+            <p>
+                Materiais educativos organizados
+                para facilitar a aprendizagem.
+            </p>
+
         </div>
 
-        <h3>
-            Conteúdos
-        </h3>
 
-        <p>
-            Materiais educativos organizados
-            para facilitar a aprendizagem.
-        </p>
+        <div class="recurso">
 
-    </div>
+            <div>
+                📝
+            </div>
 
+            <h3>
+                Questões
+            </h3>
 
-    <!-- QUESTÕES -->
+            <p>
+                Resolva exercícios para consolidar
+                os seus conhecimentos.
+            </p>
 
-    <div class="recurso">
+            <a href="./Biologia/Celula/Exercicios/index.html"
+               class="botao">
 
-        <div>
-            📝
+                📝 Fazer exercícios
+
+            </a>
+
         </div>
 
-        <h3>
-            Questões
-        </h3>
 
-        <p>
-            Resolva exercícios para consolidar
-            os seus conhecimentos.
-        </p>
+        <div class="recurso">
 
-        <a href="./Biologia/Celula/Exercicios/index.html"
-           class="botao">
+            <div>
+                🎯
+            </div>
 
-            📝 Fazer exercícios
+            <h3>
+                Quizzes
+            </h3>
 
-        </a>
+            <p>
+                Teste os seus conhecimentos através
+                de quizzes educativos.
+            </p>
 
-    </div>
+            <a href="./Biologia/Celula/quiz/index.html"
+               class="botao">
 
+                🎯 Fazer Quiz
 
-    <!-- QUIZZES -->
+            </a>
 
-    <div class="recurso">
-
-        <div>
-            🎯
         </div>
 
-        <h3>
-            Quizzes
-        </h3>
-
-        <p>
-            Teste os seus conhecimentos através
-            de quizzes educativos.
-        </p>
-
-        <a href="./Biologia/Celula/quiz/index.html"
-           class="botao">
-
-            🎯 Fazer Quiz
-
-        </a>
-
     </div>
-
-
-</div>
-```
 
 </section>
 
-<!-- =====================================================
-     SOBRE O LABMZ
-====================================================== -->
 
 <section class="card">
 
-```
-<h2>
-    🔬 Sobre o LABMZ
-</h2>
+    <h2>
+        🔬 Sobre o LABMZ
+    </h2>
 
-<p>
-    O LABMZ — Laboratório de Aprendizagem de Biologia
-    e Química de Moçambique — é uma plataforma
-    educativa dedicada à aprendizagem científica.
-</p>
+    <p>
+        O LABMZ — Laboratório de Aprendizagem de Biologia
+        e Química de Moçambique — é uma plataforma
+        educativa dedicada à aprendizagem científica.
+    </p>
 
-<p>
-    A plataforma disponibiliza conteúdos de Biologia
-    e Química, exercícios e atividades interativas
-    para apoiar estudantes no desenvolvimento
-    dos seus conhecimentos científicos.
-</p>
-```
+    <p>
+        A plataforma disponibiliza conteúdos de Biologia
+        e Química, exercícios e atividades interativas
+        para apoiar estudantes no desenvolvimento
+        dos seus conhecimentos científicos.
+    </p>
 
 </section>
 
-<!-- =====================================================
-     INSTALAÇÃO DO LABMZ
-====================================================== -->
 
 <section class="hero" id="instalacao">
 
-```
-<h2>
-    📱 Instalar o LABMZ
-</h2>
-
-<p>
-    Instale o LABMZ no seu dispositivo Android
-    e utilize-o como uma aplicação.
-</p>
-
-
-<!-- =================================================
-     BOTÃO DE INSTALAÇÃO
-================================================== -->
-
-<button
-    id="botaoInstalar"
-    class="botao"
-    type="button"
-    aria-label="Instalar o aplicativo LABMZ">
-
-    📲 Instalar LABMZ
-
-</button>
-
-
-<!-- =================================================
-     MENSAGEM DE ESTADO
-================================================== -->
-
-<p
-    id="mensagemInstalacao"
-    role="status"
-    aria-live="polite">
-
-    Preparando a instalação...
-
-</p>
-
-
-<!-- =================================================
-     INSTRUÇÕES MANUAIS
-================================================== -->
-
-<div
-    id="instrucoesManuais"
-    style="display:none;">
-
-    <h3>
-        📌 Instalação pelo Chrome
-    </h3>
+    <h2>
+        📱 Instalar o LABMZ
+    </h2>
 
     <p>
-        Se o botão automático não estiver disponível,
-        toque no menu <strong>⋮</strong> do Chrome e
-        procure a opção <strong>Instalar aplicativo</strong>
-        ou <strong>Adicionar à tela inicial</strong>.
+        Instale o LABMZ no seu dispositivo Android
+        e utilize-o como uma aplicação.
     </p>
 
-</div>
-```
+    <button
+        id="botaoInstalar"
+        class="botao"
+        type="button">
+
+        📲 Instalar LABMZ
+
+    </button>
+
+    <p
+        id="mensagemInstalacao"
+        role="status"
+        aria-live="polite">
+
+        Verificando a instalação...
+
+    </p>
+
+    <div
+        id="instrucoesManuais"
+        style="display:none;">
+
+        <h3>
+            📌 Instalação manual
+        </h3>
+
+        <p>
+            Se a instalação automática não estiver disponível,
+            abra o menu ⋮ do Chrome e procure
+            <strong>Instalar aplicativo</strong>
+            ou
+            <strong>Adicionar à tela inicial</strong>.
+        </p>
+
+    </div>
 
 </section>
 
 </main>
 
-<!-- =====================================================
-     RODAPÉ
-====================================================== -->
 
 <footer>
 
-```
-© 2026 LABMZ
+    © 2026 LABMZ
 
-<br>
+    <br>
 
-Laboratório de Aprendizagem de Biologia
-e Química de Moçambique
-```
+    Laboratório de Aprendizagem de Biologia
+    e Química de Moçambique
 
 </footer>
 
-<!-- =====================================================
-     JAVASCRIPT PRINCIPAL
-====================================================== -->
 
+<!-- JAVASCRIPT PRINCIPAL -->
 <script src="./app.js"></script>
 
-<!-- =====================================================
-     SISTEMA PWA DO LABMZ
-====================================================== -->
 
+<!-- SISTEMA PWA -->
 <script>
 
-(function () {
+"use strict";
 
-    "use strict";
+let eventoInstalacao = null;
 
+const botaoInstalar =
+    document.getElementById("botaoInstalar");
 
-    /* =====================================================
-       ELEMENTOS
-    ====================================================== */
+const mensagemInstalacao =
+    document.getElementById("mensagemInstalacao");
 
-    const botaoInstalar =
-        document.getElementById("botaoInstalar");
-
-    const mensagemInstalacao =
-        document.getElementById("mensagemInstalacao");
-
-    const instrucoesManuais =
-        document.getElementById("instrucoesManuais");
+const instrucoesManuais =
+    document.getElementById("instrucoesManuais");
 
 
-    /* =====================================================
-       EVENTO DE INSTALAÇÃO
-    ====================================================== */
+function aplicativoInstalado() {
 
-    let eventoInstalacao = null;
+    return (
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true
+    );
+
+}
 
 
-    /* =====================================================
-       VERIFICAR SE O LABMZ JÁ ESTÁ INSTALADO
-    ====================================================== */
+function atualizarInterface() {
 
-    function aplicativoInstalado() {
+    if (aplicativoInstalado()) {
 
-        return (
+        botaoInstalar.textContent =
+            "✅ LABMZ já está instalado";
 
-            window.matchMedia(
-                "(display-mode: standalone)"
-            ).matches
+        botaoInstalar.disabled = true;
 
-            ||
+        mensagemInstalacao.textContent =
+            "O LABMZ já está instalado como aplicação.";
 
-            window.navigator.standalone === true
+        instrucoesManuais.style.display =
+            "none";
 
-        );
-
+        return;
     }
 
 
-    /* =====================================================
-       ATUALIZAR INTERFACE
-    ====================================================== */
-
-    function atualizarInterface() {
-
-        if (aplicativoInstalado()) {
-
-            botaoInstalar.textContent =
-                "✅ LABMZ já está instalado";
-
-            botaoInstalar.disabled =
-                true;
-
-            mensagemInstalacao.textContent =
-                "O LABMZ já está instalado como aplicação no seu dispositivo.";
-
-            instrucoesManuais.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        if (eventoInstalacao) {
-
-            botaoInstalar.style.display =
-                "inline-block";
-
-            botaoInstalar.disabled =
-                false;
-
-            botaoInstalar.textContent =
-                "📲 Instalar LABMZ";
-
-            mensagemInstalacao.textContent =
-                "Toque no botão para instalar o LABMZ no seu dispositivo.";
-
-            instrucoesManuais.style.display =
-                "none";
-
-            return;
-
-        }
-
+    if (eventoInstalacao) {
 
         botaoInstalar.style.display =
             "inline-block";
@@ -538,251 +379,206 @@ e Química de Moçambique
             false;
 
         botaoInstalar.textContent =
-            "📲 Como instalar o LABMZ";
+            "📲 Instalar LABMZ";
 
         mensagemInstalacao.textContent =
-            "A instalação automática ainda não está disponível neste momento.";
+            "Toque no botão para instalar o LABMZ.";
 
         instrucoesManuais.style.display =
-            "block";
+            "none";
 
+        return;
     }
 
 
-    /* =====================================================
-       REGISTAR SERVICE WORKER
-    ====================================================== */
+    botaoInstalar.style.display =
+        "inline-block";
 
-    if ("serviceWorker" in navigator) {
+    botaoInstalar.disabled =
+        false;
 
-        window.addEventListener(
-            "load",
-            function () {
+    botaoInstalar.textContent =
+        "📲 Como instalar o LABMZ";
 
-                navigator.serviceWorker
-                    .register(
-                        "./service-worker.js",
-                        {
-                            scope: "./"
-                        }
-                    )
+    mensagemInstalacao.textContent =
+        "A instalação automática ainda não está disponível.";
 
-                    .then(
-                        function (registration) {
+    instrucoesManuais.style.display =
+        "block";
 
-                            console.log(
-                                "[LABMZ] Service Worker registado:",
-                                registration.scope
-                            );
-
-                        }
-                    )
-
-                    .catch(
-                        function (error) {
-
-                            console.error(
-                                "[LABMZ] Erro ao registar o Service Worker:",
-                                error
-                            );
-
-                            mensagemInstalacao.textContent =
-                                "O sistema PWA não conseguiu iniciar. Verifique a ligação à Internet e tente novamente.";
-
-                        }
-                    );
-
-            }
-        );
-
-    }
+}
 
 
-    /* =====================================================
-       CAPTURAR EVENTO DE INSTALAÇÃO
-    ====================================================== */
+if ("serviceWorker" in navigator) {
 
-    window.addEventListener(
-        "beforeinstallprompt",
-        function (event) {
+    window.addEventListener("load", function () {
 
-            console.log(
-                "[LABMZ] Evento de instalação disponível."
-            );
-
-            event.preventDefault();
-
-            eventoInstalacao =
-                event;
-
-            atualizarInterface();
-
-        }
-    );
-
-
-    /* =====================================================
-       BOTÃO DE INSTALAÇÃO
-    ====================================================== */
-
-    botaoInstalar.addEventListener(
-        "click",
-        async function () {
-
-            if (aplicativoInstalado()) {
-
-                mensagemInstalacao.textContent =
-                    "✅ O LABMZ já está instalado neste dispositivo.";
-
-                return;
-
-            }
-
-
-            if (!eventoInstalacao) {
-
-                mensagemInstalacao.textContent =
-                    "Para instalar pelo Chrome, toque no menu ⋮ e escolha «Instalar aplicativo» ou «Adicionar à tela inicial».";
-
-                instrucoesManuais.style.display =
-                    "block";
-
-                return;
-
-            }
-
-
-            botaoInstalar.disabled =
-                true;
-
-            botaoInstalar.textContent =
-                "⏳ A preparar instalação...";
-
-
-            try {
-
-                eventoInstalacao.prompt();
-
-                const resultado =
-                    await eventoInstalacao.userChoice;
+        navigator.serviceWorker
+            .register("./service-worker.js", {
+                scope: "./"
+            })
+            .then(function (registration) {
 
                 console.log(
-                    "[LABMZ] Resultado da instalação:",
-                    resultado.outcome
+                    "[LABMZ] Service Worker ativo:",
+                    registration.scope
                 );
 
-
-                if (
-                    resultado.outcome ===
-                    "accepted"
-                ) {
-
-                    mensagemInstalacao.textContent =
-                        "✅ Instalação iniciada. Aguarde alguns segundos.";
-
-                }
-
-                else {
-
-                    mensagemInstalacao.textContent =
-                        "A instalação foi cancelada. Pode tentar novamente quando quiser.";
-
-                }
-
-            }
-
-            catch (erro) {
+            })
+            .catch(function (error) {
 
                 console.error(
-                    "[LABMZ] Erro durante a instalação:",
-                    erro
+                    "[LABMZ] Erro no Service Worker:",
+                    error
                 );
 
                 mensagemInstalacao.textContent =
-                    "Não foi possível iniciar a instalação automática. Utilize o menu ⋮ do Chrome para instalar o LABMZ.";
+                    "O sistema PWA não conseguiu iniciar.";
 
-                instrucoesManuais.style.display =
-                    "block";
+            });
+
+    });
+
+}
+
+
+window.addEventListener(
+    "beforeinstallprompt",
+    function (event) {
+
+        event.preventDefault();
+
+        eventoInstalacao = event;
+
+        atualizarInterface();
+
+    }
+);
+
+
+botaoInstalar.addEventListener(
+    "click",
+    async function () {
+
+        if (aplicativoInstalado()) {
+
+            mensagemInstalacao.textContent =
+                "✅ O LABMZ já está instalado.";
+
+            return;
+
+        }
+
+
+        if (!eventoInstalacao) {
+
+            mensagemInstalacao.textContent =
+                "Abra o menu ⋮ do Chrome e escolha «Instalar aplicativo» ou «Adicionar à tela inicial».";
+
+            instrucoesManuais.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        botaoInstalar.disabled =
+            true;
+
+        botaoInstalar.textContent =
+            "⏳ A preparar instalação...";
+
+
+        try {
+
+            eventoInstalacao.prompt();
+
+            const resultado =
+                await eventoInstalacao.userChoice;
+
+
+            if (resultado.outcome === "accepted") {
+
+                mensagemInstalacao.textContent =
+                    "✅ Instalação iniciada.";
+
+            } else {
+
+                mensagemInstalacao.textContent =
+                    "A instalação foi cancelada.";
 
             }
 
-
-            eventoInstalacao =
-                null;
-
-
-            setTimeout(
-                atualizarInterface,
-                500
-            );
-
         }
-    );
 
+        catch (erro) {
 
-    /* =====================================================
-       INSTALAÇÃO CONCLUÍDA
-    ====================================================== */
-
-    window.addEventListener(
-        "appinstalled",
-        function () {
-
-            console.log(
-                "[LABMZ] Aplicativo instalado com sucesso."
+            console.error(
+                "[LABMZ] Erro:",
+                erro
             );
 
             mensagemInstalacao.textContent =
-                "🎉 LABMZ foi instalado com sucesso no seu dispositivo!";
-
-            botaoInstalar.textContent =
-                "✅ LABMZ instalado";
-
-            botaoInstalar.disabled =
-                true;
+                "Não foi possível iniciar a instalação automática.";
 
             instrucoesManuais.style.display =
-                "none";
-
-            eventoInstalacao =
-                null;
+                "block";
 
         }
-    );
 
 
-    /* =====================================================
-       ALTERAÇÃO DO MODO STANDALONE
-    ====================================================== */
+        eventoInstalacao = null;
 
-    const mediaQuery =
-        window.matchMedia(
-            "(display-mode: standalone)"
+        setTimeout(
+            atualizarInterface,
+            500
         );
 
+    }
+);
+
+
+window.addEventListener(
+    "appinstalled",
+    function () {
+
+        mensagemInstalacao.textContent =
+            "🎉 LABMZ foi instalado com sucesso!";
+
+        botaoInstalar.textContent =
+            "✅ LABMZ instalado";
+
+        botaoInstalar.disabled =
+            true;
+
+        instrucoesManuais.style.display =
+            "none";
+
+        eventoInstalacao = null;
+
+    }
+);
+
+
+if (window.matchMedia) {
+
+    const mediaQuery =
+        window.matchMedia("(display-mode: standalone)");
 
     if (mediaQuery.addEventListener) {
 
         mediaQuery.addEventListener(
             "change",
-            function () {
-
-                atualizarInterface();
-
-            }
+            atualizarInterface
         );
 
     }
 
-
-    /* =====================================================
-       ESTADO INICIAL
-    ====================================================== */
-
-    atualizarInterface();
+}
 
 
-})();
+atualizarInterface();
 
 </script>
 
