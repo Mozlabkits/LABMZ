@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html lang="pt">
 
 <head>
@@ -98,14 +99,19 @@
     </h2>
 
     <p>
-        Responda às perguntas selecionando uma alternativa.
-        No final, clique em <strong>Ver resultado</strong>
-        para conhecer a sua pontuação.
+        Responda às perguntas selecionando apenas uma
+        alternativa por questão.
     </p>
 
     <p>
-        O quiz possui 10 perguntas e cada resposta correta
-        vale 1 ponto.
+        O quiz possui <strong>10 perguntas</strong>.
+        Cada resposta correta vale <strong>1 ponto</strong>.
+    </p>
+
+    <p>
+        No final, clique em
+        <strong>🎯 Ver resultado</strong>
+        para conhecer a sua pontuação.
     </p>
 
 </section>
@@ -120,7 +126,9 @@
     <form id="quizForm">
 
 
-        <!-- PERGUNTA 1 -->
+        <!-- =================================================
+             PERGUNTA 1
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -151,12 +159,15 @@
         </div>
 
 
-        <!-- PERGUNTA 2 -->
+        <!-- =================================================
+             PERGUNTA 2
+        ================================================== -->
 
         <div class="pergunta">
 
             <h3>
-                2. Qual é a menor unidade de um elemento químico que conserva as suas propriedades químicas?
+                2. Qual é a menor unidade de um elemento químico
+                que conserva as suas propriedades químicas?
             </h3>
 
             <label>
@@ -182,7 +193,9 @@
         </div>
 
 
-        <!-- PERGUNTA 3 -->
+        <!-- =================================================
+             PERGUNTA 3
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -213,7 +226,9 @@
         </div>
 
 
-        <!-- PERGUNTA 4 -->
+        <!-- =================================================
+             PERGUNTA 4
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -244,7 +259,9 @@
         </div>
 
 
-        <!-- PERGUNTA 5 -->
+        <!-- =================================================
+             PERGUNTA 5
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -275,7 +292,9 @@
         </div>
 
 
-        <!-- PERGUNTA 6 -->
+        <!-- =================================================
+             PERGUNTA 6
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -306,7 +325,9 @@
         </div>
 
 
-        <!-- PERGUNTA 7 -->
+        <!-- =================================================
+             PERGUNTA 7
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -337,12 +358,15 @@
         </div>
 
 
-        <!-- PERGUNTA 8 -->
+        <!-- =================================================
+             PERGUNTA 8
+        ================================================== -->
 
         <div class="pergunta">
 
             <h3>
-                8. Qual mudança de estado ocorre quando um líquido passa para o estado gasoso?
+                8. Qual mudança de estado ocorre quando um
+                líquido passa para o estado gasoso?
             </h3>
 
             <label>
@@ -368,12 +392,15 @@
         </div>
 
 
-        <!-- PERGUNTA 9 -->
+        <!-- =================================================
+             PERGUNTA 9
+        ================================================== -->
 
         <div class="pergunta">
 
             <h3>
-                9. Qual ligação química envolve a transferência de eletrões entre átomos?
+                9. Qual ligação química envolve a transferência
+                de eletrões entre átomos?
             </h3>
 
             <label>
@@ -399,7 +426,9 @@
         </div>
 
 
-        <!-- PERGUNTA 10 -->
+        <!-- =================================================
+             PERGUNTA 10
+        ================================================== -->
 
         <div class="pergunta">
 
@@ -430,7 +459,9 @@
         </div>
 
 
-        <!-- BOTÃO -->
+        <!-- =================================================
+             BOTÃO DE RESULTADO
+        ================================================== -->
 
         <button
             type="button"
@@ -454,7 +485,7 @@
 <section
     class="hero"
     id="resultado"
-    style="display:none;">
+    style="display: none;">
 
     <h2>
         🏆 Resultado
@@ -466,6 +497,7 @@
 
 
     <button
+        type="button"
         class="botao"
         onclick="reiniciarQuiz()">
 
@@ -549,7 +581,7 @@
 
 function verResultado() {
 
-    const respostas = {
+    const respostasCorretas = {
 
         q1: "B",
         q2: "C",
@@ -567,8 +599,13 @@ function verResultado() {
 
     let pontuacao = 0;
 
+    let respondidas = 0;
 
-    for (let pergunta in respostas) {
+    const totalPerguntas =
+        Object.keys(respostasCorretas).length;
+
+
+    for (const pergunta in respostasCorretas) {
 
         const resposta =
             document.querySelector(
@@ -578,7 +615,12 @@ function verResultado() {
 
         if (resposta) {
 
-            if (resposta.value === respostas[pergunta]) {
+            respondidas++;
+
+            if (
+                resposta.value ===
+                respostasCorretas[pergunta]
+            ) {
 
                 pontuacao++;
 
@@ -602,10 +644,35 @@ function verResultado() {
     resultado.style.display = "block";
 
 
+    if (respondidas < totalPerguntas) {
+
+        pontuacaoTexto.innerHTML =
+            "⚠️ Você respondeu " +
+            "<strong>" +
+            respondidas +
+            " de " +
+            totalPerguntas +
+            "</strong> perguntas.";
+
+
+        mensagem.innerHTML =
+            "Por favor, volte ao quiz e responda todas as perguntas antes de finalizar.";
+
+        resultado.scrollIntoView({
+            behavior: "smooth"
+        });
+
+        return;
+
+    }
+
+
     pontuacaoTexto.innerHTML =
-        "Você acertou <strong>" +
+        "🏆 Você acertou <strong>" +
         pontuacao +
-        " de 10 perguntas.</strong>";
+        " de " +
+        totalPerguntas +
+        " perguntas.</strong>";
 
 
     if (pontuacao === 10) {
@@ -663,6 +730,16 @@ function reiniciarQuiz() {
         .style.display = "none";
 
 
+    document
+        .getElementById("pontuacao")
+        .innerHTML = "";
+
+
+    document
+        .getElementById("mensagem")
+        .innerHTML = "";
+
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -676,3 +753,4 @@ function reiniciarQuiz() {
 </body>
 
 </html>
+```
