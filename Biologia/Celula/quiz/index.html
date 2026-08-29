@@ -1,15 +1,25 @@
-﻿<!DOCTYPE html>
-<html lang="pt">
+```html
+<!DOCTYPE html>
+<html lang="pt-MZ">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#0b5d3b">
+
+    <meta name="description"
+          content="LABMZ — Quiz da Célula">
 
     <title>LABMZ — Quiz da Célula</title>
 
-    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet"
+          href="../../../style.css">
+
 
     <style>
 
@@ -54,7 +64,7 @@
             padding: 25px;
             margin-bottom: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .pergunta h2 {
@@ -135,7 +145,7 @@
 <header>
 
     <div class="logo">
-        ?? LABMZ
+        🧬 LABMZ
     </div>
 
     <div class="subtitulo">
@@ -148,31 +158,31 @@
 <nav class="menu">
 
     <a href="../../../index.html">
-        ?? Início
+        🏠 Início
     </a>
 
     <a href="../../index.html">
-        ?? Biologia
+        🧬 Biologia
     </a>
 
     <a href="../index.html">
-        ?? Célula
+        🔬 Célula
     </a>
 
     <a href="../estrutura/index.html">
-        ?? Estrutura
+        🧫 Estrutura
     </a>
 
     <a href="../funcoes/index.html">
-        ?? Funções
+        ⚙️ Funções
     </a>
 
-    <a href="../exercicios/index.html">
-        ?? Exercícios
+    <a href="../Exercicios/index.html">
+        📝 Exercícios
     </a>
 
     <a href="index.html">
-        ?? Quiz
+        🎯 Quiz
     </a>
 
 </nav>
@@ -184,7 +194,7 @@
 <section class="hero">
 
     <h1>
-        ?? Quiz da Célula
+        🎯 Quiz da Célula
     </h1>
 
     <p>
@@ -206,7 +216,7 @@
             class="progresso-texto"
             id="progressoTexto">
 
-            Questão 0 de 10
+            Questão 1 de 10
 
         </div>
 
@@ -228,7 +238,6 @@
 <div
     class="quiz-container"
     id="quiz">
-
 </div>
 
 
@@ -238,7 +247,7 @@
     style="display:none;">
 
     <h2>
-        ?? Resultado do Quiz
+        🏆 Resultado do Quiz
     </h2>
 
     <p id="pontuacaoFinal"></p>
@@ -249,7 +258,7 @@
         class="botao-quiz"
         onclick="iniciarQuiz()">
 
-        ?? Jogar novamente
+        🔄 Jogar novamente
 
     </button>
 
@@ -262,7 +271,7 @@
         href="../index.html"
         class="botao">
 
-        ?? Voltar para Célula
+        🔬 Voltar para Célula
 
     </a>
 
@@ -302,7 +311,7 @@ const perguntas = [
 
         correta: 2,
 
-        nivel: "?? Básico",
+        nivel: "🟢 Básico",
 
         explicacao:
         "A célula é considerada a unidade estrutural e funcional básica dos seres vivos."
@@ -322,7 +331,7 @@ const perguntas = [
 
         correta: 2,
 
-        nivel: "?? Básico",
+        nivel: "🟢 Básico",
 
         explicacao:
         "Os cloroplastos possuem clorofila e são os principais locais da fotossíntese."
@@ -342,7 +351,7 @@ const perguntas = [
 
         correta: 1,
 
-        nivel: "?? Básico",
+        nivel: "🟢 Básico",
 
         explicacao:
         "A membrana plasmática delimita a célula e regula muitas trocas entre a célula e o meio."
@@ -362,7 +371,7 @@ const perguntas = [
 
         correta: 0,
 
-        nivel: "?? Básico",
+        nivel: "🟢 Básico",
 
         explicacao:
         "Os ribossomas realizam a síntese de proteínas."
@@ -382,7 +391,7 @@ const perguntas = [
 
         correta: 1,
 
-        nivel: "?? Intermédio",
+        nivel: "🟡 Intermédio",
 
         explicacao:
         "As mitocôndrias realizam etapas importantes da respiração celular e da produção de ATP."
@@ -402,7 +411,7 @@ const perguntas = [
 
         correta: 1,
 
-        nivel: "?? Intermédio",
+        nivel: "🟡 Intermédio",
 
         explicacao:
         "A parede celular vegetal contém celulose e proporciona suporte e proteção."
@@ -422,7 +431,7 @@ const perguntas = [
 
         correta: 0,
 
-        nivel: "?? Intermédio",
+        nivel: "🟡 Intermédio",
 
         explicacao:
         "Osmose é o movimento de água através de uma membrana seletivamente permeável."
@@ -442,7 +451,7 @@ const perguntas = [
 
         correta: 0,
 
-        nivel: "?? Intermédio",
+        nivel: "🟡 Intermédio",
 
         explicacao:
         "O complexo de Golgi modifica, classifica e distribui determinadas proteínas e lipídios."
@@ -462,7 +471,7 @@ const perguntas = [
 
         correta: 0,
 
-        nivel: "?? Avançado",
+        nivel: "🔴 Avançado",
 
         explicacao:
         "As células eucarióticas possuem um núcleo delimitado por membrana, enquanto as procarióticas não possuem núcleo membranoso."
@@ -482,7 +491,7 @@ const perguntas = [
 
         correta: 1,
 
-        nivel: "?? Avançado",
+        nivel: "🔴 Avançado",
 
         explicacao:
         "A replicação duplica o DNA antes da divisão celular, permitindo a distribuição do material genético às células-filhas."
@@ -697,7 +706,7 @@ function responder(
 
 
         resultado.innerHTML =
-            "? Resposta correta!";
+            "✅ Resposta correta!";
 
     }
 
@@ -705,7 +714,7 @@ function responder(
 
         resultado.innerHTML =
 
-            "? Resposta incorreta." +
+            "❌ Resposta incorreta." +
 
             "<br>" +
 
@@ -728,7 +737,7 @@ function responder(
 
     explicacao.innerHTML =
 
-        "?? " +
+        "💡 <strong>Explicação:</strong> " +
 
         pergunta.explicacao;
 
@@ -777,7 +786,7 @@ function finalizarQuiz() {
         "progressoTexto"
     ).innerHTML =
 
-        "?? Quiz concluído!";
+        "🏆 Quiz concluído!";
 
 
     document.getElementById(
@@ -829,35 +838,35 @@ function finalizarQuiz() {
     if (pontos === 10) {
 
         mensagem =
-            "?? Perfeito! Excelente domínio da Biologia celular!";
+            "🏆 Perfeito! Excelente domínio da Biologia celular!";
 
     }
 
     else if (pontos >= 8) {
 
         mensagem =
-            "?? Excelente desempenho!";
+            "🌟 Excelente desempenho!";
 
     }
 
     else if (pontos >= 6) {
 
         mensagem =
-            "?? Muito bom! Continue a estudar.";
+            "👍 Muito bom! Continue a estudar.";
 
     }
 
     else if (pontos >= 5) {
 
         mensagem =
-            "?? Bom esforço! Reveja alguns conteúdos.";
+            "📚 Bom esforço! Reveja alguns conteúdos.";
 
     }
 
     else {
 
         mensagem =
-            "?? Continue estudando e tente novamente.";
+            "🔄 Continue estudando e tente novamente.";
 
     }
 
@@ -879,3 +888,4 @@ iniciarQuiz();
 </body>
 
 </html>
+```
