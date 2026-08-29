@@ -1,108 +1,130 @@
 ```javascript
 "use strict";
 
-/* =====================================================
+/* =========================================================
    LABMZ — SERVICE WORKER
    Versão 5
-===================================================== */
+   Sistema de atualização e cache estabilizado
+   ========================================================= */
 
 const CACHE_NAME = "LABMZ-v5";
 
-
-/* =====================================================
-   CAMINHO BASE DO LABMZ
-===================================================== */
-
-const BASE_PATH = new URL(
-    "./",
-    self.location
-).pathname;
+const BASE_PATH = "/LABMZ/";
 
 
-/* =====================================================
+/* =========================================================
+   RECURSOS ESSENCIAIS
+   ========================================================= */
+
+const RECURSOS_ESSENCIAIS = [
+
+    BASE_PATH,
+    BASE_PATH + "index.html",
+    BASE_PATH + "style.css",
+    BASE_PATH + "app.js",
+    BASE_PATH + "manifest.json"
+
+];
+
+
+/* =========================================================
    INSTALAÇÃO
-===================================================== */
+   ========================================================= */
 
 self.addEventListener("install", function (event) {
 
+    console.log("[LABMZ] Instalando Service Worker:", CACHE_NAME);
+
     event.waitUntil(
 
-        caches.open(CACHE_NAME).then(function (cache) {
+        caches.open(CACHE_NAME)
 
-            return cache.addAll([
+            .then(function (cache) {
 
-                BASE_PATH,
-                BASE_PATH + "index.html",
-                BASE_PATH + "style.css",
-                BASE_PATH + "app.js",
-                BASE_PATH + "manifest.json"
+                return cache.addAll(RECURSOS_ESSENCIAIS);
 
-            ]);
+            })
 
-        })
+            .then(function () {
+
+                /*
+                 * Ativa imediatamente a nova versão.
+                 */
+
+                return self.skipWaiting();
+
+            })
 
     );
-
-    /*
-     * Faz o novo Service Worker assumir
-     * imediatamente.
-     */
-
-    self.skipWaiting();
 
 });
 
 
-/* =====================================================
+/* =========================================================
    ATIVAÇÃO
-===================================================== */
+   ========================================================= */
 
 self.addEventListener("activate", function (event) {
 
+    console.log("[LABMZ] Ativando Service Worker:", CACHE_NAME);
+
     event.waitUntil(
 
-        caches.keys().then(function (cacheNames) {
+        caches.keys()
 
-            return Promise.all(
+            .then(function (cacheNames) {
 
-                cacheNames.map(function (cacheName) {
+                return Promise.all(
 
-                    if (cacheName !== CACHE_NAME) {
+                    cacheNames.map(function (cacheName) {
 
-                        return caches.delete(
-                            cacheName
-                        );
+                        /*
+                         * Remove versões antigas do LABMZ.
+                         */
 
-                    }
+                        if (
+                            cacheName.startsWith("LABMZ-") &&
+                            cacheName !== CACHE_NAME
+                        ) {
 
-                    return null;
+                            console.log(
+                                "[LABMZ] Removendo cache antigo:",
+                                cacheName
+                            );
 
-                })
+                            return caches.delete(cacheName);
 
-            );
+                        }
 
-        })
+                    })
+
+                );
+
+            })
+
+            .then(function () {
+
+                /*
+                 * Assume o controlo das páginas abertas.
+                 */
+
+                return self.clients.claim();
+
+            })
 
     );
-
-    /*
-     * Assume imediatamente o controle
-     * das páginas abertas.
-     */
-
-    self.clients.claim();
 
 });
 
 
-/* =====================================================
+/* =========================================================
    REQUISIÇÕES
-===================================================== */
+   ========================================================= */
 
 self.addEventListener("fetch", function (event) {
 
     /*
-     * Trabalhar apenas com pedidos GET.
+     * Trabalhamos apenas com pedidos GET.
      */
 
     if (event.request.method !== "GET") {
@@ -112,89 +134,222 @@ self.addEventListener("fetch", function (event) {
     }
 
 
+    /*
+     * Apenas recursos do próprio LABMZ.
+     */
+
+    const url = new URL(event.request.url);
+
+
+    if (url.origin !== self.location.origin) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       PÁGINAS HTML
+       NETWORK FIRST
+       ===================================================== */
+
+    if (
+        event.request.mode === "navigate" ||
+        event.request.destination === "document"
+    ) {
+
+        event.respondWith(
+
+            fetch(event.request)
+
+                .then(function (networkResponse) {
+
+                    /*
+                     * Guarda a versão mais recente da página.
+                     */
+
+                    if (
+                        networkResponse &&
+                        networkResponse.status === 200
+                    ) {
+
+                        const responseClone =
+                            networkResponse.clone();
+
+                        caches.open(CACHE_NAME)
+
+                            .then(function (cache) {
+
+                                cache.put(
+                                    event.request,
+                                    responseClone
+                                );
+
+                            });
+
+                    }
+
+
+                    return networkResponse;
+
+                })
+
+                .catch(function () {
+
+                    /*
+                     * Sem Internet:
+                     * utiliza a versão armazenada.
+                     */
+
+                    return caches.match(event.request)
+
+                        .then(function (cachedResponse) {
+
+                            if (cachedResponse) {
+
+                                return cachedResponse;
+
+                            }
+
+
+                            /*
+                             * Se a página não estiver no cache,
+                             * tenta abrir a página inicial.
+                             */
+
+                            return caches.match(
+                                BASE_PATH + "index.html"
+                            );
+
+                        });
+
+                })
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       CSS / JS / IMAGENS / MANIFEST
+       CACHE + ATUALIZAÇÃO DA REDE
+       ===================================================== */
+
     event.respondWith(
 
-        caches.match(
-            event.request
-        ).then(function (cachedResponse) {
+        caches.match(event.request)
 
-            /*
-             * Se já estiver no cache,
-             * utilizar a versão armazenada.
-             */
+            .then(function (cachedResponse) {
 
-            if (cachedResponse) {
+                const networkRequest = fetch(event.request)
 
-                return cachedResponse;
+                    .then(function (networkResponse) {
 
-            }
+                        if (
+                            networkResponse &&
+                            networkResponse.status === 200
+                        ) {
 
+                            const responseClone =
+                                networkResponse.clone();
 
-            /*
-             * Caso contrário, buscar na rede.
-             */
+                            caches.open(CACHE_NAME)
 
-            return fetch(
-                event.request
-            )
+                                .then(function (cache) {
 
-            .then(function (networkResponse) {
+                                    cache.put(
+                                        event.request,
+                                        responseClone
+                                    );
 
-                /*
-                 * Guardar apenas respostas válidas
-                 * do próprio LABMZ.
-                 */
+                                });
 
-                if (
-
-                    networkResponse &&
-
-                    networkResponse.status === 200 &&
-
-                    new URL(
-                        event.request.url
-                    ).origin === self.location.origin
-
-                ) {
-
-                    const responseClone =
-                        networkResponse.clone();
+                        }
 
 
-                    caches.open(
-                        CACHE_NAME
-                    ).then(function (cache) {
-
-                        cache.put(
-                            event.request,
-                            responseClone
-                        );
+                        return networkResponse;
 
                     });
+
+
+                /*
+                 * Se houver cache, entrega imediatamente.
+                 * A rede atualiza o cache em segundo plano.
+                 */
+
+                if (cachedResponse) {
+
+                    return cachedResponse;
 
                 }
 
 
-                return networkResponse;
+                /*
+                 * Se não houver cache, espera pela rede.
+                 */
+
+                return networkRequest;
 
             })
 
             .catch(function () {
 
                 /*
-                 * Se estiver offline, tentar
-                 * entregar a página inicial.
+                 * Se não houver Internet nem cache,
+                 * devolve uma resposta simples.
                  */
 
-                return caches.match(
-                    BASE_PATH + "index.html"
+                return new Response(
+
+                    "LABMZ — Recurso temporariamente indisponível.",
+
+                    {
+                        status: 503,
+                        statusText: "Offline",
+                        headers: {
+                            "Content-Type": "text/plain; charset=utf-8"
+                        }
+                    }
+
                 );
 
-            });
-
-        })
+            })
 
     );
 
 });
+
+
+/* =========================================================
+   MENSAGEM PARA ATUALIZAÇÃO
+   ========================================================= */
+
+self.addEventListener("message", function (event) {
+
+    if (!event.data) {
+
+        return;
+
+    }
+
+
+    if (event.data === "ATUALIZAR_LABMZ") {
+
+        self.skipWaiting();
+
+    }
+
+});
+
+
+/* =========================================================
+   FIM DO SERVICE WORKER
+   ========================================================= */
+
+console.log(
+    "[LABMZ] Service Worker carregado:",
+    CACHE_NAME
+);
 ```
