@@ -1,4 +1,4 @@
-﻿```html
+```html
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -101,9 +101,7 @@
 
     <p>
         Leia atentamente cada questão e selecione apenas
-        uma resposta. No final, clique em
-        <strong>Verificar respostas</strong> para conhecer
-        o seu resultado.
+        uma resposta.
     </p>
 
     <p>
@@ -112,11 +110,16 @@
         totalizando <strong>15 pontos</strong>.
     </p>
 
+    <p>
+        Quando terminar, clique em
+        <strong>Verificar respostas</strong>.
+    </p>
+
 </section>
 
 
 <!-- =====================================================
-     QUESTÃO 1 — MATÉRIA
+     QUESTÃO 1
 ===================================================== -->
 
 <section class="card">
@@ -160,7 +163,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 2 — ESTADOS FÍSICOS
+     QUESTÃO 2
 ===================================================== -->
 
 <section class="card">
@@ -203,7 +206,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 3 — TRANSFORMAÇÃO FÍSICA
+     QUESTÃO 3
 ===================================================== -->
 
 <section class="card">
@@ -247,7 +250,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 4 — ÁTOMO
+     QUESTÃO 4
 ===================================================== -->
 
 <section class="card">
@@ -290,7 +293,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 5 — NÚCLEO
+     QUESTÃO 5
 ===================================================== -->
 
 <section class="card">
@@ -334,7 +337,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 6 — ELEMENTOS
+     QUESTÃO 6
 ===================================================== -->
 
 <section class="card">
@@ -377,7 +380,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 7 — NÚMERO ATÓMICO
+     QUESTÃO 7
 ===================================================== -->
 
 <section class="card">
@@ -387,8 +390,7 @@
     </h2>
 
     <p>
-        O número atómico de um elemento corresponde ao número
-        de:
+        O número atómico de um elemento corresponde ao número de:
     </p>
 
     <label>
@@ -421,7 +423,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 8 — TABELA PERIÓDICA
+     QUESTÃO 8
 ===================================================== -->
 
 <section class="card">
@@ -465,7 +467,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 9 — GRUPOS
+     QUESTÃO 9
 ===================================================== -->
 
 <section class="card">
@@ -509,7 +511,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 10 — LIGAÇÕES
+     QUESTÃO 10
 ===================================================== -->
 
 <section class="card">
@@ -553,7 +555,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 11 — COVALENTE
+     QUESTÃO 11
 ===================================================== -->
 
 <section class="card">
@@ -596,7 +598,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 12 — REAÇÕES
+     QUESTÃO 12
 ===================================================== -->
 
 <section class="card">
@@ -639,7 +641,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 13 — REAÇÃO QUÍMICA
+     QUESTÃO 13
 ===================================================== -->
 
 <section class="card">
@@ -682,7 +684,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 14 — EQUAÇÃO QUÍMICA
+     QUESTÃO 14
 ===================================================== -->
 
 <section class="card">
@@ -726,7 +728,7 @@
 
 
 <!-- =====================================================
-     QUESTÃO 15 — CONSERVAÇÃO
+     QUESTÃO 15
 ===================================================== -->
 
 <section class="card">
@@ -770,7 +772,7 @@
 
 
 <!-- =====================================================
-     BOTÃO DE CORREÇÃO
+     CORREÇÃO
 ===================================================== -->
 
 <section class="hero">
@@ -780,11 +782,12 @@
     </h2>
 
     <p>
-        Terminou? Clique no botão abaixo para calcular
-        a sua pontuação.
+        Terminou todas as questões?
+        Clique abaixo para corrigir os exercícios.
     </p>
 
     <button
+        type="button"
         class="botao"
         onclick="verificarExercicios()">
 
@@ -792,9 +795,77 @@
 
     </button>
 
-    <h2 id="resultado"></h2>
+</section>
+
+
+<!-- =====================================================
+     RESULTADO
+===================================================== -->
+
+<section
+    class="card"
+    id="resultadoBox"
+    style="display:none;">
+
+    <h2>
+        🏆 Resultado dos exercícios
+    </h2>
+
+    <h3 id="resultado"></h3>
+
+    <p id="percentagem"></p>
+
+    <p id="estatisticas"></p>
 
     <p id="mensagem"></p>
+
+</section>
+
+
+<!-- =====================================================
+     REVISÃO
+===================================================== -->
+
+<section
+    class="card"
+    id="revisaoBox"
+    style="display:none;">
+
+    <h2>
+        📋 Revisão das respostas
+    </h2>
+
+    <div id="revisao"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NOVA TENTATIVA
+===================================================== -->
+
+<section
+    class="hero"
+    id="novaTentativa"
+    style="display:none;">
+
+    <h2>
+        🔄 Quer tentar novamente?
+    </h2>
+
+    <p>
+        Reveja os conteúdos que apresentou maior dificuldade
+        e faça novamente os exercícios.
+    </p>
+
+    <button
+        type="button"
+        class="botao"
+        onclick="reiniciarExercicios()">
+
+        🔄 Refazer exercícios
+
+    </button>
 
 </section>
 
@@ -889,12 +960,37 @@ function verificarExercicios() {
     };
 
 
+    const explicacoes = {
+
+        q1: "A matéria possui massa e ocupa espaço.",
+        q2: "O estado sólido possui forma e volume próprios.",
+        q3: "O derretimento do gelo é uma mudança física de estado.",
+        q4: "O eletrão possui carga elétrica negativa.",
+        q5: "O núcleo contém protões e neutrões.",
+        q6: "O número atómico identifica o elemento químico.",
+        q7: "O número atómico corresponde ao número de protões.",
+        q8: "Na Tabela Periódica moderna, os elementos são organizados pelo número atómico crescente.",
+        q9: "Elementos do mesmo grupo apresentam, em geral, propriedades químicas semelhantes.",
+        q10: "A ligação iónica está associada à transferência de eletrões.",
+        q11: "Na ligação covalente, os átomos partilham pares de eletrões.",
+        q12: "Numa reação química ocorre formação de novas substâncias.",
+        q13: "A combustão da madeira é uma transformação química.",
+        q14: "As substâncias presentes antes da reação são os reagentes.",
+        q15: "Num sistema fechado, a massa é conservada durante a reação química."
+
+    };
+
+
     let pontuacao = 0;
-
     let respondidas = 0;
+    let erros = 0;
+
+    let revisaoHTML = "";
 
 
-    for (const questao in respostasCorretas) {
+    for (let i = 1; i <= 15; i++) {
+
+        const questao = "q" + i;
 
         const resposta =
             document.querySelector(
@@ -906,69 +1002,203 @@ function verificarExercicios() {
 
             respondidas++;
 
-            if (
-                resposta.value ===
-                respostasCorretas[questao]
-            ) {
+            if (resposta.value === respostasCorretas[questao]) {
 
                 pontuacao++;
 
+            } else {
+
+                erros++;
+
+                revisaoHTML +=
+                    '<div class="card">' +
+                    '<h3>❌ Questão ' + i + '</h3>' +
+                    '<p><strong>Sua resposta:</strong> ' +
+                    resposta.value +
+                    '</p>' +
+                    '<p><strong>Resposta correta:</strong> ' +
+                    respostasCorretas[questao] +
+                    '</p>' +
+                    '<p><strong>Explicação:</strong> ' +
+                    explicacoes[questao] +
+                    '</p>' +
+                    '</div>';
+
             }
+
+        } else {
+
+            revisaoHTML +=
+                '<div class="card">' +
+                '<h3>⚠️ Questão ' + i + '</h3>' +
+                '<p><strong>Não respondida.</strong></p>' +
+                '<p><strong>Resposta correta:</strong> ' +
+                respostasCorretas[questao] +
+                '</p>' +
+                '<p><strong>Explicação:</strong> ' +
+                explicacoes[questao] +
+                '</p>' +
+                '</div>';
 
         }
 
     }
 
 
+    const naoRespondidas =
+        15 - respondidas;
+
+
+    const percentagem =
+        (pontuacao / 15) * 100;
+
+
+    const resultadoBox =
+        document.getElementById("resultadoBox");
+
+    const revisaoBox =
+        document.getElementById("revisaoBox");
+
+    const novaTentativa =
+        document.getElementById("novaTentativa");
+
     const resultado =
         document.getElementById("resultado");
+
+    const percentagemElemento =
+        document.getElementById("percentagem");
+
+    const estatisticas =
+        document.getElementById("estatisticas");
 
     const mensagem =
         document.getElementById("mensagem");
 
+    const revisao =
+        document.getElementById("revisao");
+
+
+    resultadoBox.style.display = "block";
+
+    novaTentativa.style.display = "block";
+
 
     resultado.innerHTML =
-        "🏆 Resultado: " +
+        "🏆 Pontuação: " +
         pontuacao +
         " / 15";
 
 
-    if (respondidas < 15) {
+    percentagemElemento.innerHTML =
+        "📊 Aproveitamento: <strong>" +
+        percentagem.toFixed(1) +
+        "%</strong>";
+
+
+    estatisticas.innerHTML =
+        "✅ Acertos: <strong>" +
+        pontuacao +
+        "</strong> &nbsp; | &nbsp; " +
+        "❌ Erros: <strong>" +
+        erros +
+        "</strong> &nbsp; | &nbsp; " +
+        "⚠️ Não respondidas: <strong>" +
+        naoRespondidas +
+        "</strong>";
+
+
+    if (pontuacao === 15) {
 
         mensagem.innerHTML =
-            "⚠️ Você respondeu apenas " +
-            respondidas +
-            " de 15 questões. Reveja as questões que ficaram sem resposta.";
-
-    } else if (pontuacao === 15) {
-
-        mensagem.innerHTML =
-            "🌟 Excelente! Você acertou todas as questões de Química.";
-
-    } else if (pontuacao >= 12) {
-
-        mensagem.innerHTML =
-            "👏 Muito bom! Você demonstrou um excelente domínio dos conteúdos.";
-
-    } else if (pontuacao >= 9) {
-
-        mensagem.innerHTML =
-            "👍 Bom trabalho! Continue estudando para melhorar ainda mais.";
-
-    } else if (pontuacao >= 6) {
-
-        mensagem.innerHTML =
-            "📚 Resultado razoável. Reforce os conteúdos e tente novamente.";
-
-    } else {
-
-        mensagem.innerHTML =
-            "💪 Continue estudando. Revise os conteúdos de Química e tente novamente.";
+            "🌟 Excelente! Você acertou todas as questões e demonstrou um domínio muito bom dos conteúdos de Química.";
 
     }
 
+    else if (pontuacao >= 12) {
+
+        mensagem.innerHTML =
+            "👏 Muito bom! Você demonstrou um excelente domínio dos conteúdos. Continue a aprofundar os seus conhecimentos.";
+
+    }
+
+    else if (pontuacao >= 9) {
+
+        mensagem.innerHTML =
+            "👍 Bom trabalho! Você possui uma boa compreensão dos conteúdos. Revise os pontos em que teve dificuldades.";
+
+    }
+
+    else if (pontuacao >= 6) {
+
+        mensagem.innerHTML =
+            "📚 Resultado razoável. Reforce os conteúdos estudados e tente novamente para melhorar o seu desempenho.";
+
+    }
+
+    else {
+
+        mensagem.innerHTML =
+            "💪 Não desista! Volte aos conteúdos de Química, reveja os conceitos fundamentais e tente novamente.";
+
+    }
+
+
+    if (revisaoHTML !== "") {
+
+        revisaoBox.style.display = "block";
+
+        revisao.innerHTML =
+            "<p>Veja abaixo as questões que precisam de revisão:</p>" +
+            revisaoHTML;
+
+    } else {
+
+        revisaoBox.style.display = "block";
+
+        revisao.innerHTML =
+            "<p>🌟 Excelente! Não há questões para revisar.</p>";
+
+    }
+
+
+    resultadoBox.scrollIntoView({
+        behavior: "smooth"
+    });
+
 }
 
+
+function reiniciarExercicios() {
+
+    const radios =
+        document.querySelectorAll(
+            'input[type="radio"]'
+        );
+
+
+    radios.forEach(function(radio) {
+
+        radio.checked = false;
+
+    });
+
+
+    document.getElementById("resultadoBox").style.display =
+        "none";
+
+    document.getElementById("revisaoBox").style.display =
+        "none";
+
+    document.getElementById("novaTentativa").style.display =
+        "none";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
 
 </script>
 
