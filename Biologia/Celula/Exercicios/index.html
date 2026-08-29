@@ -1,15 +1,24 @@
-﻿<!DOCTYPE html>
-<html lang="pt">
+```html
+<!DOCTYPE html>
+<html lang="pt-MZ">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#0b5d3b">
+
+    <meta name="description"
+          content="LABMZ — Exercícios de Biologia Celular">
 
     <title>LABMZ — Exercícios sobre a Célula</title>
 
-    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet"
+          href="../../../style.css">
 
     <style>
 
@@ -113,8 +122,8 @@
         📝 Exercícios
     </a>
 
-    <a href="#">
-        🎯 Quizzes
+    <a href="../quiz/index.html">
+        🎯 Quiz
     </a>
 
 </nav>
@@ -150,7 +159,6 @@
         📊 Progresso: 0 / 10
 
     </div>
-
 
     <div class="progresso-barra">
 
@@ -220,10 +228,15 @@
 <script>
 
 
+/* =========================================
+   BANCO DE QUESTÕES
+   ========================================= */
+
 const bancoQuestoes = [
 
     {
-        pergunta: "Qual afirmação está de acordo com um dos princípios fundamentais da teoria celular?",
+        pergunta:
+        "Qual afirmação está de acordo com um dos princípios fundamentais da teoria celular?",
 
         alternativas: [
             "Todos os seres vivos são formados por tecidos.",
@@ -242,7 +255,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é considerada a unidade estrutural e funcional básica dos seres vivos?",
+        pergunta:
+        "Qual é considerada a unidade estrutural e funcional básica dos seres vivos?",
 
         alternativas: [
             "Órgão",
@@ -261,7 +275,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é uma das principais funções da membrana plasmática?",
+        pergunta:
+        "Qual é uma das principais funções da membrana plasmática?",
 
         alternativas: [
             "Controlar seletivamente a entrada e saída de substâncias.",
@@ -280,7 +295,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Nas células eucarióticas, qual estrutura contém a maior parte do material genético?",
+        pergunta:
+        "Nas células eucarióticas, qual estrutura contém a maior parte do material genético?",
 
         alternativas: [
             "Ribossoma",
@@ -299,7 +315,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "O citoplasma corresponde principalmente a:",
+        pergunta:
+        "O citoplasma corresponde principalmente a:",
 
         alternativas: [
             "Apenas ao núcleo.",
@@ -318,7 +335,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual organelo está diretamente associado à produção de ATP durante a respiração celular?",
+        pergunta:
+        "Qual organelo está diretamente associado à produção de ATP durante a respiração celular?",
 
         alternativas: [
             "Mitocôndria",
@@ -337,7 +355,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual organelo está associado à realização da fotossíntese nas células vegetais?",
+        pergunta:
+        "Qual organelo está associado à realização da fotossíntese nas células vegetais?",
 
         alternativas: [
             "Lisossoma",
@@ -356,7 +375,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é a principal função dos ribossomas?",
+        pergunta:
+        "Qual é a principal função dos ribossomas?",
 
         alternativas: [
             "Digestão celular",
@@ -375,7 +395,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é uma função importante do retículo endoplasmático rugoso?",
+        pergunta:
+        "Qual é uma função importante do retículo endoplasmático rugoso?",
 
         alternativas: [
             "Participar na síntese e processamento inicial de proteínas.",
@@ -394,10 +415,11 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é uma função característica do complexo de Golgi?",
+        pergunta:
+        "Qual é uma função característica do complexo de Golgi?",
 
         alternativas: [
-            "Modificar, organizar e encaminhar determinadas proteínas e lipídios.",
+            "Modificar, organizar e encaminhar determinadas proteínas e lípidos.",
             "Replicar o DNA.",
             "Produzir a maior parte do ATP.",
             "Realizar a glicólise."
@@ -408,12 +430,13 @@ const bancoQuestoes = [
         nivel: "🟡 Intermédio",
 
         explicacao:
-        "O complexo de Golgi modifica, classifica e distribui proteínas e lipídios."
+        "O complexo de Golgi modifica, classifica e distribui proteínas e lípidos."
     },
 
 
     {
-        pergunta: "Os lisossomas estão principalmente associados a:",
+        pergunta:
+        "Os lisossomas estão principalmente associados a:",
 
         alternativas: [
             "Digestão intracelular e degradação de materiais.",
@@ -432,7 +455,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Nas células vegetais, o grande vacúolo central desempenha importante papel em:",
+        pergunta:
+        "Nas células vegetais, o grande vacúolo central desempenha importante papel em:",
 
         alternativas: [
             "Manutenção do equilíbrio hídrico e armazenamento de substâncias.",
@@ -451,7 +475,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual estrutura está presente nas células vegetais e contribui para a sustentação e proteção celular?",
+        pergunta:
+        "Qual estrutura está presente nas células vegetais e contribui para a sustentação e proteção celular?",
 
         alternativas: [
             "Centríolo",
@@ -470,7 +495,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Quando uma substância atravessa a membrana seguindo o seu gradiente de concentração, sem gasto direto de ATP, esse processo pode ser classificado como:",
+        pergunta:
+        "Quando uma substância atravessa a membrana seguindo o seu gradiente de concentração, sem gasto direto de ATP, esse processo pode ser classificado como:",
 
         alternativas: [
             "Transporte passivo",
@@ -489,7 +515,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "A osmose pode ser definida como:",
+        pergunta:
+        "A osmose pode ser definida como:",
 
         alternativas: [
             "Movimento de água através de uma membrana seletivamente permeável.",
@@ -508,7 +535,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual característica distingue o transporte ativo do transporte passivo?",
+        pergunta:
+        "Qual característica distingue o transporte ativo do transporte passivo?",
 
         alternativas: [
             "O transporte ativo pode utilizar energia metabólica para mover substâncias contra o gradiente.",
@@ -527,7 +555,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é uma função central da respiração celular aeróbia?",
+        pergunta:
+        "Qual é uma função central da respiração celular aeróbia?",
 
         alternativas: [
             "Converter energia química dos nutrientes em uma forma utilizável, principalmente ATP.",
@@ -546,7 +575,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Na fotossíntese, a energia luminosa é utilizada principalmente para:",
+        pergunta:
+        "Na fotossíntese, a energia luminosa é utilizada principalmente para:",
 
         alternativas: [
             "Converter energia luminosa em energia química armazenada em moléculas orgânicas.",
@@ -565,7 +595,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Qual é a principal importância da replicação do DNA antes da divisão celular?",
+        pergunta:
+        "Qual é a principal importância da replicação do DNA antes da divisão celular?",
 
         alternativas: [
             "Garantir que o material genético seja duplicado antes da distribuição para as células-filhas.",
@@ -584,7 +615,8 @@ const bancoQuestoes = [
 
 
     {
-        pergunta: "Por que a estrutura de uma organela está relacionada com a sua função?",
+        pergunta:
+        "Por que a estrutura de uma organela está relacionada com a sua função?",
 
         alternativas: [
             "Porque características estruturais específicas permitem que a organela desempenhe determinadas funções celulares.",
@@ -604,12 +636,20 @@ const bancoQuestoes = [
 ];
 
 
+/* =========================================
+   VARIÁVEIS
+   ========================================= */
+
 let questoesSelecionadas = [];
 
 let pontos = 0;
 
 let respondidas = 0;
 
+
+/* =========================================
+   EMBARALHAR QUESTÕES
+   ========================================= */
 
 function embaralhar(array) {
 
@@ -619,6 +659,10 @@ function embaralhar(array) {
 
 }
 
+
+/* =========================================
+   INICIAR EXERCÍCIO
+   ========================================= */
 
 function iniciarExercicio() {
 
@@ -663,6 +707,10 @@ function iniciarExercicio() {
 
 }
 
+
+/* =========================================
+   CRIAR QUESTÃO
+   ========================================= */
 
 function criarQuestao(questao, indice) {
 
@@ -767,6 +815,10 @@ function criarQuestao(questao, indice) {
 
 }
 
+
+/* =========================================
+   VERIFICAR RESPOSTA
+   ========================================= */
 
 function verificar(
 
@@ -880,6 +932,10 @@ function verificar(
 }
 
 
+/* =========================================
+   ATUALIZAR PONTUAÇÃO
+   ========================================= */
+
 function atualizarPontuacao() {
 
     const percentagem =
@@ -917,6 +973,10 @@ function atualizarPontuacao() {
 }
 
 
+/* =========================================
+   ATUALIZAR PROGRESSO
+   ========================================= */
+
 function atualizarProgresso() {
 
     const percentagem =
@@ -941,6 +1001,10 @@ function atualizarProgresso() {
 
 }
 
+
+/* =========================================
+   FINALIZAR EXERCÍCIO
+   ========================================= */
 
 function finalizarExercicio() {
 
@@ -1015,6 +1079,10 @@ function finalizarExercicio() {
 }
 
 
+/* =========================================
+   INICIAR AUTOMATICAMENTE
+   ========================================= */
+
 iniciarExercicio();
 
 
@@ -1024,3 +1092,4 @@ iniciarExercicio();
 </body>
 
 </html>
+```
