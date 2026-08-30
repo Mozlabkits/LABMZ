@@ -1,0 +1,248 @@
+```html
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quizzes de Biologia | LABMZ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f5;
+            color: #1f2933;
+        }
+
+        header {
+            background: #0b5d3b;
+            color: white;
+            padding: 25px 16px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .intro {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .intro h2 {
+            color: #0b5d3b;
+            margin-top: 0;
+        }
+
+        .quiz-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .quiz-card h3 {
+            color: #0b5d3b;
+            margin-top: 0;
+        }
+
+        .quiz-card p {
+            line-height: 1.5;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 16px;
+            background: #0b5d3b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .quiz-button:hover {
+            background: #08472d;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 18px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back:hover {
+            background: #222;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Quizzes de Biologia</h1>
+    <p>LABMZ — Laboratório de Aprendizagem de Biologia de Moçambique</p>
+</header>
+
+<main>
+
+    <section class="intro">
+        <h2>Teste os seus conhecimentos</h2>
+
+        <p>
+            Nesta área do LABMZ, o estudante poderá testar os seus
+            conhecimentos de Biologia através de quizzes educativos.
+        </p>
+
+        <p>
+            Os quizzes serão organizados por diferentes áreas da Biologia,
+            permitindo praticar os conteúdos estudados.
+        </p>
+    </section>
+
+    <section class="quiz-list">
+
+        <div class="quiz-card">
+            <h3>Quiz de Célula</h3>
+
+            <p>
+                Questões sobre estrutura celular, organelos,
+                células procarióticas e eucarióticas.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Genética</h3>
+
+            <p>
+                Questões sobre genes, alelos, hereditariedade
+                e princípios básicos da genética.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Ecologia</h3>
+
+            <p>
+                Questões sobre ecossistemas, cadeias alimentares,
+                populações, comunidades e ambiente.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Evolução</h3>
+
+            <p>
+                Questões sobre evolução biológica, seleção natural,
+                adaptação e diversidade dos seres vivos.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Anatomia</h3>
+
+            <p>
+                Questões sobre estruturas do corpo humano,
+                órgãos, tecidos e sistemas.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Fisiologia</h3>
+
+            <p>
+                Questões sobre o funcionamento dos órgãos
+                e sistemas do organismo humano.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+        <div class="quiz-card">
+            <h3>Quiz de Microbiologia</h3>
+
+            <p>
+                Questões sobre bactérias, vírus, fungos,
+                protozoários e outros microrganismos.
+            </p>
+
+            <a class="quiz-button" href="#">
+                Em breve
+            </a>
+        </div>
+
+    </section>
+
+    <a class="back" href="../index.html">
+        ← Voltar para Biologia
+    </a>
+
+</main>
+
+<footer>
+    LABMZ — Laboratório de Aprendizagem de Biologia de Moçambique
+</footer>
+
+</body>
+</html>
+```
