@@ -1,229 +1,233 @@
-```html
 <!DOCTYPE html>
+
 <html lang="pt-MZ">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color"
-          content="#0b5d3b">
+<meta name="theme-color"
+      content="#0b5d3b">
 
-    <meta name="description"
-          content="LABMZ — Exercícios de Biologia Celular">
+<meta name="description"
+      content="LABMZ — Exercícios de Biologia Celular">
 
-    <title>LABMZ — Exercícios sobre a Célula</title>
+<title>LABMZ — Exercícios sobre a Célula</title>
 
-    <link rel="stylesheet"
-          href="../../../style.css">
+<link rel="stylesheet"
+      href="../../../style.css">
 
-    <style>
+<style>
 
-        .progresso-container {
-            width: 90%;
-            max-width: 700px;
-            margin: 25px auto;
-            text-align: center;
-        }
+    .progresso-container {
+        width: 90%;
+        max-width: 700px;
+        margin: 25px auto;
+        text-align: center;
+    }
 
-        .progresso-texto {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .progresso-texto {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-        .progresso-barra {
-            width: 100%;
-            height: 22px;
-            background: #e5e7eb;
-            border-radius: 20px;
-            overflow: hidden;
-        }
+    .progresso-barra {
+        width: 100%;
+        height: 22px;
+        background: #e5e7eb;
+        border-radius: 20px;
+        overflow: hidden;
+    }
 
-        .progresso-preenchimento {
-            height: 100%;
-            width: 0%;
-            background: #16a34a;
-            border-radius: 20px;
-            transition: width 0.4s ease;
-        }
+    .progresso-preenchimento {
+        height: 100%;
+        width: 0%;
+        background: #16a34a;
+        border-radius: 20px;
+        transition: width 0.4s ease;
+    }
 
-        #questoes button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    #questoes button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
 
-        #questoes button:disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
+    #questoes button:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
 
-        #reiniciar {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    #reiniciar {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
 
-    </style>
+</style>
+```
 
 </head>
 
-
 <body>
-
 
 <header>
 
-    <div class="logo">
-        🧬 LABMZ
-    </div>
+```
+<div class="logo">
+    🧬 LABMZ
+</div>
 
-    <div class="subtitulo">
-        Laboratório de Aprendizagem de Biologia e Química de Moçambique
-    </div>
+<div class="subtitulo">
+    Laboratório de Aprendizagem de Biologia e Química de Moçambique
+</div>
+```
 
 </header>
 
-
 <nav class="menu">
 
-    <a href="../../../index.html">
-        🏠 Início
-    </a>
+```
+<a href="../../../index.html">
+    🏠 Início
+</a>
 
-    <a href="../../index.html">
-        🧬 Biologia
-    </a>
+<a href="../../index.html">
+    🧬 Biologia
+</a>
 
-    <a href="../index.html">
-        🔬 Célula
-    </a>
+<a href="../index.html">
+    🔬 Célula
+</a>
 
-    <a href="../estrutura/index.html">
-        🧫 Estrutura
-    </a>
+<a href="../Funcoes/index.html">
+    ⚙️ Funções
+</a>
 
-    <a href="../funcoes/index.html">
-        ⚙️ Funções
-    </a>
-
-    <a href="index.html">
-        📝 Exercícios
-    </a>
-
-    <a href="../quiz/index.html">
-        🎯 Quiz
-    </a>
+<a href="index.html">
+    📝 Exercícios
+</a>
+```
 
 </nav>
 
-
 <main>
-
 
 <section class="hero">
 
-    <h1>
-        📝 Exercícios sobre a Célula
-    </h1>
+```
+<h1>
+    📝 Exercícios sobre a Célula
+</h1>
 
-    <p>
-        Teste os seus conhecimentos sobre Biologia celular.
-    </p>
+<p>
+    Teste os seus conhecimentos sobre Biologia celular.
+</p>
 
-    <p>
-        🎲 O sistema selecionará 10 questões
-        de um banco de 20 questões.
-    </p>
+<p>
+    🎲 O sistema selecionará 10 questões
+    de um banco de 20 questões.
+</p>
+```
 
 </section>
-
 
 <section class="progresso-container">
 
+```
+<div
+    class="progresso-texto"
+    id="progressoTexto">
+
+    📊 Progresso: 0 / 10
+
+</div>
+
+<div class="progresso-barra">
+
     <div
-        class="progresso-texto"
-        id="progressoTexto">
-
-        📊 Progresso: 0 / 10
-
+        class="progresso-preenchimento"
+        id="progressoPreenchimento">
     </div>
 
-    <div class="progresso-barra">
-
-        <div
-            class="progresso-preenchimento"
-            id="progressoPreenchimento">
-        </div>
-
-    </div>
+</div>
+```
 
 </section>
-
 
 <div id="questoes"></div>
 
-
 <section class="hero">
 
-    <h2>
-        🎯 Resultado
-    </h2>
+```
+<h2>
+    🎯 Resultado
+</h2>
 
-    <p id="pontuacao">
-        Responda às questões para ver a sua pontuação.
-    </p>
+<p id="pontuacao">
+    Responda às questões para ver a sua pontuação.
+</p>
 
-    <button
-        id="reiniciar"
-        onclick="iniciarExercicio()"
-        style="display:none;">
+<button
+    id="reiniciar"
+    onclick="iniciarExercicio()"
+    style="display:none;">
 
-        🔄 Tentar novamente
+    🔄 Tentar novamente
 
-    </button>
+</button>
+```
 
 </section>
 
-
 <section class="hero">
 
-    <a
-        href="../index.html"
-        class="botao">
+```
+<a
+    href="../index.html"
+    class="botao">
 
-        🔬 Voltar para Célula
+    🔬 Voltar para Célula
 
-    </a>
+</a>
+
+<a
+    href="../../index.html"
+    class="botao">
+
+    🧬 Voltar para Biologia
+
+</a>
+```
 
 </section>
-
 
 </main>
 
-
 <footer>
 
-    © 2026 LABMZ
+```
+© 2026 LABMZ
 
-    <br>
+<br>
 
-    Laboratório de Aprendizagem de Biologia
-    e Química de Moçambique
+Laboratório de Aprendizagem de Biologia
+e Química de Moçambique
+```
 
 </footer>
-
 
 <script>
 
@@ -670,29 +674,22 @@ function iniciarExercicio() {
 
     respondidas = 0;
 
-
     questoesSelecionadas =
         embaralhar(bancoQuestoes)
         .slice(0, 10);
 
-
     const container =
         document.getElementById("questoes");
 
-
     container.innerHTML = "";
-
 
     document.getElementById("pontuacao").innerHTML =
         "Responda às 10 questões para ver a sua pontuação.";
 
-
     document.getElementById("reiniciar").style.display =
         "none";
 
-
     atualizarProgresso();
-
 
     questoesSelecionadas.forEach(
         (questao, indice) => {
@@ -717,13 +714,10 @@ function criarQuestao(questao, indice) {
     const container =
         document.getElementById("questoes");
 
-
     const secao =
         document.createElement("section");
 
-
     secao.className = "card";
-
 
     secao.innerHTML = `
 
@@ -745,14 +739,12 @@ function criarQuestao(questao, indice) {
 
     `;
 
-
     questao.alternativas.forEach(
 
         (alternativa, alternativaIndex) => {
 
             const botao =
                 document.createElement("button");
-
 
             botao.textContent =
 
@@ -764,23 +756,16 @@ function criarQuestao(questao, indice) {
 
                 alternativa;
 
-
             botao.onclick = () => {
 
                 verificar(
-
                     indice,
-
                     alternativaIndex,
-
                     questao,
-
                     secao
-
                 );
 
             };
-
 
             secao.appendChild(botao);
 
@@ -788,28 +773,21 @@ function criarQuestao(questao, indice) {
 
     );
 
-
     const resultado =
         document.createElement("p");
-
 
     resultado.id =
         "resultado-" + indice;
 
-
     secao.appendChild(resultado);
-
 
     const explicacao =
         document.createElement("p");
 
-
     explicacao.id =
         "explicacao-" + indice;
 
-
     secao.appendChild(explicacao);
-
 
     container.appendChild(secao);
 
@@ -821,15 +799,10 @@ function criarQuestao(questao, indice) {
    ========================================= */
 
 function verificar(
-
     indice,
-
     respostaEscolhida,
-
     questao,
-
     secao
-
 ) {
 
     if (
@@ -840,29 +813,23 @@ function verificar(
 
     }
 
-
     secao.dataset.respondida =
         "true";
 
-
     respondidas++;
-
 
     const resultado =
         document.getElementById(
             "resultado-" + indice
         );
 
-
     const explicacao =
         document.getElementById(
             "explicacao-" + indice
         );
 
-
     const botoes =
         secao.querySelectorAll("button");
-
 
     botoes.forEach(
         botao => {
@@ -872,14 +839,12 @@ function verificar(
         }
     );
 
-
     if (
         respostaEscolhida ===
         questao.correta
     ) {
 
         pontos++;
-
 
         resultado.innerHTML =
             "✅ Resposta correta!";
@@ -891,37 +856,27 @@ function verificar(
         resultado.innerHTML =
 
             "❌ Resposta incorreta." +
-
             "<br>" +
-
             "Resposta correta: <strong>" +
-
             String.fromCharCode(
                 65 + questao.correta
             ) +
-
             ") " +
-
             questao.alternativas[
                 questao.correta
             ] +
-
             "</strong>";
 
     }
 
-
     explicacao.innerHTML =
 
         "💡 <strong>Explicação:</strong> " +
-
         questao.explicacao;
-
 
     atualizarPontuacao();
 
     atualizarProgresso();
-
 
     if (respondidas === 10) {
 
@@ -943,31 +898,20 @@ function atualizarPontuacao() {
             (pontos / 10) * 100
         );
 
-
     document.getElementById(
         "pontuacao"
     ).innerHTML =
 
         "Questões respondidas: <strong>" +
-
         respondidas +
-
         " / 10</strong>" +
-
         "<br>" +
-
         "Pontuação: <strong>" +
-
         pontos +
-
         " / 10</strong>" +
-
         "<br>" +
-
         "Percentagem: <strong>" +
-
         percentagem +
-
         "%</strong>";
 
 }
@@ -982,17 +926,13 @@ function atualizarProgresso() {
     const percentagem =
         (respondidas / 10) * 100;
 
-
     document.getElementById(
         "progressoTexto"
     ).innerHTML =
 
         "📊 Progresso: <strong>" +
-
         respondidas +
-
         " / 10</strong>";
-
 
     document.getElementById(
         "progressoPreenchimento"
@@ -1009,7 +949,6 @@ function atualizarProgresso() {
 function finalizarExercicio() {
 
     let mensagem;
-
 
     if (pontos === 10) {
 
@@ -1046,25 +985,19 @@ function finalizarExercicio() {
 
     }
 
-
     document.getElementById(
         "pontuacao"
     ).innerHTML +=
 
         "<br><br>" +
-
         "<strong>🎉 Exercício concluído!</strong>" +
-
         "<br>" +
-
         mensagem;
-
 
     document.getElementById(
         "reiniciar"
     ).style.display =
         "inline-block";
-
 
     window.scrollTo({
 
@@ -1088,8 +1021,6 @@ iniciarExercicio();
 
 </script>
 
-
 </body>
 
 </html>
-```
