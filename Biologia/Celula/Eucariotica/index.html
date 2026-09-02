@@ -1,519 +1,406 @@
 <!DOCTYPE html>
-
-<html lang="pt-MZ">
-
+<html lang="pt">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta charset="UTF-8">
+    <title>Célula Eucariótica - LABMZ</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Aprenda sobre células eucarióticas, sua estrutura, organelos e funções no LABMZ.">
 
-<meta name="theme-color"
-      content="#0b5d3b">
+    <link rel="manifest" href="../../../manifest.json">
+    <link rel="stylesheet" href="../../../style.css">
 
-<meta name="description"
-      content="LABMZ — Célula Eucariótica">
+    <style>
+        .conteudo {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
 
-<title>LABMZ — Célula Eucariótica</title>
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+        }
 
-<link rel="stylesheet"
-      href="../../../style.css">
-```
+        .caixa {
+            background: #ffffff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
 
+        .caixa h2 {
+            margin-top: 0;
+        }
+
+        .navegacao {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #0b5d3b;
+            color: white;
+        }
+
+        .botao:hover {
+            opacity: 0.9;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .destaque {
+            background: #eef8f2;
+            padding: 20px;
+            border-left: 5px solid #0b5d3b;
+            border-radius: 8px;
+        }
+
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
+    <div class="container">
 
-```
-<div class="logo">
-    🧬 LABMZ
-</div>
+        <h1>LABMZ</h1>
 
-<div class="subtitulo">
-    Laboratório de Aprendizagem de Biologia e Química de Moçambique
-</div>
-```
+        <p>
+            Laboratório de Aprendizagem de Biologia e Química de Moçambique
+        </p>
 
+        <nav>
+            <a href="../../../index.html">Início</a>
+            <a href="../../index.html">Biologia</a>
+            <a href="../index.html">Célula</a>
+            <a href="../Exercicios/index.html">Exercícios</a>
+            <a href="../Procariotica/index.html">Procariótica</a>
+            <a href="../Animal/index.html">Animal</a>
+            <a href="../Vegetal/index.html">Vegetal</a>
+            <a href="../../Quizzes/index.html">Quizzes</a>
+        </nav>
+
+    </div>
 </header>
 
-<nav class="menu">
+<main class="conteudo">
 
-```
-<a href="../../../index.html">
-    🏠 Início
-</a>
+    <section class="hero">
 
-<a href="../../index.html">
-    🧬 Biologia
-</a>
+        <h1>🔬 Célula Eucariótica</h1>
 
-<a href="../index.html">
-    🔬 Célula
-</a>
+        <p>
+            Conheça a estrutura, os organelos e as principais funções
+            das células eucarióticas.
+        </p>
 
-<a href="../../../Quimica/index.html">
-    🧪 Química
-</a>
+    </section>
 
-<a href="../Exercicios/index.html">
-    📝 Questões
-</a>
+    <div class="navegacao">
 
-<a href="../Quiz/index.html">
-    🎯 Quiz
-</a>
-```
+        <a class="botao" href="../index.html">
+            ← Voltar à Célula
+        </a>
 
-</nav>
+        <a class="botao" href="../Procariotica/index.html">
+            ← Célula Procariótica
+        </a>
 
-<main>
-
-<section class="hero">
-
-```
-<h1>
-    🔬 Célula Eucariótica
-</h1>
-
-<p>
-    Estude a estrutura, organização e principais
-    características das células eucarióticas.
-</p>
-```
-
-</section>
-
-<section class="card">
-
-```
-<h2>
-    📖 O que é uma célula eucariótica?
-</h2>
-
-<p>
-    A célula eucariótica é uma célula que possui o
-    material genético organizado dentro de um núcleo
-    delimitado por uma membrana nuclear.
-</p>
-
-<p>
-    Além do núcleo, apresenta diversos organelos
-    delimitados por membranas, responsáveis por
-    diferentes funções celulares.
-</p>
-```
-
-</section>
-
-<section class="card">
-
-```
-<h2>
-    🔬 Principais características
-</h2>
-
-<ul>
-
-    <li>
-        Possui núcleo delimitado por membrana.
-    </li>
-
-    <li>
-        Apresenta diversos organelos celulares.
-    </li>
-
-    <li>
-        Possui citoplasma organizado.
-    </li>
-
-    <li>
-        O material genético encontra-se principalmente
-        no núcleo.
-    </li>
-
-    <li>
-        Pode formar organismos unicelulares ou
-        pluricelulares.
-    </li>
-
-    <li>
-        Está presente em animais, plantas, fungos
-        e muitos protistas.
-    </li>
-
-</ul>
-```
-
-</section>
-
-<section class="areas">
-
-```
-<div class="card">
-
-    <div class="icone">
-        🐾
-    </div>
-
-    <h2>
-        Célula Animal
-    </h2>
-
-    <p>
-        Conheça as características e os principais
-        organelos das células dos animais.
-    </p>
-
-    <a href="../Animal/index.html"
-       class="botao">
-
-        🐾 Estudar Célula Animal
-
-    </a>
-
-</div>
-
-
-<div class="card">
-
-    <div class="icone">
-        🌱
-    </div>
-
-    <h2>
-        Célula Vegetal
-    </h2>
-
-    <p>
-        Explore a estrutura e as características
-        das células vegetais.
-    </p>
-
-    <a href="../Vegetal/index.html"
-       class="botao">
-
-        🌱 Estudar Célula Vegetal
-
-    </a>
-
-</div>
-```
-
-</section>
-
-<section class="card">
-
-```
-<h2>
-    🧫 Principais organelos
-</h2>
-
-<ul>
-
-    <li>
-        <strong>Núcleo:</strong>
-        contém a maior parte do material genético
-        e coordena diversas atividades celulares.
-    </li>
-
-    <li>
-        <strong>Mitocôndrias:</strong>
-        participam na produção de ATP através da
-        respiração celular.
-    </li>
-
-    <li>
-        <strong>Ribossomas:</strong>
-        realizam a síntese de proteínas.
-    </li>
-
-    <li>
-        <strong>Retículo endoplasmático:</strong>
-        participa na síntese, modificação e transporte
-        de moléculas.
-    </li>
-
-    <li>
-        <strong>Complexo de Golgi:</strong>
-        modifica, organiza e distribui determinadas
-        moléculas.
-    </li>
-
-    <li>
-        <strong>Lisossomas:</strong>
-        participam na digestão intracelular,
-        especialmente em células animais.
-    </li>
-
-    <li>
-        <strong>Citoplasma:</strong>
-        região celular onde se encontram o núcleo
-        e diversos componentes celulares.
-    </li>
-
-</ul>
-```
-
-</section>
-
-<section class="card">
-
-```
-<h2>
-    ⚖️ Procariótica × Eucariótica
-</h2>
-
-<p>
-    Uma das principais diferenças entre os dois tipos
-    celulares está na organização do material genético
-    e na presença de organelos delimitados por membranas.
-</p>
-
-<div class="recursos-grid">
-
-
-    <div class="recurso">
-
-        <h3>
-            🦠 Procariótica
-        </h3>
-
-        <ul>
-
-            <li>
-                Não possui núcleo delimitado.
-            </li>
-
-            <li>
-                DNA localizado principalmente no nucleoide.
-            </li>
-
-            <li>
-                Não possui organelos membranosos.
-            </li>
-
-            <li>
-                Organização celular geralmente mais simples.
-            </li>
-
-        </ul>
-
-        <a href="../Procariotica/index.html"
-           class="botao">
-
-            🦠 Estudar Procariótica
-
+        <a class="botao" href="../../Quizzes/index.html">
+            🧠 Fazer Quiz
         </a>
 
     </div>
 
+    <section class="caixa">
 
-    <div class="recurso">
+        <h2>O que é uma célula eucariótica?</h2>
 
-        <h3>
-            🔬 Eucariótica
-        </h3>
+        <p>
+            As células eucarióticas são células que possuem um núcleo
+            delimitado por uma membrana nuclear. O núcleo contém o
+            material genético da célula.
+        </p>
+
+        <div class="destaque">
+
+            <strong>Importante:</strong>
+
+            <p>
+                As células dos animais, plantas, fungos e protistas
+                são exemplos de células eucarióticas.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="caixa">
+
+        <h2>Principais características</h2>
 
         <ul>
 
-            <li>
-                Possui núcleo delimitado.
-            </li>
+            <li>Possuem núcleo delimitado por membrana.</li>
 
-            <li>
-                DNA localizado principalmente no núcleo.
-            </li>
+            <li>Possuem organelos membranares.</li>
 
-            <li>
-                Possui diversos organelos membranosos.
-            </li>
+            <li>Apresentam maior complexidade estrutural.</li>
 
-            <li>
-                Organização celular mais complexa.
-            </li>
+            <li>O DNA encontra-se principalmente no núcleo.</li>
+
+            <li>Possuem citoplasma.</li>
+
+            <li>Possuem membrana plasmática.</li>
+
+            <li>Possuem ribossomas.</li>
 
         </ul>
 
-    </div>
+    </section>
 
+    <section class="caixa">
 
-</div>
-```
+        <h2>Principais organelos celulares</h2>
 
-</section>
+        <h3>🧬 Núcleo</h3>
 
-<section class="card">
+        <p>
+            Contém o material genético e controla muitas das atividades
+            celulares.
+        </p>
 
-```
-<h2>
-    🧭 Caminho de aprendizagem
-</h2>
+        <h3>⚡ Mitocôndrias</h3>
 
-<p>
-    Para compreender melhor as células eucarióticas,
-    siga esta sequência:
-</p>
+        <p>
+            Participam na produção de energia para a célula através
+            da respiração celular.
+        </p>
 
-<ol>
+        <h3>🧪 Retículo endoplasmático</h3>
 
-    <li>
-        Compreenda o conceito de célula eucariótica.
-    </li>
+        <p>
+            Participa na produção e transporte de proteínas e lípidos.
+        </p>
 
-    <li>
-        Estude o núcleo e o material genético.
-    </li>
+        <h3>📦 Complexo de Golgi</h3>
 
-    <li>
-        Conheça os principais organelos.
-    </li>
+        <p>
+            Modifica, organiza e distribui proteínas e outras substâncias.
+        </p>
 
-    <li>
-        Compreenda as funções dos organelos.
-    </li>
+        <h3>♻️ Lisossomas</h3>
 
-    <li>
-        Compare células animais e vegetais.
-    </li>
+        <p>
+            Participam na digestão intracelular e na degradação de
+            materiais celulares.
+        </p>
 
-    <li>
-        Compare células procarióticas e eucarióticas.
-    </li>
+        <h3>🏭 Ribossomas</h3>
 
-    <li>
-        Resolva os exercícios.
-    </li>
+        <p>
+            São responsáveis pela síntese de proteínas.
+        </p>
 
-    <li>
-        Faça o Quiz da Célula.
-    </li>
+    </section>
 
-</ol>
-```
+    <section class="caixa">
 
-</section>
+        <h2>Célula animal e célula vegetal</h2>
 
-<section class="hero">
+        <p>
+            Tanto a célula animal como a célula vegetal são eucarióticas.
+            Entretanto, apresentam algumas diferenças importantes.
+        </p>
 
-```
-<h2>
-    📝 Pratique os seus conhecimentos
-</h2>
+        <div class="tabela-container">
 
-<p>
-    Resolva exercícios para consolidar os conhecimentos
-    sobre células eucarióticas.
-</p>
+            <table>
 
-<a href="../Exercicios/index.html"
-   class="botao">
+                <thead>
 
-    📝 Fazer exercícios
+                    <tr>
+                        <th>Característica</th>
+                        <th>Célula Animal</th>
+                        <th>Célula Vegetal</th>
+                    </tr>
 
-</a>
-```
+                </thead>
 
-</section>
+                <tbody>
 
-<section class="hero">
+                    <tr>
+                        <td>Núcleo</td>
+                        <td>Presente</td>
+                        <td>Presente</td>
+                    </tr>
 
-```
-<h2>
-    🎯 Teste os seus conhecimentos
-</h2>
+                    <tr>
+                        <td>Membrana plasmática</td>
+                        <td>Presente</td>
+                        <td>Presente</td>
+                    </tr>
 
-<p>
-    Faça o Quiz da Célula e avalie o seu desempenho.
-</p>
+                    <tr>
+                        <td>Parede celular</td>
+                        <td>Ausente</td>
+                        <td>Presente</td>
+                    </tr>
 
-<a href="../Quiz/index.html"
-   class="botao">
+                    <tr>
+                        <td>Cloroplastos</td>
+                        <td>Ausentes</td>
+                        <td>Presentes</td>
+                    </tr>
 
-    🎯 Começar Quiz
+                    <tr>
+                        <td>Vacúolo grande</td>
+                        <td>Geralmente ausente</td>
+                        <td>Presente</td>
+                    </tr>
 
-</a>
-```
+                </tbody>
 
-</section>
+            </table>
 
-<section class="hero">
+        </div>
 
-```
-<h2>
-    🔬 Continue estudando
-</h2>
+    </section>
 
-<p>
-    Explore outros conteúdos do módulo Célula
-    ou volte para as áreas principais do LABMZ.
-</p>
+    <section class="caixa">
 
-<a href="../Procariotica/index.html"
-   class="botao">
+        <h2>Diferença entre células procarióticas e eucarióticas</h2>
 
-    🦠 Procariótica
+        <div class="tabela-container">
 
-</a>
+            <table>
 
-<a href="../Animal/index.html"
-   class="botao">
+                <thead>
 
-    🐾 Célula Animal
+                    <tr>
+                        <th>Característica</th>
+                        <th>Procariótica</th>
+                        <th>Eucariótica</th>
+                    </tr>
 
-</a>
+                </thead>
 
-<a href="../Vegetal/index.html"
-   class="botao">
+                <tbody>
 
-    🌱 Célula Vegetal
+                    <tr>
+                        <td>Núcleo verdadeiro</td>
+                        <td>Não</td>
+                        <td>Sim</td>
+                    </tr>
 
-</a>
+                    <tr>
+                        <td>Organelos membranares</td>
+                        <td>Não</td>
+                        <td>Sim</td>
+                    </tr>
 
-<br><br>
+                    <tr>
+                        <td>Complexidade</td>
+                        <td>Menor</td>
+                        <td>Maior</td>
+                    </tr>
 
-<a href="../index.html"
-   class="botao">
+                    <tr>
+                        <td>Exemplos</td>
+                        <td>Bactérias e arqueias</td>
+                        <td>Animais, plantas, fungos e protistas</td>
+                    </tr>
 
-    🔬 Voltar para Célula
+                </tbody>
 
-</a>
+            </table>
 
-<a href="../../index.html"
-   class="botao">
+        </div>
 
-    🧬 Voltar para Biologia
+    </section>
 
-</a>
+    <section class="caixa">
 
-<a href="../../../index.html"
-   class="botao">
+        <h2>Continue a aprender</h2>
 
-    🏠 Voltar para Início
+        <div class="navegacao">
 
-</a>
-```
+            <a class="botao" href="../Procariotica/index.html">
+                🦠 Célula Procariótica
+            </a>
 
-</section>
+            <a class="botao" href="../Animal/index.html">
+                🐾 Célula Animal
+            </a>
+
+            <a class="botao" href="../Vegetal/index.html">
+                🌱 Célula Vegetal
+            </a>
+
+            <a class="botao" href="../Exercicios/index.html">
+                📝 Exercícios
+            </a>
+
+            <a class="botao" href="../../Quizzes/index.html">
+                🧠 Quiz da Biologia
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
 <footer>
 
-```
-© 2026 LABMZ
+    <div class="container">
 
-<br>
+        <p>
+            © 2026 LABMZ — Laboratório de Aprendizagem de Biologia
+            e Química de Moçambique
+        </p>
 
-Laboratório de Aprendizagem de Biologia
-e Química de Moçambique
-```
+        <p>
+            Ciência • Tecnologia • Inovação
+        </p>
+
+    </div>
 
 </footer>
 
-</body>
+<script src="../../../app.js"></script>
 
+</body>
 </html>
