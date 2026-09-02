@@ -1,560 +1,427 @@
 <!DOCTYPE html>
-<html lang="pt-MZ">
-
+<html lang="pt">
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#0b5d3b">
+    <title>Célula Vegetal - LABMZ</title>
 
     <meta name="description"
-          content="LABMZ — Célula Vegetal">
+          content="Aprenda sobre a célula vegetal, sua estrutura, organelos e funções no LABMZ.">
 
-    <title>LABMZ — Célula Vegetal</title>
+    <link rel="manifest" href="../../../manifest.json">
+    <link rel="stylesheet" href="../../../style.css">
 
-    <link rel="stylesheet"
-          href="../../../style.css">
+    <style>
+        .conteudo {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
 
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .caixa {
+            background: #ffffff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .caixa h2 {
+            margin-top: 0;
+        }
+
+        .navegacao {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #0b5d3b;
+            color: white;
+        }
+
+        .botao:hover {
+            opacity: 0.9;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .destaque {
+            background: #eef8f2;
+            padding: 20px;
+            border-left: 5px solid #0b5d3b;
+            border-radius: 8px;
+        }
+
+        .organelo {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f7f7f7;
+        }
+
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-
-<!-- =====================================================
-     CABEÇALHO
-     ===================================================== -->
-
 <header>
+    <div class="container">
 
-    <div class="logo">
-        🧬 LABMZ
+        <h1>LABMZ</h1>
+
+        <p>
+            Laboratório de Aprendizagem de Biologia e Química de Moçambique
+        </p>
+
+        <nav>
+            <a href="../../../index.html">Início</a>
+            <a href="../../index.html">Biologia</a>
+            <a href="../index.html">Célula</a>
+            <a href="../Exercicios/index.html">Exercícios</a>
+            <a href="../Procariotica/index.html">Procariótica</a>
+            <a href="../Eucariotica/index.html">Eucariótica</a>
+            <a href="../Animal/index.html">Animal</a>
+            <a href="../Funcoes/index.html">Funções</a>
+            <a href="../../Quizzes/index.html">Quizzes</a>
+        </nav>
+
     </div>
-
-    <div class="subtitulo">
-        Laboratório de Aprendizagem de Biologia e Química de Moçambique
-    </div>
-
 </header>
 
+<main class="conteudo">
 
-<!-- =====================================================
-     MENU PRINCIPAL
-     ===================================================== -->
+    <section class="hero">
 
-<nav class="menu">
-
-    <a href="../../../index.html">
-        🏠 Início
-    </a>
-
-    <a href="../../index.html">
-        🧬 Biologia
-    </a>
-
-    <a href="../index.html">
-        🔬 Célula
-    </a>
-
-    <a href="../../../Quimica/index.html">
-        🧪 Química
-    </a>
-
-    <a href="../Exercicios/index.html">
-        📝 Questões
-    </a>
-
-    <a href="../Quiz/index.html">
-        🎯 Quiz
-    </a>
-
-</nav>
-
-
-<!-- =====================================================
-     CONTEÚDO PRINCIPAL
-     ===================================================== -->
-
-<main>
-
-
-<!-- =====================================================
-     INTRODUÇÃO
-     ===================================================== -->
-
-<section class="hero">
-
-    <h1>
-        🌱 Célula Vegetal
-    </h1>
-
-    <p>
-        Explore a estrutura, os organelos e as principais
-        funções da célula vegetal.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     CONCEITO
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        📖 O que é uma célula vegetal?
-    </h2>
-
-    <p>
-        A célula vegetal é uma célula eucariótica que constitui
-        os tecidos das plantas e de outros organismos fotossintéticos.
-    </p>
-
-    <p>
-        Caracteriza-se pela presença de estruturas como a parede
-        celular, os cloroplastos nas células fotossintéticas e
-        um grande vacúolo central.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     PRINCIPAIS CARACTERÍSTICAS
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🔬 Principais características
-    </h2>
-
-    <ul>
-
-        <li>
-            Possui núcleo delimitado por membrana.
-        </li>
-
-        <li>
-            Possui membrana plasmática.
-        </li>
-
-        <li>
-            Possui parede celular.
-        </li>
-
-        <li>
-            Possui cloroplastos nas células fotossintéticas.
-        </li>
-
-        <li>
-            Apresenta geralmente um grande vacúolo central.
-        </li>
-
-        <li>
-            Possui mitocôndrias.
-        </li>
-
-        <li>
-            Possui retículo endoplasmático.
-        </li>
-
-        <li>
-            Possui complexo de Golgi.
-        </li>
-
-        <li>
-            Possui ribossomas.
-        </li>
-
-    </ul>
-
-</section>
-
-
-<!-- =====================================================
-     ESTRUTURAS E FUNÇÕES
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🧫 Principais estruturas e funções
-    </h2>
-
-    <ul>
-
-        <li>
-            <strong>Parede celular:</strong>
-            fornece suporte mecânico e proteção à célula.
-        </li>
-
-        <li>
-            <strong>Cloroplastos:</strong>
-            realizam a fotossíntese nas células que possuem
-            estes organelos.
-        </li>
-
-        <li>
-            <strong>Vacúolo central:</strong>
-            participa no armazenamento de substâncias,
-            equilíbrio hídrico e manutenção da pressão
-            de turgor.
-        </li>
-
-        <li>
-            <strong>Núcleo:</strong>
-            contém a maior parte do material genético.
-        </li>
-
-        <li>
-            <strong>Mitocôndrias:</strong>
-            participam na produção de ATP através da
-            respiração celular.
-        </li>
-
-        <li>
-            <strong>Ribossomas:</strong>
-            realizam a síntese de proteínas.
-        </li>
-
-        <li>
-            <strong>Membrana plasmática:</strong>
-            controla a entrada e saída de substâncias.
-        </li>
-
-        <li>
-            <strong>Complexo de Golgi:</strong>
-            modifica, organiza e distribui moléculas.
-        </li>
-
-    </ul>
-
-</section>
-
-
-<!-- =====================================================
-     COMPARAÇÃO COM CÉLULA ANIMAL
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        ⚖️ Célula Vegetal × Célula Animal
-    </h2>
-
-    <ul>
-
-        <li>
-            A célula vegetal possui parede celular;
-            a célula animal não possui.
-        </li>
-
-        <li>
-            A célula vegetal pode possuir cloroplastos;
-            a célula animal não possui cloroplastos.
-        </li>
-
-        <li>
-            A célula vegetal geralmente apresenta um
-            grande vacúolo central.
-        </li>
-
-        <li>
-            Ambas são células eucarióticas e possuem
-            núcleo, membrana plasmática, citoplasma
-            e diversos organelos.
-        </li>
-
-    </ul>
-
-</section>
-
-
-<!-- =====================================================
-     NAVEGAÇÃO ENTRE CÉLULAS
-     ===================================================== -->
-
-<section class="areas">
-
-
-    <div class="card">
-
-        <div class="icone">
-            🐾
-        </div>
-
-        <h2>
-            Célula Animal
-        </h2>
+        <h1>🌱 Célula Vegetal</h1>
 
         <p>
-            Estude a estrutura e as características
-            da célula animal.
+            Estude a estrutura, os organelos e as principais funções
+            da célula vegetal.
         </p>
 
-        <a href="../Animal/index.html"
-           class="botao">
+    </section>
 
-            🐾 Estudar Célula Animal
+    <div class="navegacao">
 
+        <a class="botao" href="../index.html">
+            ← Voltar à Célula
+        </a>
+
+        <a class="botao" href="../Animal/index.html">
+            🐾 Célula Animal
+        </a>
+
+        <a class="botao" href="../../Quizzes/index.html">
+            🧠 Fazer Quiz
         </a>
 
     </div>
 
+    <section class="caixa">
 
-    <div class="card">
-
-        <div class="icone">
-            🔬
-        </div>
-
-        <h2>
-            Célula Eucariótica
-        </h2>
+        <h2>O que é uma célula vegetal?</h2>
 
         <p>
-            Volte ao conteúdo geral sobre células
-            eucarióticas.
+            A célula vegetal é uma célula eucariótica que constitui
+            os tecidos das plantas. Possui estruturas especializadas
+            que permitem à planta realizar funções essenciais, como
+            a fotossíntese.
         </p>
 
-        <a href="../Eucariotica/index.html"
-           class="botao">
+        <div class="destaque">
 
-            🔬 Estudar Eucariótica
+            <strong>Importante:</strong>
 
-        </a>
+            <p>
+                Entre as estruturas características da célula vegetal
+                estão a parede celular, os cloroplastos e o grande
+                vacúolo central.
+            </p>
 
-    </div>
+        </div>
 
+    </section>
 
-</section>
+    <section class="caixa">
 
+        <h2>Principais características</h2>
 
-<!-- =====================================================
-     CÉLULA PROCARIÓTICA
-     ===================================================== -->
+        <ul>
+            <li>Possui núcleo verdadeiro.</li>
+            <li>Possui membrana plasmática.</li>
+            <li>Possui parede celular.</li>
+            <li>Possui cloroplastos.</li>
+            <li>Possui grande vacúolo central.</li>
+            <li>Possui mitocôndrias.</li>
+            <li>Possui retículo endoplasmático.</li>
+            <li>Possui complexo de Golgi.</li>
+            <li>Possui ribossomas.</li>
+        </ul>
 
-<section class="card">
+    </section>
 
-    <h2>
-        🦠 Conheça também a célula procariótica
-    </h2>
+    <section class="caixa">
 
-    <p>
-        Compare a organização da célula vegetal com
-        a organização das células procarióticas.
-    </p>
+        <h2>Principais estruturas e organelos</h2>
 
-    <a href="../Procariotica/index.html"
-       class="botao">
+        <div class="organelo">
 
-        🦠 Estudar Procariótica
+            <h3>🧬 Núcleo</h3>
 
-    </a>
+            <p>
+                Contém o material genético e coordena diversas atividades
+                da célula.
+            </p>
 
-</section>
+        </div>
 
+        <div class="organelo">
 
-<!-- =====================================================
-     CAMINHO DE APRENDIZAGEM
-     ===================================================== -->
+            <h3>🌿 Parede celular</h3>
 
-<section class="card">
+            <p>
+                Estrutura externa à membrana plasmática que proporciona
+                proteção, suporte e forma à célula vegetal.
+            </p>
 
-    <h2>
-        🧭 Caminho de aprendizagem
-    </h2>
+        </div>
 
-    <p>
-        Para compreender melhor a célula vegetal,
-        siga esta sequência:
-    </p>
+        <div class="organelo">
 
-    <ol>
+            <h3>☀️ Cloroplastos</h3>
 
-        <li>
-            Compreenda o conceito de célula vegetal.
-        </li>
+            <p>
+                Organelos responsáveis pela realização da fotossíntese,
+                utilizando a energia luminosa para produzir matéria orgânica.
+            </p>
 
-        <li>
-            Identifique as principais estruturas.
-        </li>
+        </div>
 
-        <li>
-            Estude a parede celular e o vacúolo central.
-        </li>
+        <div class="organelo">
 
-        <li>
-            Compreenda a função dos cloroplastos.
-        </li>
+            <h3>💧 Vacúolo central</h3>
 
-        <li>
-            Relacione os organelos com as suas funções.
-        </li>
+            <p>
+                Grande compartimento que armazena água, sais, pigmentos
+                e outras substâncias, contribuindo também para a pressão
+                de turgor da célula.
+            </p>
 
-        <li>
-            Compare a célula vegetal com a célula animal.
-        </li>
+        </div>
 
-        <li>
-            Compare células eucarióticas e procarióticas.
-        </li>
+        <div class="organelo">
 
-        <li>
-            Resolva os exercícios.
-        </li>
+            <h3>⚡ Mitocôndrias</h3>
 
-        <li>
-            Faça o Quiz da Célula.
-        </li>
+            <p>
+                Participam da respiração celular e da produção de energia.
+            </p>
 
-    </ol>
+        </div>
 
-</section>
+        <div class="organelo">
 
+            <h3>🏭 Ribossomas</h3>
 
-<!-- =====================================================
-     EXERCÍCIOS
-     ===================================================== -->
+            <p>
+                Responsáveis pela síntese de proteínas.
+            </p>
 
-<section class="hero">
+        </div>
 
-    <h2>
-        📝 Pratique os seus conhecimentos
-    </h2>
+        <div class="organelo">
 
-    <p>
-        Resolva exercícios para consolidar os conhecimentos
-        sobre a célula vegetal.
-    </p>
+            <h3>🧪 Retículo Endoplasmático</h3>
 
-    <a href="../Exercicios/index.html"
-       class="botao">
+            <p>
+                Participa na produção e transporte de proteínas e lípidos.
+            </p>
 
-        📝 Fazer exercícios
+        </div>
 
-    </a>
+        <div class="organelo">
 
-</section>
+            <h3>📦 Complexo de Golgi</h3>
 
+            <p>
+                Modifica, organiza e distribui diferentes substâncias
+                produzidas pela célula.
+            </p>
 
-<!-- =====================================================
-     QUIZ
-     ===================================================== -->
+        </div>
 
-<section class="hero">
+    </section>
 
-    <h2>
-        🎯 Teste os seus conhecimentos
-    </h2>
+    <section class="caixa">
 
-    <p>
-        Faça o Quiz da Célula e avalie o seu desempenho.
-    </p>
+        <h2>Fotossíntese</h2>
 
-    <a href="../Quiz/index.html"
-       class="botao">
+        <p>
+            Os cloroplastos permitem que as células vegetais realizem
+            a fotossíntese. Neste processo, a energia luminosa é utilizada
+            para produzir matéria orgânica a partir de dióxido de carbono
+            e água, com libertação de oxigénio.
+        </p>
 
-        🎯 Começar Quiz
+        <div class="destaque">
 
-    </a>
+            <strong>Resumo:</strong>
 
-</section>
+            <p>
+                Luz + dióxido de carbono + água → matéria orgânica + oxigénio
+            </p>
 
+        </div>
 
-<!-- =====================================================
-     NAVEGAÇÃO FINAL
-     ===================================================== -->
+    </section>
 
-<section class="hero">
+    <section class="caixa">
 
-    <h2>
-        🔬 Continue estudando no LABMZ
-    </h2>
+        <h2>Célula Vegetal × Célula Animal</h2>
 
-    <p>
-        Explore outras páginas do módulo Célula
-        ou volte às áreas principais do LABMZ.
-    </p>
+        <div class="tabela-container">
 
+            <table>
 
-    <a href="../Animal/index.html"
-       class="botao">
+                <thead>
 
-        🐾 Célula Animal
+                    <tr>
+                        <th>Característica</th>
+                        <th>Célula Vegetal</th>
+                        <th>Célula Animal</th>
+                    </tr>
 
-    </a>
+                </thead>
 
+                <tbody>
 
-    <a href="../Eucariotica/index.html"
-       class="botao">
+                    <tr>
+                        <td>Núcleo</td>
+                        <td>Presente</td>
+                        <td>Presente</td>
+                    </tr>
 
-        🔬 Eucariótica
+                    <tr>
+                        <td>Membrana plasmática</td>
+                        <td>Presente</td>
+                        <td>Presente</td>
+                    </tr>
 
-    </a>
+                    <tr>
+                        <td>Parede celular</td>
+                        <td>Presente</td>
+                        <td>Ausente</td>
+                    </tr>
 
+                    <tr>
+                        <td>Cloroplastos</td>
+                        <td>Presentes</td>
+                        <td>Ausentes</td>
+                    </tr>
 
-    <a href="../Procariotica/index.html"
-       class="botao">
+                    <tr>
+                        <td>Vacúolo central grande</td>
+                        <td>Presente</td>
+                        <td>Ausente</td>
+                    </tr>
 
-        🦠 Procariótica
+                </tbody>
 
-    </a>
+            </table>
 
+        </div>
 
-    <br><br>
+    </section>
 
+    <section class="caixa">
 
-    <a href="../index.html"
-       class="botao">
+        <h2>Continue a aprender</h2>
 
-        🔬 Voltar para Célula
+        <div class="navegacao">
 
-    </a>
+            <a class="botao" href="../Procariotica/index.html">
+                🦠 Procariótica
+            </a>
 
+            <a class="botao" href="../Eucariotica/index.html">
+                🔬 Eucariótica
+            </a>
 
-    <a href="../../index.html"
-       class="botao">
+            <a class="botao" href="../Animal/index.html">
+                🐾 Animal
+            </a>
 
-        🧬 Voltar para Biologia
+            <a class="botao" href="../Funcoes/index.html">
+                ⚙️ Funções Celulares
+            </a>
 
-    </a>
+            <a class="botao" href="../Exercicios/index.html">
+                📝 Exercícios
+            </a>
 
+            <a class="botao" href="../../Quizzes/index.html">
+                🧠 Quiz da Biologia
+            </a>
 
-    <a href="../../../index.html"
-       class="botao">
+        </div>
 
-        🏠 Voltar para Início
-
-    </a>
-
-</section>
-
+    </section>
 
 </main>
 
-
-<!-- =====================================================
-     RODAPÉ
-     ===================================================== -->
-
 <footer>
 
-    © 2026 LABMZ
+    <div class="container">
 
-    <br>
+        <p>
+            © 2026 LABMZ — Laboratório de Aprendizagem de Biologia
+            e Química de Moçambique
+        </p>
 
-    Laboratório de Aprendizagem de Biologia
-    e Química de Moçambique
+        <p>
+            Ciência • Tecnologia • Inovação
+        </p>
+
+    </div>
 
 </footer>
 
+<script src="../../../app.js"></script>
 
 </body>
-
 </html>
