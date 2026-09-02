@@ -3,11 +3,11 @@
 
 /* =========================================================
    LABMZ — SERVICE WORKER
-   Versão 5
-   Sistema de atualização e cache estabilizado
+   Versão 6
+   Atualização rápida + funcionamento offline
    ========================================================= */
 
-const CACHE_NAME = "LABMZ-v5";
+const CACHE_NAME = "LABMZ-v6";
 
 const BASE_PATH = "/LABMZ/";
 
@@ -17,13 +17,11 @@ const BASE_PATH = "/LABMZ/";
    ========================================================= */
 
 const RECURSOS_ESSENCIAIS = [
-
     BASE_PATH,
     BASE_PATH + "index.html",
     BASE_PATH + "style.css",
     BASE_PATH + "app.js",
     BASE_PATH + "manifest.json"
-
 ];
 
 
@@ -33,7 +31,10 @@ const RECURSOS_ESSENCIAIS = [
 
 self.addEventListener("install", function (event) {
 
-    console.log("[LABMZ] Instalando Service Worker:", CACHE_NAME);
+    console.log(
+        "[LABMZ] Instalando Service Worker:",
+        CACHE_NAME
+    );
 
     event.waitUntil(
 
@@ -41,15 +42,44 @@ self.addEventListener("install", function (event) {
 
             .then(function (cache) {
 
-                return cache.addAll(RECURSOS_ESSENCIAIS);
+                return Promise.all(
+
+                    RECURSOS_ESSENCIAIS.map(function (url) {
+
+                        return fetch(
+                            new Request(url, {
+                                cache: "no-store"
+                            })
+                        )
+
+                        .then(function (response) {
+
+                            if (
+                                !response ||
+                                response.status !== 200
+                            ) {
+
+                                throw new Error(
+                                    "Falha ao carregar: " + url
+                                );
+
+                            }
+
+                            return cache.put(url, response);
+
+                        });
+
+                    })
+
+                );
 
             })
 
             .then(function () {
 
-                /*
-                 * Ativa imediatamente a nova versão.
-                 */
+                console.log(
+                    "[LABMZ] Recursos essenciais atualizados."
+                );
 
                 return self.skipWaiting();
 
@@ -66,7 +96,10 @@ self.addEventListener("install", function (event) {
 
 self.addEventListener("activate", function (event) {
 
-    console.log("[LABMZ] Ativando Service Worker:", CACHE_NAME);
+    console.log(
+        "[LABMZ] Ativando Service Worker:",
+        CACHE_NAME
+    );
 
     event.waitUntil(
 
@@ -78,23 +111,21 @@ self.addEventListener("activate", function (event) {
 
                     cacheNames.map(function (cacheName) {
 
-                        /*
-                         * Remove versões antigas do LABMZ.
-                         */
-
                         if (
                             cacheName.startsWith("LABMZ-") &&
                             cacheName !== CACHE_NAME
                         ) {
 
                             console.log(
-                                "[LABMZ] Removendo cache antigo:",
+                                "[LABMZ] Eliminando cache antigo:",
                                 cacheName
                             );
 
                             return caches.delete(cacheName);
 
                         }
+
+                        return Promise.resolve();
 
                     })
 
@@ -104,9 +135,9 @@ self.addEventListener("activate", function (event) {
 
             .then(function () {
 
-                /*
-                 * Assume o controlo das páginas abertas.
-                 */
+                console.log(
+                    "[LABMZ] Cache antigo eliminado."
+                );
 
                 return self.clients.claim();
 
@@ -118,14 +149,40 @@ self.addEventListener("activate", function (event) {
 
 
 /* =========================================================
+   FUNÇÃO — ATUALIZAR CACHE
+   ========================================================= */
+
+function atualizarCache(request, response) {
+
+    if (
+        !response ||
+        response.status !== 200 ||
+        response.type === "opaque"
+    ) {
+
+        return;
+
+    }
+
+    caches.open(CACHE_NAME)
+
+        .then(function (cache) {
+
+            cache.put(
+                request,
+                response.clone()
+            );
+
+        });
+
+}
+
+
+/* =========================================================
    REQUISIÇÕES
    ========================================================= */
 
 self.addEventListener("fetch", function (event) {
-
-    /*
-     * Trabalhamos apenas com pedidos GET.
-     */
 
     if (event.request.method !== "GET") {
 
@@ -134,12 +191,12 @@ self.addEventListener("fetch", function (event) {
     }
 
 
+    const url = new URL(event.request.url);
+
+
     /*
      * Apenas recursos do próprio LABMZ.
      */
-
-    const url = new URL(event.request.url);
-
 
     if (url.origin !== self.location.origin) {
 
@@ -149,7 +206,7 @@ self.addEventListener("fetch", function (event) {
 
 
     /* =====================================================
-       PÁGINAS HTML
+       HTML
        NETWORK FIRST
        ===================================================== */
 
@@ -160,70 +217,44 @@ self.addEventListener("fetch", function (event) {
 
         event.respondWith(
 
-            fetch(event.request)
+            fetch(
+                new Request(event.request, {
+                    cache: "no-store"
+                })
+            )
 
-                .then(function (networkResponse) {
+            .then(function (networkResponse) {
 
-                    /*
-                     * Guarda a versão mais recente da página.
-                     */
+                atualizarCache(
+                    event.request,
+                    networkResponse
+                );
 
-                    if (
-                        networkResponse &&
-                        networkResponse.status === 200
-                    ) {
+                return networkResponse;
 
-                        const responseClone =
-                            networkResponse.clone();
+            })
 
-                        caches.open(CACHE_NAME)
+            .catch(function () {
 
-                            .then(function (cache) {
+                return caches.match(
+                    event.request
+                )
 
-                                cache.put(
-                                    event.request,
-                                    responseClone
-                                );
+                .then(function (cachedResponse) {
 
-                            });
+                    if (cachedResponse) {
+
+                        return cachedResponse;
 
                     }
 
+                    return caches.match(
+                        BASE_PATH + "index.html"
+                    );
 
-                    return networkResponse;
+                });
 
-                })
-
-                .catch(function () {
-
-                    /*
-                     * Sem Internet:
-                     * utiliza a versão armazenada.
-                     */
-
-                    return caches.match(event.request)
-
-                        .then(function (cachedResponse) {
-
-                            if (cachedResponse) {
-
-                                return cachedResponse;
-
-                            }
-
-
-                            /*
-                             * Se a página não estiver no cache,
-                             * tenta abrir a página inicial.
-                             */
-
-                            return caches.match(
-                                BASE_PATH + "index.html"
-                            );
-
-                        });
-
-                })
+            })
 
         );
 
@@ -233,8 +264,53 @@ self.addEventListener("fetch", function (event) {
 
 
     /* =====================================================
-       CSS / JS / IMAGENS / MANIFEST
-       CACHE + ATUALIZAÇÃO DA REDE
+       CSS / JAVASCRIPT / MANIFEST
+       NETWORK FIRST
+       ===================================================== */
+
+    if (
+        event.request.destination === "style" ||
+        event.request.destination === "script" ||
+        event.request.destination === "manifest"
+    ) {
+
+        event.respondWith(
+
+            fetch(
+                new Request(event.request, {
+                    cache: "no-store"
+                })
+            )
+
+            .then(function (networkResponse) {
+
+                atualizarCache(
+                    event.request,
+                    networkResponse
+                );
+
+                return networkResponse;
+
+            })
+
+            .catch(function () {
+
+                return caches.match(
+                    event.request
+                );
+
+            })
+
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       IMAGENS / OUTROS RECURSOS
+       CACHE FIRST + ATUALIZAÇÃO
        ===================================================== */
 
     event.respondWith(
@@ -243,40 +319,31 @@ self.addEventListener("fetch", function (event) {
 
             .then(function (cachedResponse) {
 
-                const networkRequest = fetch(event.request)
+                const networkRequest = fetch(
+                    event.request
+                )
 
-                    .then(function (networkResponse) {
+                .then(function (networkResponse) {
 
-                        if (
-                            networkResponse &&
-                            networkResponse.status === 200
-                        ) {
+                    atualizarCache(
+                        event.request,
+                        networkResponse
+                    );
 
-                            const responseClone =
-                                networkResponse.clone();
+                    return networkResponse;
 
-                            caches.open(CACHE_NAME)
+                })
 
-                                .then(function (cache) {
+                .catch(function () {
 
-                                    cache.put(
-                                        event.request,
-                                        responseClone
-                                    );
+                    return cachedResponse;
 
-                                });
-
-                        }
-
-
-                        return networkResponse;
-
-                    });
+                });
 
 
                 /*
-                 * Se houver cache, entrega imediatamente.
-                 * A rede atualiza o cache em segundo plano.
+                 * Se existir cache:
+                 * entrega imediatamente.
                  */
 
                 if (cachedResponse) {
@@ -287,7 +354,8 @@ self.addEventListener("fetch", function (event) {
 
 
                 /*
-                 * Se não houver cache, espera pela rede.
+                 * Se não existir cache:
+                 * utiliza a rede.
                  */
 
                 return networkRequest;
@@ -295,11 +363,6 @@ self.addEventListener("fetch", function (event) {
             })
 
             .catch(function () {
-
-                /*
-                 * Se não houver Internet nem cache,
-                 * devolve uma resposta simples.
-                 */
 
                 return new Response(
 
@@ -309,7 +372,8 @@ self.addEventListener("fetch", function (event) {
                         status: 503,
                         statusText: "Offline",
                         headers: {
-                            "Content-Type": "text/plain; charset=utf-8"
+                            "Content-Type":
+                                "text/plain; charset=utf-8"
                         }
                     }
 
@@ -323,7 +387,7 @@ self.addEventListener("fetch", function (event) {
 
 
 /* =========================================================
-   MENSAGEM PARA ATUALIZAÇÃO
+   MENSAGEM DE ATUALIZAÇÃO
    ========================================================= */
 
 self.addEventListener("message", function (event) {
@@ -337,6 +401,10 @@ self.addEventListener("message", function (event) {
 
     if (event.data === "ATUALIZAR_LABMZ") {
 
+        console.log(
+            "[LABMZ] Pedido manual de atualização recebido."
+        );
+
         self.skipWaiting();
 
     }
@@ -345,7 +413,7 @@ self.addEventListener("message", function (event) {
 
 
 /* =========================================================
-   FIM DO SERVICE WORKER
+   FIM
    ========================================================= */
 
 console.log(
