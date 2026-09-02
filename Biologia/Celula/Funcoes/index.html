@@ -1,635 +1,379 @@
 <!DOCTYPE html>
-<html lang="pt-MZ">
-
+<html lang="pt">
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#0b5d3b">
+    <title>Funções Celulares - LABMZ</title>
 
     <meta name="description"
-          content="LABMZ — Funções Celulares">
+          content="Aprenda as principais funções celulares no LABMZ.">
 
-    <title>LABMZ — Funções Celulares</title>
+    <link rel="manifest" href="../../../manifest.json">
+    <link rel="stylesheet" href="../../../style.css">
 
-    <link rel="stylesheet"
-          href="../../../style.css">
+    <style>
+        .conteudo {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
 
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .caixa {
+            background: #ffffff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .caixa h2 {
+            margin-top: 0;
+        }
+
+        .funcao {
+            margin: 18px 0;
+            padding: 18px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+        .funcao h3 {
+            margin-top: 0;
+        }
+
+        .navegacao {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #0b5d3b;
+            color: white;
+        }
+
+        .botao:hover {
+            opacity: 0.9;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .destaque {
+            background: #eef8f2;
+            padding: 20px;
+            border-left: 5px solid #0b5d3b;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
 
-
-<!-- =====================================================
-     CABEÇALHO
-     ===================================================== -->
-
 <header>
+    <div class="container">
 
-    <div class="logo">
-        🧬 LABMZ
+        <h1>LABMZ</h1>
+
+        <p>
+            Laboratório de Aprendizagem de Biologia e Química de Moçambique
+        </p>
+
+        <nav>
+            <a href="../../../index.html">Início</a>
+            <a href="../../index.html">Biologia</a>
+            <a href="../index.html">Célula</a>
+            <a href="../Exercicios/index.html">Exercícios</a>
+            <a href="../Procariotica/index.html">Procariótica</a>
+            <a href="../Eucariotica/index.html">Eucariótica</a>
+            <a href="../Animal/index.html">Animal</a>
+            <a href="../Vegetal/index.html">Vegetal</a>
+            <a href="../../Quizzes/index.html">Quizzes</a>
+        </nav>
+
     </div>
-
-    <div class="subtitulo">
-        Laboratório de Aprendizagem de Biologia e Química de Moçambique
-    </div>
-
 </header>
 
+<main class="conteudo">
 
-<!-- =====================================================
-     MENU PRINCIPAL
-     ===================================================== -->
+    <section class="hero">
 
-<nav class="menu">
+        <h1>⚙️ Funções Celulares</h1>
 
-    <a href="../../../index.html">
-        🏠 Início
-    </a>
+        <p>
+            Descubra como as células realizam as funções essenciais
+            para a manutenção da vida.
+        </p>
 
-    <a href="../../index.html">
-        🧬 Biologia
-    </a>
+    </section>
 
-    <a href="../index.html">
-        🔬 Célula
-    </a>
+    <div class="navegacao">
 
-    <a href="../Estrutura/index.html">
-        🧫 Estrutura
-    </a>
+        <a class="botao" href="../index.html">
+            ← Voltar à Célula
+        </a>
 
-    <a href="./index.html">
-        ⚙️ Funções
-    </a>
+        <a class="botao" href="../Exercicios/index.html">
+            📝 Exercícios
+        </a>
 
-    <a href="../Exercicios/index.html">
-        📝 Questões
-    </a>
-
-    <a href="../Quiz/index.html">
-        🎯 Quiz
-    </a>
-
-</nav>
-
-
-<!-- =====================================================
-     CONTEÚDO PRINCIPAL
-     ===================================================== -->
-
-<main>
-
-
-<!-- =====================================================
-     INTRODUÇÃO
-     ===================================================== -->
-
-<section class="hero">
-
-    <h1>
-        ⚙️ Funções Celulares
-    </h1>
-
-    <p>
-        As células realizam diversas funções essenciais
-        para manter a vida. Explore os principais processos
-        celulares responsáveis pela obtenção de energia,
-        produção de substâncias, transporte, comunicação
-        e reprodução celular.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     1. METABOLISMO
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🧪 1. Metabolismo
-    </h2>
-
-    <p>
-        O metabolismo corresponde ao conjunto de reações
-        químicas que ocorrem nas células e permitem a
-        transformação de matéria e energia.
-    </p>
-
-    <h3>
-        Anabolismo
-    </h3>
-
-    <p>
-        O anabolismo corresponde às reações de síntese,
-        nas quais moléculas mais simples são utilizadas
-        para formar moléculas mais complexas.
-    </p>
-
-    <h3>
-        Catabolismo
-    </h3>
-
-    <p>
-        O catabolismo corresponde às reações de degradação,
-        nas quais moléculas complexas são quebradas,
-        geralmente com libertação de energia.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     2. PRODUÇÃO DE ENERGIA
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        ⚡ 2. Produção de Energia
-    </h2>
-
-    <p>
-        As células necessitam de energia para realizar
-        diferentes atividades. O ATP é uma das principais
-        moléculas utilizadas para fornecer energia diretamente
-        a muitos processos celulares.
-    </p>
-
-    <h3>
-        Respiração celular
-    </h3>
-
-    <p>
-        A respiração celular envolve um conjunto de processos
-        metabólicos através dos quais a célula aproveita a
-        energia química presente nos nutrientes para produzir
-        ATP.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     3. SÍNTESE DE PROTEÍNAS
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🧬 3. Síntese de Proteínas
-    </h2>
-
-    <p>
-        As proteínas desempenham funções estruturais,
-        enzimáticas, transportadoras, reguladoras e muitas
-        outras funções importantes nos organismos.
-    </p>
-
-    <h3>
-        Como acontece?
-    </h3>
-
-    <p>
-        A informação genética presente no DNA pode ser
-        transcrita para RNA mensageiro. Posteriormente,
-        os ribossomas utilizam essa informação durante
-        a tradução para formar cadeias polipeptídicas.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     4. TRANSPORTE
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🚚 4. Transporte de Substâncias
-    </h2>
-
-    <p>
-        A célula precisa controlar o movimento de substâncias
-        entre o meio intracelular e o meio extracelular.
-    </p>
-
-    <h3>
-        Transporte passivo
-    </h3>
-
-    <p>
-        O transporte passivo ocorre sem utilização direta
-        de ATP e inclui processos como difusão simples,
-        difusão facilitada e osmose.
-    </p>
-
-    <h3>
-        Transporte ativo
-    </h3>
-
-    <p>
-        O transporte ativo permite o movimento de determinadas
-        substâncias contra os seus gradientes de concentração
-        ou eletroquímicos e requer energia.
-    </p>
-
-    <h3>
-        Endocitose e exocitose
-    </h3>
-
-    <p>
-        A endocitose permite a entrada de materiais através
-        da formação de vesículas, enquanto a exocitose permite
-        a libertação de materiais para o exterior da célula.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     5. COMUNICAÇÃO
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        📡 5. Comunicação Celular
-    </h2>
-
-    <p>
-        As células comunicam entre si e respondem a sinais
-        provenientes do ambiente ou de outras células.
-    </p>
-
-    <p>
-        A comunicação celular pode envolver moléculas
-        sinalizadoras que se ligam a recetores específicos
-        e desencadeiam respostas dentro da célula.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     6. DIVISÃO CELULAR
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🔄 6. Divisão Celular
-    </h2>
-
-    <p>
-        A divisão celular permite a formação de novas células.
-        É importante para o crescimento, desenvolvimento,
-        renovação de tecidos e reprodução de determinados
-        organismos.
-    </p>
-
-    <h3>
-        Mitose
-    </h3>
-
-    <p>
-        A mitose é uma forma de divisão nuclear que,
-        juntamente com a divisão celular, geralmente origina
-        duas células-filhas geneticamente semelhantes à
-        célula que lhes deu origem.
-    </p>
-
-    <h3>
-        Meiose
-    </h3>
-
-    <p>
-        A meiose é uma divisão celular especializada
-        associada à formação de células reprodutivas em
-        muitos organismos e contribui para a variabilidade
-        genética.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     7. FOTOSSÍNTESE
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        🌱 7. Fotossíntese
-    </h2>
-
-    <p>
-        A fotossíntese é um processo realizado por plantas,
-        algas e diversos microrganismos fotossintéticos,
-        através do qual a energia luminosa é convertida
-        em energia química.
-    </p>
-
-    <h3>
-        Onde ocorre?
-    </h3>
-
-    <p>
-        Nas células vegetais, as principais etapas da
-        fotossíntese ocorrem nos cloroplastos.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     8. DEGRADAÇÃO E RECICLAGEM
-     ===================================================== -->
-
-<section class="card">
-
-    <h2>
-        ♻️ 8. Degradação e Reciclagem Celular
-    </h2>
-
-    <p>
-        As células possuem mecanismos para degradar moléculas
-        e componentes celulares que já não são necessários.
-    </p>
-
-    <p>
-        Esses mecanismos contribuem para a manutenção,
-        renovação e equilíbrio interno da célula.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     RESUMO
-     ===================================================== -->
-
-<section class="recursos">
-
-    <h2>
-        📚 Resumo das principais funções
-    </h2>
-
-    <div class="recursos-grid">
-
-
-        <div class="recurso">
-
-            <div>
-                ⚡
-            </div>
-
-            <h3>
-                Energia
-            </h3>
-
-            <p>
-                Produção e utilização de energia para
-                realizar atividades celulares.
-            </p>
-
-        </div>
-
-
-        <div class="recurso">
-
-            <div>
-                🧬
-            </div>
-
-            <h3>
-                Informação genética
-            </h3>
-
-            <p>
-                Armazenamento, expressão e transmissão
-                da informação genética.
-            </p>
-
-        </div>
-
-
-        <div class="recurso">
-
-            <div>
-                🚚
-            </div>
-
-            <h3>
-                Transporte
-            </h3>
-
-            <p>
-                Entrada, saída e movimentação controlada
-                de substâncias.
-            </p>
-
-        </div>
-
-
-        <div class="recurso">
-
-            <div>
-                📡
-            </div>
-
-            <h3>
-                Comunicação
-            </h3>
-
-            <p>
-                Receção e transmissão de sinais entre
-                células e o ambiente.
-            </p>
-
-        </div>
-
+        <a class="botao" href="../../Quizzes/index.html">
+            🧠 Fazer Quiz
+        </a>
 
     </div>
 
-</section>
+    <section class="caixa">
 
+        <h2>O que são funções celulares?</h2>
 
-<!-- =====================================================
-     CAMINHO DE APRENDIZAGEM
-     ===================================================== -->
+        <p>
+            As funções celulares são as atividades realizadas pelas células
+            para garantir a sua sobrevivência, crescimento, reprodução e
+            funcionamento adequado.
+        </p>
 
-<section class="card">
+        <div class="destaque">
 
-    <h2>
-        🧭 Caminho de aprendizagem
-    </h2>
+            <strong>Ideia-chave:</strong>
 
-    <p>
-        Para compreender melhor as funções celulares,
-        siga esta sequência:
-    </p>
+            <p>
+                Cada estrutura celular possui funções específicas, mas todas
+                trabalham de forma integrada para manter a célula viva.
+            </p>
 
-    <ol>
+        </div>
 
-        <li>
-            Estude o metabolismo.
-        </li>
+    </section>
 
-        <li>
-            Compreenda como as células obtêm e utilizam energia.
-        </li>
+    <section class="caixa">
 
-        <li>
-            Aprenda como ocorre a síntese de proteínas.
-        </li>
+        <h2>Principais funções celulares</h2>
 
-        <li>
-            Estude o transporte de substâncias.
-        </li>
+        <div class="funcao">
 
-        <li>
-            Compreenda a comunicação celular.
-        </li>
+            <h3>🧬 1. Reprodução celular</h3>
 
-        <li>
-            Estude a divisão celular.
-        </li>
+            <p>
+                Permite que uma célula origine novas células através
+                de processos como a mitose e a meiose.
+            </p>
 
-        <li>
-            Explore a fotossíntese.
-        </li>
+        </div>
 
-        <li>
-            Resolva os exercícios e faça o Quiz.
-        </li>
+        <div class="funcao">
 
-    </ol>
+            <h3>🍽️ 2. Nutrição</h3>
 
-</section>
+            <p>
+                Consiste na obtenção e utilização de nutrientes necessários
+                para o funcionamento celular.
+            </p>
 
+        </div>
 
-<!-- =====================================================
-     EXERCÍCIOS
-     ===================================================== -->
+        <div class="funcao">
 
-<section class="hero">
+            <h3>⚡ 3. Produção de energia</h3>
 
-    <h2>
-        📝 Pratique os seus conhecimentos
-    </h2>
+            <p>
+                As células obtêm energia através de processos metabólicos.
+                Nas células eucarióticas, as mitocôndrias desempenham um
+                papel importante na respiração celular.
+            </p>
 
-    <p>
-        Depois de estudar as funções celulares,
-        teste os seus conhecimentos através dos exercícios.
-    </p>
+        </div>
 
-    <a href="../Exercicios/index.html"
-       class="botao">
+        <div class="funcao">
 
-        📝 Fazer exercícios
+            <h3>🧪 4. Metabolismo</h3>
 
-    </a>
+            <p>
+                Inclui o conjunto de reações químicas que ocorrem dentro
+                da célula, permitindo a construção e degradação de moléculas.
+            </p>
 
-</section>
+        </div>
 
+        <div class="funcao">
 
-<!-- =====================================================
-     QUIZ
-     ===================================================== -->
+            <h3>🚪 5. Transporte de substâncias</h3>
 
-<section class="hero">
+            <p>
+                A membrana plasmática controla a entrada e saída de
+                substâncias através de mecanismos como difusão, osmose
+                e transporte ativo.
+            </p>
 
-    <h2>
-        🎯 Teste os seus conhecimentos
-    </h2>
+        </div>
 
-    <p>
-        Faça o Quiz da Célula e avalie o que aprendeu.
-    </p>
+        <div class="funcao">
 
-    <a href="../Quiz/index.html"
-       class="botao">
+            <h3>🧹 6. Excreção</h3>
 
-        🎯 Começar Quiz
+            <p>
+                Permite a eliminação de resíduos produzidos durante
+                as atividades metabólicas.
+            </p>
 
-    </a>
+        </div>
 
-</section>
+        <div class="funcao">
 
+            <h3>📡 7. Comunicação celular</h3>
 
-<!-- =====================================================
-     NAVEGAÇÃO FINAL
-     ===================================================== -->
+            <p>
+                As células podem receber e transmitir sinais que permitem
+                coordenar diferentes atividades no organismo.
+            </p>
 
-<section class="hero">
+        </div>
 
-    <h2>
-        🔬 Continue estudando
-    </h2>
+        <div class="funcao">
 
-    <p>
-        Volte ao módulo Célula para explorar outros
-        conteúdos de Biologia.
-    </p>
+            <h3>🌱 8. Crescimento</h3>
 
-    <a href="../Estrutura/index.html"
-       class="botao">
+            <p>
+                As células podem aumentar de tamanho e produzir novas
+                estruturas e componentes celulares.
+            </p>
 
-        🧫 Estrutura celular
+        </div>
 
-    </a>
+        <div class="funcao">
 
-    <a href="../index.html"
-       class="botao">
+            <h3>🛡️ 9. Defesa</h3>
 
-        🔬 Voltar para Célula
+            <p>
+                Algumas células possuem funções especializadas na proteção
+                do organismo contra agentes potencialmente prejudiciais.
+            </p>
 
-    </a>
+        </div>
 
-    <a href="../../index.html"
-       class="botao">
+    </section>
 
-        🧬 Voltar para Biologia
+    <section class="caixa">
 
-    </a>
+        <h2>Exemplos de estruturas e suas funções</h2>
 
-    <a href="../../../index.html"
-       class="botao">
+        <ul>
 
-        🏠 Voltar para Início
+            <li>
+                <strong>Núcleo:</strong>
+                armazenamento do material genético e controlo da atividade celular.
+            </li>
 
-    </a>
+            <li>
+                <strong>Mitocôndrias:</strong>
+                produção de energia através da respiração celular.
+            </li>
 
-</section>
+            <li>
+                <strong>Ribossomas:</strong>
+                síntese de proteínas.
+            </li>
 
+            <li>
+                <strong>Membrana plasmática:</strong>
+                controlo da entrada e saída de substâncias.
+            </li>
+
+            <li>
+                <strong>Complexo de Golgi:</strong>
+                modificação e distribuição de substâncias.
+            </li>
+
+            <li>
+                <strong>Lisossomas:</strong>
+                digestão intracelular.
+            </li>
+
+            <li>
+                <strong>Cloroplastos:</strong>
+                realização da fotossíntese nas células vegetais.
+            </li>
+
+            <li>
+                <strong>Vacúolo:</strong>
+                armazenamento de água e outras substâncias, especialmente
+                importante nas células vegetais.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <section class="caixa">
+
+        <h2>Continue a aprender</h2>
+
+        <div class="navegacao">
+
+            <a class="botao" href="../index.html">
+                🔬 Estrutura da Célula
+            </a>
+
+            <a class="botao" href="../Procariotica/index.html">
+                🦠 Procariótica
+            </a>
+
+            <a class="botao" href="../Eucariotica/index.html">
+                🔬 Eucariótica
+            </a>
+
+            <a class="botao" href="../Animal/index.html">
+                🐾 Animal
+            </a>
+
+            <a class="botao" href="../Vegetal/index.html">
+                🌱 Vegetal
+            </a>
+
+            <a class="botao" href="../Exercicios/index.html">
+                📝 Exercícios
+            </a>
+
+            <a class="botao" href="../../Quizzes/index.html">
+                🧠 Quiz da Biologia
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
-
-<!-- =====================================================
-     RODAPÉ
-     ===================================================== -->
-
 <footer>
 
-    © 2026 LABMZ
+    <div class="container">
 
-    <br>
+        <p>
+            © 2026 LABMZ — Laboratório de Aprendizagem de Biologia
+            e Química de Moçambique
+        </p>
 
-    Laboratório de Aprendizagem de Biologia
-    e Química de Moçambique
+        <p>
+            Ciência • Tecnologia • Inovação
+        </p>
+
+    </div>
 
 </footer>
 
+<script src="../../../app.js"></script>
 
 </body>
-
 </html>
